@@ -1,0 +1,65 @@
+
+/*@aparna added this style sheet, it includes styles for social links*/
+.icon-bar {
+  position: fixed;
+right:1.5%;
+  top: 49%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border:3px;
+  border-color: white;
+}
+
+.icon-bar a {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  transition: all 0.3s ease;
+   font-size: 34px;
+}
+
+.icon-bar a:hover {
+  background-color: white;
+}
+.github {
+  background: #007bb5;
+  color:white;
+  
+}
+
+.twitter {
+  
+  background: white;
+  color: #007bb5;
+}
+
+.google {
+  background: white;
+  color:#007bb5;
+}
+
+  
+
+
+.slack
+{
+  background:#007bb5;
+  color:white;
+}
+
+
+.boxed
+{
+  border:60px solid white;
+}
+.imgalign{
+  margin-left: -20px;
+}
+p{
+  text-align:justify;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+
+}
+

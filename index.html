@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta property="og:title" content="Storage Reimagined for a Streaming World"/> 
+<meta property="og:image" content="http://pravega.io/img/lights.png"/> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Pravega - Stream as a New Distributed Storage Primitive</title>
+
+<!-- Bootstrap Core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+<!-- Plugin CSS -->
+<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
+<link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
+<link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
+
+<!-- Theme CSS -->
+<link href="css/new-age.css" rel="stylesheet">
+
+<!-- Social-icon CSS-->
+<link href="css/ss-social.css" rel="stylesheet">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="top">
+
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+  <div class="container"> 
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i> </button>
+      <a class="navbar-brand page-scroll" href="/index.html">
+           <h1><!-- <img class="imgalign" src="img/pr_logo3.png"> --> Pravega</h1>
+ 
+      </a></div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <!--li> <a class="page-scroll" href="#opensource">Open Source</a> </li-->
+        <li> <a class="page-scroll" href="#start">Why Pravega</a> </li>
+        <li> <a class="page-scroll" href="#future">Architecture</a> </li>
+        <li> <a class="page-scroll usecasenav" href="#use">Use Cases</a> </li>
+        <li> <a class="page-scroll" href="team.html"  >Team</a> </li>
+        <li> <a class="page-scroll active" href="faq.html">FAQ</a> </li>
+        <li> <a class="page-scroll active" href="presentations.html">Presentations</a> </li>
+        <li> <a class="dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">Docs <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+
+
+                <li><a href="http://pravega.io/docs/latest/" target="_pravega_docs">latest</a></li>
+<li><a href="http://pravega.io/docs/v0.7.0" target="_pravega_docs">v0.7.0</a></li>
+<li><a href="http://pravega.io/docs/v0.6.2" target="_pravega_docs">v0.6.2</a></li>
+<li><a href="http://pravega.io/docs/v0.6.1" target="_pravega_docs">v0.6.1</a></li>
+<li><a href="http://pravega.io/docs/v0.6.0" target="_pravega_docs">v0.6.0</a></li>
+<li><a href="http://pravega.io/docs/v0.5.1" target="_pravega_docs">v0.5.1</a></li>
+
+<li><a href="http://pravega.io/docs/v0.5.0/" target="_pravega_docs">v0.5.0</a></li>
+<li><a href="http://pravega.io/docs/v0.4.0/" target="_pravega_docs">v0.4.0</a></li> 
+<li><a href="http://pravega.io/docs/v0.3.2/" target="_pravega_docs">v0.3.2</a></li> 
+<li><a href="http://pravega.io/docs/v0.3.1/" target="_pravega_docs">v0.3.1</a></li>
+
+             <!--   <li><a href="http://pravega.io/docs/v0.3.1/" target="_pravega_docs">v0.3.1</a></li> -->
+                <li><a href="http://pravega.io/docs/v0.3.0/" target="_pravega_docs">v0.3.0</a></li>
+                <li><a href="http://pravega.io/docs/v0.2.1/" target="_pravega_docs">v0.2.1</a></li>
+                <li><a href="http://pravega.io/docs/v0.2.0/" target="_pravega_docs">v0.2.0</a></li>
+                <li><a href="http://pravega.io/docs/v0.1.0/" target="_pravega_docs">v0.1.0</a></li>
+                <li><a href="http://pravega.io/docs/v0.1.0-prerelease/" target="_pravega_docs">v0.1.0-prerelease</a></li>
+              </ul>
+        </li>
+<!-- href="http://pravega.io/docs/v0.2.0/" target="_pravega_docs">Docs</a> </li> -->
+        <li> <a class="page-scroll" href="http://blog.pravega.io/" target="_pravega_blog" >Blog</a> </li>
+        <li> <a class="btn center-btn btn-sml btn-outline page-scroll btn-download" href="https://github.com/pravega/pravega" target="_blank" ><i class="fa fa-github" aria-hidden="true"></i> <span >Download</span></a> </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse --> 
+  </div>
+  <!-- /.container-fluid --> 
+</nav>
+<header>
+  <div class="container mobile">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="header-content">
+          <div class="header-content-inner">
+           <div class="row">
+				<div class="statement">Storage Reimagined for a Streaming World
+				</div>
+			</div>
+            <div class="row">
+				<div class="subhead">
+					<p>Pravega provides a new storage abstraction - a stream - for continuous and unbounded data. A Pravega stream is a durable, elastic, append-only, unbounded sequence of bytes that has good performance and strong consistency. <a href="http://blog.pravega.io/" target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></p>
+				</div>
+			</div>
+            <div class="row">
+				<a href="https://github.com/pravega/pravega" target="_blank" class="btn btn-xl"><i class="fa fa-github" aria-hidden="true"></i> Github</a>
+				<a href="http://pravega.io/docs/latest/getting-started/" target="_blank" class="btn btn-xl">Quick Start</a>
+				<!--button type="button" class="btn btn-xl" data-toggle="modal" data-target="#myModal"><i class="fa fa-github" aria-hidden="true"></i> Download</button-->
+				
+			</div>
+			</div>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel" >Pravega Github Repository will be available on May 10th, 2017</h2>
+        <h2 id="msgSubmit" style="display: none;"></h2>
+      </div>
+      <div class="modal-body">
+        <form action="http://pravega.io/register.php" id="registerForm">
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted"> In case you want us to send you a reminder email.</small> </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModalJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabelJoin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel" >Join #Pravega Community!</h2>
+        <h2 id="msgSubmit" style="display: none;">It takes only two steps to join the community on Slack</h2>
+      </div>
+      <div class="modal-body">	
+	<ol>
+		<li style="margin-bottom: 10px">Register at <a href="http://pravega-slack-invite.herokuapp.com">Pravega-IO Slack</a></li>
+		<li style="margin-bottom: 20px">Join the <a href="https://pravega-io.slack.com/#pravega-public">#pravega-public</a> channel</li>
+	</ol>
+	<div style="margin-bottom: 10px 10ppx 20px 10px; font-size: 75%; color: black; text-align:center ">Do not forget to follow us on <a href="https://twitter.com/PravegaIO" target="_blank" title="Twitter">Twitter</a> and subscribe to <a href="https://groups.google.com/forum/#!forum/pravega-users" target="_blank" title="Google Goups">Users mailing list</a>	</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+
+<section id="opensource">
+	<div class="container">
+		<div class="row">
+		  	<div class="col-lg-12">
+				<div class="section-heading">
+				  <h1 class="text-center">Open Source</h1>
+				</div>
+			</div>
+		</div>
+		<div class="row opensource_content">
+			<p>Streaming is motivating us to rethink fundamental data processing and storage principles. As storage experts, Dell EMC is doing its part by designing a new storage primitive purpose-built for streaming data.  We are open sourcing Pravega under the <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache 2.0 License</a> to accelerate the adoption of streaming technology.
+			 </p>
+			<p>Open source is right for Pravega because we believe that disruptive technologies should be owned and driven by a community of passionate open source developers.
+			</p>
+			<p class="text-center">
+				<a  target="_pravega_slack" href="#" class="btn btn-xl" data-toggle="modal" data-target="#myModalJoin" ><i class="fa fa-github" aria-hidden="true"></i> Join the Community</a>
+			</p>
+		</div>
+	</div>
+</section>
+<div style="margin: 50px">
+
+</div>
+<section id="start" class="features testit">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="section-heading">
+          <h1>Why Pravega</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container-fluid">
+          <div class="row">
+           	<div class="col-md-6">
+              <div class="feature-item"> <img src="img/ico-once.png" title="Exactly-Once Delivery">
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#exactly-once-semantics" target="keyfeatures">Exactly-Once Semantics</a></h3>
+                <p class="text-muted">Ensure that each event is delivered and processed exactly once, with exact ordering guarantees, despite failures in clients, servers or the network.<!--<a class="learnmore" href="#"><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+              </div>
+            </div>
+            <div class="col-md-6 offset-a">
+              <div class="feature-item feature-item-pravega"> <img src="img/ico-auto-scaling.png" title="Auto-Scaling">
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#auto-scaling" target="keyfeatures">Auto-Scaling</a></h3>
+                <p class="text-muted">Unlike systems with static partitioning, Pravega can automatically scale individual data streams to accommodate changes in data ingestion rate.<!--<a class="learnmore" href="#" target="_blank"><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+              </div>
+            </div>         
+          </div>
+          <div class="row">
+			<div class="col-md-6 offset-b">
+			  <div class="feature-item"> <img src="img/ico-resiliency.png" title="Resiliency">
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#distributed-computing-primitive" target="keyfeatures">Distributed Computing Primitive</a></h3>
+				<p class="text-muted">Pravega is great for distributed computing; it can be used as a data storage mechanism, for messaging between processes and for other distributed computing services such as leader election. <!--<a class="learnmore" href=""><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+			  </div>
+			</div>
+          	<div class="col-md-6">
+              <div class="feature-item"> <img src="img/ico-write.png" title="Write Efficiency">
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#write-efficiency" target="keyfeatures">Write Efficiency</a></h3>
+                <p class="text-muted">Pravega shrinks write latency to milliseconds, and seamlessly scales to handle high throughput reads and writes from thousands of concurrent clients, making it ideal for IoT and other time sensitive applications.<!--<a class="learnmore" href=""><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+              </div>
+            </div>         
+          </div>
+          <div class="row">
+           	<div class="col-md-6 offset-b">
+              <div class="feature-item feature-item-pravega"> <img src="img/ico-infinite.png" title="Unlimited Retention">
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#unlimited-retention" target="keyfeatures">Unlimited Retention</a></h3>
+                <p class="text-muted">Ingest, process and retain data in streams forever. Use same paradigm to access both real-time and historical events stored in Pravega.<!--<a class="learnmore" href="#"><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="feature-item"> <img src="img/ico-tiering.png" title="Multi-Protocol Access">
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#storage-efficiency" target="keyfeatures">Storage Efficiency</a></h3>
+                <p class="text-muted">Use Pravega to build pipelines of data processing, combining batch, real-time and other applications without duplicating data for every step of the pipeline.<!--<a class="learnmore" href="#" target="_blank"><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+          	<div class="col-md-6 offset-b">
+              <div class="feature-item"> <img src="img/ico-durability.png" wtitle="Durability" >
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#durability" target="keyfeatures">Durability</a></h3>
+                <p class="text-muted">Don't compromise between performance, durability and consistency. Pravega persists and protects data before the write operation is acknowledged 
+    to the client.<!--<a class="learnmore" href="#" target="_blank"><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+              </div>
+            </div>
+           	<div class="col-md-6">
+              <div class="feature-item"> <img src="img/ico-transaction.png" title="Transaction Support">
+				  <h3><a href="http://pravega.io/docs/latest/key-features/#transaction-support" target="keyfeatures">Transaction Support</a></h3>
+                <p class="text-muted">A developer uses a Pravega Transaction to ensure that 
+    a set of events are written to a stream atomically.<!--<a class="learnmore" href="#" target="_blank"><span class="nr">Learn More</span> <img class="linkout" src="img/link-out.png"></a>--></p>
+              </div>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="future" class="future" >
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <div class="section-heading">
+        <h1>Architecture</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <!--<p>Pravega is a distributed storage system that maintains millions of Streams, each consisting of a continuous and ordered list of messages called Events. A stream is based on an immutable append-only log structure. This data structure is nothing new and has been used for years in various proprietary forms to implement features such as databases replication where a sequence of row inserts, updates and deletes are applied to each database instance independently.  We define the future where Pravega is an open shared storage primitive for all types of distributed storage systems and micro-service architectures.</p>--> 
+	  <a href="http://pravega.io/docs/latest/pravega-concepts/" target="_blank" title="Click to learn more"> <img class="future-img" src="img/future.png?updated=yes" title="Click to learn more"> </a>
+  </div>
+</section>
+<section id="use" class="usecase">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <div class="section-heading">
+        <h1>Use Cases</h1>
+      </div>
+    </div>
+  </div>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> 
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+      
+    </ol>
+    
+    <!-- Wrapper for slides --> 
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+     <div class="item active"> <img src="img/wind.png" width="2200" alt="">
+        <div class="carousel-caption">
+          <h2>Consistent, high performance storage, ideal for IoT</h2>
+          <p>IoT Renewable Energy: Harnessing wind power at commercial scale requires a large number of wind turbines distributed over a large area. Each wind turbine generates thousands of data points per second (e.g. temperature, rotation speed, wind direction, energy output). Collecting all this data for historical and real-time analysis is necessary for prediction of potential failures as well as controlling power distribution networks to manage the variable nature of renewable energy. Unique benefits that Pravega offers:</p>
+          <ul>
+            <li>Consistent high performance for ingestion of both small and large events</li>
+            <li>Scalable data ingestion from large number of sensors</li>
+            <li>Durable and low latency storage</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"> <img src="img/sync.png" width="2200" alt="">
+        <div class="carousel-caption">
+          <h2>Coordinating distributed applications</h2>
+			<p>Distributed applications like micro-services: Pravega is a storage primitive, it is a messaging mechanism and it is a distributed computing coordination framework.  Using the State Synchronizer API, micro-services can use Pravega as their database, sharing data without the overhead of a database.  Other distributed computing problems such as discovery, leader election and many more can be built using Pravega.  Unique benefits that Pravega offers</p>
+       		<ul>
+				<li>State synchronizer for sharing data between processes with strong consistency and optimistic concurrency.</li>
+				<li>Leader election and other distributed computing patterns implemented without a direct application dependency on other middleware such as Apache Zookeeper.</li>
+				<li>Consistent, reliable middleware for modern reactive, micro-services applications.</li>
+          	</ul>
+        </div>
+      </div>
+      <div class="item"> <img src="img/storage.png" width="2200" alt="">
+        <div class="carousel-caption">
+          <h2>Same storage API for both real-time and historical data</h2>
+          <p>Telecommunications: Companies have vast networks of complex infrastructure distributed across the world. Each component generates its own log representing its limited view of the global state. It's crucial all logs are aggregated and analyzed in real-time to detect issues before they disrupt service. Unique benefits that Pravega offers:</p>
+          <ul>
+            <li>Same Streaming API for accessing and processing both real-time and historical data</li>
+            <li>Stream level auto-scaling to accommodate bursts of data</li>
+            <li>Connectors to stream processing engines such as Flink</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"> <img src="img/game.png" width="2200" alt="">
+        <div class="carousel-caption">
+          <h2>Distributed Pub/Sub</h2>
+          <p>Multi Player Gaming: Low latency and high speed message delivery is vital for online multi-player gaming platforms. Each player's movements, interactions and events need to be reflected across all connected devices as they happen in real-time. Game messaging data is also stored for generating player leader board statistics from historical data to troubleshooting. Unique benefits that Pravega offers:</p>
+          <ul>
+            <li>Scalable read/write parallelism that can support millions of simultaneous players</li>
+            <li>Reliable and exactly-once delivery of game state and events across all connected devices</li>
+            <li>Real-time delivery of score updates, game stats, and in-game notifications and alerts</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"> <img src="img/iot.png" width="2200" alt="">
+        <div class="carousel-caption once">
+          <h2>Exactly once stream processing with Apache Flink</h2>
+          <p>Targeted Web Advertising: Targeting advertising to a customer’s interests or needs is key to increasing its effectiveness. First, unique users are identified in streams of data by correlating specific identifiers from multiple sources. Next, a user profile is generated by aggregating historical session data - extrapolating interests or demographic criteria against which the advertising can be targeted. Finally, user interactions on a website are correlated with their profiles in real-time to embed relevant ads from a catalogue of available options. Unique benefits that Pravega offers:</p>
+          <ul>
+            <li>Exactly-once on sink/source with transactional writes, checkpointing and deduplication </li>
+            <li>One API to access real-time and historical data</li>
+            <li>Integration with Flink for elastically scalable data processing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"> <img src="img/build.png" width="2200" alt="">
+        <div class="carousel-caption">
+          <h2>Building modern, storage efficient data pipelines</h2>
+			<p>Real-time and batch analytics: Historically, developers used a so-called Lambda architecture to build analytics platforms that process big data into accurate and real-time information. This approach required duplicate application development, one to provide accurate results over historical data using tools like HDFS and one to provide approximate but timely results using a different set of tools like Apache Storm. With Pravega, developers can build one application, satisfying both batch and real-time, eliminating complicated, hard to maintain dual infrastructures. Unique benefits that Pravega offers:</p>
+       		<ul>
+				<li>Data is stored once, in Pravega, not duplicated per middleware stack</li>
+				<li>Data is protected by Pravega, not replicated 3 (or more) times by middleware</li>
+				<li>Pravega's exactly once semantics allows developers to build pipelines of applications with both accurate and timely results</li>
+          </ul>
+        </div>
+		</div>
+      
+    </div>
+    
+    <!-- Controls --> 
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+</section>
+
+
+
+<!--<section >
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12"> <img class="userlogos" title="Partners" src="img/partners.png?updated=yes"> </div>
+      <div class="col-md-12"> <img class="userlogos2" title="Partners" src="img/partners-sml.png"> </div>
+    </div>
+  </div>
+</section>-->
+
+<div class= "icon-bar">
+<a href="https://github.com/pravega/pravega" target="_blank" title="Github" class="github"><i class="fa fa-github"></i></a>
+       <a href="https://groups.google.com/forum/#!forum/pravega-users" target="_blank" title="Google Groups" class="google"><i class="fa fa-google"></i></a>
+      <a href="#" target="_blank" title="Slack"  data-toggle="modal" data-target="#myModalJoin" class="slack"> <i class="fa fa-slack"></i></a>
+
+       <a href="https://twitter.com/PravegaIO" target="_blank" title="Twitter" class="twitter"><i class="fa fa-twitter"></i></a>
+    </div>
+
+<footer >
+  <div class="container">
+    <p>&copy; 2017 Pravega. All Rights Reserved.</p>
+    <!--<ul class="list-inline">
+      <li> <a href="#">Privacy</a> </li>
+      <li> <a href="#">Terms</a> </li>
+      <li> <a href="#">FAQ</a> </li>
+    </ul>--> 
+  </div>
+</footer>
+
+<!-- jQuery --> 
+<script src="vendor/jquery/jquery.js"></script> 
+
+<!-- Bootstrap Core JavaScript --> 
+<script src="vendor/bootstrap/js/bootstrap.js"></script> 
+
+<!-- Plugin JavaScript --> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> 
+
+<!-- Theme JavaScript --> 
+<script src="js/new-age.js"></script> 
+
+<!-- Ajax Form -->
+<script>
+
+$("#registerForm").submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
+    submitForm();
+});
+
+function submitForm(){
+    // Initiate Variables With Form Content
+    var email = $("#email").val();
+
+    $.ajax({
+        type: "POST",
+        url: "http://pravega.io/register.php",
+        data: "email=" + email,
+        success : function(text){
+            $( "#registerForm" ).hide();
+            $( "#myModalLabel" ).hide();
+            $( "#msgSubmit" ).html(text).show();
+        }
+    });
+}
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1508605-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<!-- Logo Carousel JavaScript -->
+</body>
+</html>
