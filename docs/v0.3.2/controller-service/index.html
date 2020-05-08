@@ -1,0 +1,2435 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="http://pravega.io/controller-service/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>Controller Service - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#pravega-controller-service" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Controller Service
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Controller Service
+      </label>
+    
+    <a href="./" title="Controller Service" class="md-nav__link md-nav__link--active">
+      Controller Service
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction " class="md-nav__link">
+    Introduction 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" title="Architecture " class="md-nav__link">
+    Architecture 
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-management" title="Stream Management " class="md-nav__link">
+    Stream Management 
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cluster-management" title="Cluster Management " class="md-nav__link">
+    Cluster Management 
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-diagram" title="System diagram " class="md-nav__link">
+    System diagram 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" title="Components " class="md-nav__link">
+    Components 
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-endpoints" title="Service Endpoints " class="md-nav__link">
+    Service Endpoints 
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grpc" title="gRPC" class="md-nav__link">
+    gRPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest" title="REST" class="md-nav__link">
+    REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-service" title="Controller Service" class="md-nav__link">
+    Controller Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-metadata-store" title="Stream Metadata Store" class="md-nav__link">
+    Stream Metadata Store
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-metadata" title="Stream Metadata" class="md-nav__link">
+    Stream Metadata
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables" title="Tables" class="md-nav__link">
+    Tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-configuration" title="Stream Configuration" class="md-nav__link">
+    Stream Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-state" title="Stream State" class="md-nav__link">
+    Stream State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncation-record" title="Truncation Record" class="md-nav__link">
+    Truncation Record
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sealed-segments-record" title="Sealed Segments Record" class="md-nav__link">
+    Sealed Segments Record
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-transactions" title="Active Transactions" class="md-nav__link">
+    Active Transactions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-transactions" title="Completed Transactions" class="md-nav__link">
+    Completed Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-store-caching" title="Stream Store Caching" class="md-nav__link">
+    Stream Store Caching
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-buckets" title="Stream Buckets" class="md-nav__link">
+    Stream Buckets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retention-set" title="Retention Set" class="md-nav__link">
+    Retention Set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-cluster-listener" title="Controller Cluster Listener" class="md-nav__link">
+    Controller Cluster Listener
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-store" title="Host Store" class="md-nav__link">
+    Host Store
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-workers" title="Background workers" class="md-nav__link">
+    Background workers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-framework" title="Task Framework" class="md-nav__link">
+    Task Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-processor-framework" title="Event Processor Framework" class="md-nav__link">
+    Event Processor Framework
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-and-responsibilities" title="Roles and Responsibilities" class="md-nav__link">
+    Roles and Responsibilities
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-operations" title="Stream Operations" class="md-nav__link">
+    Stream Operations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-stream" title="Create Stream" class="md-nav__link">
+    Create Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-stream" title="Update Stream" class="md-nav__link">
+    Update Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale-stream" title="Scale Stream" class="md-nav__link">
+    Scale Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncate-stream" title="Truncate Stream" class="md-nav__link">
+    Truncate Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seal-stream" title="Seal Stream" class="md-nav__link">
+    Seal Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-stream" title="Delete Stream" class="md-nav__link">
+    Delete Stream
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-policy-manager" title="Stream Policy Manager" class="md-nav__link">
+    Stream Policy Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaling-infrastructure" title="Scaling infrastructure" class="md-nav__link">
+    Scaling infrastructure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retention-infrastructure" title="Retention infrastructure" class="md-nav__link">
+    Retention infrastructure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-manager" title="Transaction Manager" class="md-nav__link">
+    Transaction Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-transaction" title="Create transaction" class="md-nav__link">
+    Create transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-transaction" title="Commit Transaction" class="md-nav__link">
+    Commit Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abort-transaction" title="Abort Transaction" class="md-nav__link">
+    Abort Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-transaction" title="Ping Transaction" class="md-nav__link">
+    Ping Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-timeout-management" title="Transaction Timeout Management" class="md-nav__link">
+    Transaction Timeout Management
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segment-container-to-host-mapping" title="Segment Container to Host Mapping" class="md-nav__link">
+    Segment Container to Host Mapping
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/docker-swarm/" title="Deployment in Docker Swarm" class="md-nav__link">
+      Deployment in Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction " class="md-nav__link">
+    Introduction 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" title="Architecture " class="md-nav__link">
+    Architecture 
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-management" title="Stream Management " class="md-nav__link">
+    Stream Management 
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cluster-management" title="Cluster Management " class="md-nav__link">
+    Cluster Management 
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-diagram" title="System diagram " class="md-nav__link">
+    System diagram 
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" title="Components " class="md-nav__link">
+    Components 
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-endpoints" title="Service Endpoints " class="md-nav__link">
+    Service Endpoints 
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grpc" title="gRPC" class="md-nav__link">
+    gRPC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest" title="REST" class="md-nav__link">
+    REST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-service" title="Controller Service" class="md-nav__link">
+    Controller Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-metadata-store" title="Stream Metadata Store" class="md-nav__link">
+    Stream Metadata Store
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-metadata" title="Stream Metadata" class="md-nav__link">
+    Stream Metadata
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tables" title="Tables" class="md-nav__link">
+    Tables
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-configuration" title="Stream Configuration" class="md-nav__link">
+    Stream Configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-state" title="Stream State" class="md-nav__link">
+    Stream State
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncation-record" title="Truncation Record" class="md-nav__link">
+    Truncation Record
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sealed-segments-record" title="Sealed Segments Record" class="md-nav__link">
+    Sealed Segments Record
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#active-transactions" title="Active Transactions" class="md-nav__link">
+    Active Transactions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-transactions" title="Completed Transactions" class="md-nav__link">
+    Completed Transactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-store-caching" title="Stream Store Caching" class="md-nav__link">
+    Stream Store Caching
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-buckets" title="Stream Buckets" class="md-nav__link">
+    Stream Buckets
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#retention-set" title="Retention Set" class="md-nav__link">
+    Retention Set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-cluster-listener" title="Controller Cluster Listener" class="md-nav__link">
+    Controller Cluster Listener
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#host-store" title="Host Store" class="md-nav__link">
+    Host Store
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#background-workers" title="Background workers" class="md-nav__link">
+    Background workers
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-framework" title="Task Framework" class="md-nav__link">
+    Task Framework
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-processor-framework" title="Event Processor Framework" class="md-nav__link">
+    Event Processor Framework
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-and-responsibilities" title="Roles and Responsibilities" class="md-nav__link">
+    Roles and Responsibilities
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-operations" title="Stream Operations" class="md-nav__link">
+    Stream Operations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-stream" title="Create Stream" class="md-nav__link">
+    Create Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-stream" title="Update Stream" class="md-nav__link">
+    Update Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale-stream" title="Scale Stream" class="md-nav__link">
+    Scale Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#truncate-stream" title="Truncate Stream" class="md-nav__link">
+    Truncate Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#seal-stream" title="Seal Stream" class="md-nav__link">
+    Seal Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-stream" title="Delete Stream" class="md-nav__link">
+    Delete Stream
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-policy-manager" title="Stream Policy Manager" class="md-nav__link">
+    Stream Policy Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scaling-infrastructure" title="Scaling infrastructure" class="md-nav__link">
+    Scaling infrastructure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retention-infrastructure" title="Retention infrastructure" class="md-nav__link">
+    Retention infrastructure
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-manager" title="Transaction Manager" class="md-nav__link">
+    Transaction Manager
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-transaction" title="Create transaction" class="md-nav__link">
+    Create transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-transaction" title="Commit Transaction" class="md-nav__link">
+    Commit Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abort-transaction" title="Abort Transaction" class="md-nav__link">
+    Abort Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ping-transaction" title="Ping Transaction" class="md-nav__link">
+    Ping Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction-timeout-management" title="Transaction Timeout Management" class="md-nav__link">
+    Transaction Timeout Management
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#segment-container-to-host-mapping" title="Segment Container to Host Mapping" class="md-nav__link">
+    Segment Container to Host Mapping
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resources" title="Resources" class="md-nav__link">
+    Resources
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/controller-service.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="pravega-controller-service"><span id="_Toc506543504" class="anchor"><span id="_Toc506545512" class="anchor"></span></span>Pravega Controller Service<a class="headerlink" href="#pravega-controller-service" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#architecture">Architecture</a><ul>
+<li><a href="#controllerAsStreamManager">Stream Management    </a> </li>
+<li><a href="#controllerAsContainerMapper">Cluster Management    </a></li>
+</ul>
+</li>
+<li><a href="#systemDiagram">System Diagram    </a></li>
+<li><a href="#components">Components    </a><ul>
+<li><a href="#serviceEndpoints">Service Endpoints    </a></li>
+<li><a href="#controllerService">Controller Service    </a></li>
+<li><a href="#streamStore">Stream Metadata Store    </a><ul>
+<li><a href="#streamSegmentMetadata">Stream Metadata    </a></li>
+<li><a href="#streamStoreCaching">Stream Store Caching    </a></li>
+</ul>
+</li>
+<li><a href="#streamBuckets">Stream Buckets    </a></li>
+<li><a href="#controllerClusterListener">Controller Cluster Listener    </a></li>
+<li><a href="#hostStore">Host Store    </a></li>
+<li><a href="#backgroundWorkers">Background workers    </a></li>
+</ul>
+</li>
+<li><a href="#rolesAndResponsibilities">Roles and Responsibilities    </a><ul>
+<li><a href="#streamOperations">Stream Operations    </a><ul>
+<li><a href="#streamState">Stream State    </a></li>
+<li><a href="#createStream">Create Stream    </a></li>
+<li><a href="#updateStream">Update Stream    </a></li>
+<li><a href="#scaleStream">Scale Stream    </a></li>
+<li><a href="#truncateStream">Truncate Stream    </a></li>
+<li><a href="#sealStream">Seal Stream    </a></li>
+<li><a href="#deleteStream">Delete Stream    </a></li>
+</ul>
+</li>
+<li><a href="#streamPolicyManager">Stream Policy Manager    </a><ul>
+<li><a href="#scalingInfrastructure">Scaling infrastructure    </a></li>
+<li><a href="#retentionInfrastructure">Retention infrastructure    </a></li>
+</ul>
+</li>
+<li><a href="#transactionManager">Transaction Manager    </a><ul>
+<li><a href="#createTxn">Create Transaction    </a></li>
+<li><a href="#commitTxn">Commit Transaction    </a></li>
+<li><a href="#abortTxn">Abort Transaction    </a></li>
+<li><a href="#pingTxn">Ping Transaction    </a></li>
+<li><a href="#txnTimeout">Transaction Timeout Management </a></li>
+</ul>
+</li>
+<li><a href="#containerToHost">Segment Container to Host Mapping    </a></li>
+</ul>
+</li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+<h2 id="introduction">Introduction <a name="introduction"></a><a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The controller service is a core component of Pravega that implements
+the control plane. It acts as the central coordinator and manager for
+various operations performed in the cluster, mainly divided into two
+categories: 1) stream management 2) cluster management.</p>
+<p>The controller service, referred to simply as controller henceforth, is
+responsible for providing the abstraction of a <a href="../pravega-concepts/#streams">stream</a>, which is the
+main abstraction that Pravega exposes to applications. A stream
+comprises one or more <a href="../pravega-concepts/#stream-segments">segments</a>. Each segment is an append-only data
+structure that stores a sequence of bytes. A segment on its own is
+agnostic to presence of other segments and is not aware of its logical
+relationship with its peer segments. The segment store, which owns and
+manages these segments, does not have any notion of a stream. A stream
+is a logical view conceptualized by <em>Controller</em> by composing a
+dynamically changing set of segments that satisfy a predefined set of
+logical invariants. The controller provides the stream abstraction and
+orchestrates all lifecycle operations on a stream while ensuring that
+the abstraction stays consistent.</p>
+<p>The controller plays a central role in the lifecycle of a stream:
+creation, modification, <a href="../pravega-concepts/#autoscalingthenumber-of-stream-segments-can-vary-over-time">scaling</a>, and deletion. It does these by
+maintaining metadata per stream and performs requisite operations on
+segments as and when necessary. For example, as part of stream’s
+lifecycle, new segments can be created and existing segments sealed. The
+controller decides when to perform these operation such that streams
+continue to be available and consistent to the clients accessing them.</p>
+<h2 id="architecture">Architecture <a name="architecture"></a><a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<p>The <em>Controller Service</em> is made up of one or more instances of
+stateless worker nodes. Each new controller instance can be brought up
+independently and to become part of pravega cluster it merely needs to
+point to the same <a href="https://zookeeper.apache.org/">Apache Zookeeper</a>. For high availability it is advised to have
+more than one instance of controller service per cluster.</p>
+<p>Each controller instance is capable of working independently and uses a
+shared persistent store as the source of truth for all state owned and
+managed by controller service. We currently use Apache ZooKeeper as the
+store for persisting all metadata consistently.  Each instance comprises
+various subsystems which are responsible for performing specific
+operations on different categories of metadata. These subsystems include
+different API endpoints, metadata store handles, policy managers and
+background workers.</p>
+<p>The controller exposes two endpoints which can be used to interact with
+a controller service. The first port is for providing programmatic
+access for pravega clients and is implemented as an <code>RPC</code> using <a href="https://grpc.io/">gRPC</a>. The
+other endpoint is for administrative operations and is implemented as a
+<code>REST</code> endpoint.</p>
+<h3 id="stream-management">Stream Management <a name="controllerAsStreamManager"></a><a class="headerlink" href="#stream-management" title="Permanent link">&para;</a></h3>
+<p>The controller owns and manages the concept of stream and is
+responsible for maintaining metadata and lifecycle for each stream.
+Specifically, it is responsible for creating, updating, scaling,
+truncating, sealing and deleting streams.</p>
+<p>The Stream Management can be broadly divided into three categories:</p>
+<ol>
+<li>Stream Abstraction  </li>
+</ol>
+<p>A stream can be viewed as a series of dynamically changing segment sets
+where the stream transitions from one set of consistent segments to the
+next. Controller is the place for creating and managing this stream abstraction. 
+Controller decides when and how a stream transitions from one state to another and is responsible 
+for performing these transitions while keeping the state of the stream consistent and available. 
+These transitions are governed user-defined policies that the
+controller enforces. Consequently, as part of stream management, the
+controller also performs roles of Policy Manager for policies like
+retention and scale.</p>
+<ol>
+<li>Automated policy Management  </li>
+</ol>
+<p>Controller is responsible for storing and enforcing user-defined Stream policies by actively monitoring the state of the stream. Presently we
+have two policies that users can define, namely <a href="https://github.com/pravega/pravega/blob/master/client/src/main/java/io/pravega/client/stream/ScalingPolicy.java">Scaling Policy</a> and
+<a href="https://github.com/pravega/pravega/blob/master/client/src/main/java/io/pravega/client/stream/RetentionPolicy.java">Retention Policy</a>. 
+Scaling policy describes if and under what circumstances a stream should automatically scale its number of segments. 
+Retention policy describes a policy about how much data to retain within a stream. </p>
+<ol>
+<li><a href="../pravega-concepts/#transactions">Transaction</a> Management  </li>
+</ol>
+<p>Implementing transactions requires the manipulation of segments. With
+each transaction, Pravega creates a set of transaction segments, which
+are later merged onto the stream segments upon commit or discarded upon
+aborts. The controller performs the role of transaction manager and is
+responsible for creating and committing transactions on a given stream.
+Upon creating transactions, controller also tracks transaction timeouts
+and aborts transactions whose timeouts have elapsed. Details of
+transaction management can be found later in the document.</p>
+<h3 id="cluster-management">Cluster Management <a name="controllerAsContainerMapper"></a><a class="headerlink" href="#cluster-management" title="Permanent link">&para;</a></h3>
+<p>The controller is responsible for managing segment store cluster. Controller manages 
+life cycle of segment store nodes as they are added to/removed from the
+cluster and performs redistribution of segment containers across
+available segment store nodes.</p>
+<h2 id="system-diagram">System diagram <a name="systemDiagram"></a><a class="headerlink" href="#system-diagram" title="Permanent link">&para;</a></h2>
+<p>The following diagram shows the main components of a controller process.
+We discuss the elements of the diagram in detail next.</p>
+<p><img alt="controller system_diagram" src="../img/ControllerSystemDiagram.png" /></p>
+<p align="center">
+  <i>Controller Process Diagram</i></p>
+
+<h2 id="components">Components <a name="components"></a><a class="headerlink" href="#components" title="Permanent link">&para;</a></h2>
+<h3 id="service-endpoints">Service Endpoints <a name="serviceEndpoints"></a><a class="headerlink" href="#service-endpoints" title="Permanent link">&para;</a></h3>
+<p>There are two ports exposed by controller: client-controller APIs and
+administration APIs. The client controller communication is implemented as <code>RPC</code> which
+exposes APIs to perform all stream related control plane operations.
+Apart from this controller also exposes an administrative API set
+implemented as <code>REST</code>. </p>
+<p>Each endpoint performs appropriate call to the <em>Controller Service backend subsystem</em>
+which has the actual implementation for various create, read, update and
+delete (<strong>CRUD</strong>) operations on entities owned and managed by controller.</p>
+<h5 id="grpc">gRPC<a class="headerlink" href="#grpc" title="Permanent link">&para;</a></h5>
+<p>Client Controller communication endpoint is implemented as a <a href="https://grpc.io/">gRPC</a>
+interface. The complete list of APIs can be found
+<a href="https://github.com/pravega/pravega/blob/master/shared/controller-api/src/main/proto/Controller.proto">here</a>.
+This exposes APIs used by Pravega clients (readers, writers and stream
+manager) and enables stream management. Requests enabled by this API
+include creating, modifying, and deleting streams.
+The underlying <code>gRPC</code> framework provides both synchronous and asynchronous programming models. 
+We use the asynchronous model in our client controller interactions so that the client thread does not block on the response from the server.<br />
+To be able to append to and read data from streams, writers and readers
+query controller to get active segment sets, successor and predecessor
+segments while working with a stream. For transactions, the client uses
+specific API calls to request controller to create and commit
+transactions.</p>
+<h5 id="rest">REST<a class="headerlink" href="#rest" title="Permanent link">&para;</a></h5>
+<p>For administration, the controller implements and exposes a <code>REST</code>
+interface. This includes API calls for stream management as well as
+other administration API primarily dealing with creation and deletion of
+scopes. We use swagger to describe our <code>REST</code> APIs. The swagger yaml file
+can be found
+<a href="https://github.com/pravega/pravega/tree/master/shared/controller-api/src/main/swagger">here</a>.</p>
+<h3 id="controller-service">Controller Service<a name="controllerService"></a><a class="headerlink" href="#controller-service" title="Permanent link">&para;</a></h3>
+<p>This is the backend layer behind the controller endpoints (<code>gRPC</code> and
+<code>REST</code>). All the business logic required to serve controller API calls are
+implemented here. This layer contains handles to all other subsystems like the various store implementations
+(stream store, host store and checkpoint store) and background processing frameworks (task framework, event processor framework). 
+Stores are interfaces that provide access to various types of metadata managed by Controller. Background
+processing frameworks are used to perform asynchronous processing that typically implement workflows involving metadata updates 
+and requests to segment store.</p>
+<h3 id="stream-metadata-store">Stream Metadata Store<a name="streamStore"></a><a class="headerlink" href="#stream-metadata-store" title="Permanent link">&para;</a></h3>
+<p>A stream is dynamically-changing sequence of segments, where regions of
+the routing key space map to open segments. As the set of segments of a
+stream changes, so does the mapping of the routing key space to segment.</p>
+<p>A set of segments is consistent if 1) union of key space regions mapping
+to segments in the set covers the entire key space; and 2) There is no
+overlap between key space regions. For example, suppose a set <em>S</em> =
+{<em>S</em><sub>1</sub>, <em>S</em><sub>2</sub>, <em>S</em><sub>3</sub>}, such that:
+-   Region [0, 0.3) maps to segment <em>S</em><sub>1</sub>
+-   Region [0.3, 0.6) maps to segment <em>S</em><sub>2</sub>
+-   Region [0.6, 1.0) maps to segment <em>S</em><sub>3</sub></p>
+<p><em>S</em> is a consistent segment set.  </p>
+<p>A stream goes through transformations as it scales over time. A stream
+starts with an initial set of segments that is determined by the stream
+configuration when created and it transitions to new sets of segments as
+scale operations are performed on the stream. Each generation of
+segments that constitute stream at any given point in time are
+considered to belong to an epoch. So a stream starts with initial epoch
+which is epoch 0 and upon each transition, it moves ahead in its epochs
+to describe the change in generation of segments in the stream.</p>
+<p>The controller maintains the stream store the information about all
+epochs that constitute a given stream and how they transition. The store
+is designed to optimally store and query information pertaining to
+segments and their inter-relationships.</p>
+<p>Apart from the epoch information, it keeps some additional metadata,
+such as <a href="#streamState">state</a> and its <a href="#streamPolicyManager">policies</a> and ongoing transactions on the stream.</p>
+<p>Various sub-components of controller access the stored metadata for each
+stream via a well-defined
+<a href="https://github.com/pravega/pravega/blob/master/controller/src/main/java/io/pravega/controller/store/stream/StreamMetadataStore.java">interface</a>.
+We currently have two concrete implementations of the stream store
+interface: in-memory and zookeeper backed stores. Both share a common
+base implementation that relies on stream objects for providing
+store-type specific implementations for all stream-specific metadata.
+The base implementation of stream store creates and caches these stream
+objects.</p>
+<p>The stream objects implement a store/stream interface. The concrete
+stream implementation is specific to the store type and is responsible
+for implementation of store specific methods to provide consistency and
+correctness. We have a common base implementation of all store types
+that provide optimistic concurrency. This base class encapsulates the
+logic for queries against stream store for all concrete stores that
+support Compare and Swap (CAS). We currently use zookeeper as our
+underlying store which also supports CAS. We store all stream metadata
+in a hierarchical fashion under stream specific znodes (ZooKeeper
+data nodes).</p>
+<p>For the ZooKeeper based store, we structure our metadata into different
+groups to support a variety of queries against this metadata. All stream
+specific metadata is stored under a scoped/stream root node. Queries
+against this metadata include, but not limited to, querying segment sets
+that form the stream at different points in time, segment specific
+information, segment predecessors and successors. Refer to stream
+metadata interface for details about APIs exposed by stream metadata
+store.</p>
+<h4 id="stream-metadata">Stream Metadata<a name="streamSegmentMetadata"></a><a class="headerlink" href="#stream-metadata" title="Permanent link">&para;</a></h4>
+<p>Clients need information about what segments constitute a stream to
+start their processing and they obtain it from the epoch information the
+controller stores in the stream store. A reader client typically starts
+from the head of the stream, but it might also choose to access the
+stream starting from any arbitrarily interesting position. Writers on
+the other hand always append to the tail of the stream.</p>
+<p>Clients need ability to query and find segments at any of the three
+cases efficiently. To enable such queries, the stream store provides API
+calls to get <code>Initial set of Segments</code>, get <code>Segments At Specific Time</code> and get <code>Current set of Segments</code>.</p>
+<p>As mentioned earlier, a stream can transition from one set of segments
+(epoch) to another set of segments that constitute the stream. A stream
+moves from one epoch to another if there is at least one segment that is
+sealed and that is replaced by one or more set of segments that cover
+precisely the key space of the sealed segments. As clients work on
+streams, they may encounter the end of sealed segments and consequently
+need to find new segments to be able to move forward. To enable the
+clients to query for the next segments, the stream store exposes via the
+controller service efficient queries for finding immediate successors
+and predecessors for any arbitrary segment.  </p>
+<p>To enable serving queries like those mentioned above, we need to efficiently store a time series of these segment transitions and index them against time. 
+We store this information about the current and historical state of a stream-segments in a set of tables which are designed to optimize on aforementioned queries. 
+Apart from segment specific metadata record, the current state of stream comprises of other metadata types that are described henceforth.</p>
+<h5 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h5>
+<p>To efficiently store and query the segment information, we have split
+segment data into three append only tables, namely, segment-table,
+history-table and index-table.</p>
+<ul>
+<li>
+<p>Segment Table <a name="segmentTable"></a><br />
+segment-info: ⟨segmentid, time, keySpace-start, keySpace-end⟩<br />
+The controller stores the segment table in an append-only table with
+i-<em>th</em> row corresponding to metadata for segment id <em>i</em>. It is important
+to note that each row in the segment table is of fixed size. As new
+segments are added, they are assigned new segment ids in a strictly
+increasing order. So this table is very efficient in creating new
+segments and querying segment information response with <em>O(1)</em> processing
+for both these operations.</p>
+</li>
+<li>
+<p>History Table <a name="historyTable"></a><br />
+epoch: ⟨time, list-of-segments-in-epoch⟩<br />
+The History Table stores a series of active segments as they transition
+from one epoch to another. Each row in the history table stores an epoch
+which captures a logically consistent (as defined earlier) set of
+segments that form the stream and are valid through the lifespan of the
+epoch. This table is designed to optimize queries to find set of
+segments that form the stream at any arbitrary time. There are three
+most commonly used scenarios where we want to efficiently know the set
+of segments that form the stream - initial set of segments, current set
+of segments and segments at any arbitrary time.  First two queries are
+very efficiently answered in O(1) time because they correspond to first
+and last rows in the table.
+Since rows in the table are sorted by increasing order of time and
+capture time series of streams segment set changes, so we could easily
+perform binary search to find row which corresponds to segment sets at
+any arbitrary time.</p>
+</li>
+<li>
+<p>Index Table<a name="indexTable"></a><br />
+index: ⟨time, offset-in-history-table⟩<br />
+Since history rows are of variable length, we index history rows for
+timestamps in the index table. This enables us to navigate the history
+table and perform binary search to efficiently answer queries to get
+segment set at any arbitrary time. We also perform binary searches on
+history table to determine successors of any given segment.</p>
+</li>
+</ul>
+<h5 id="stream-configuration">Stream Configuration<a class="headerlink" href="#stream-configuration" title="Permanent link">&para;</a></h5>
+<p>Znode under which stream configuration is serialized and persisted. A
+ stream configuration contains stream policies that need to be
+ enforced. 
+ Scaling policy and Retention policy are supplied by the application at
+ the time of stream creation and enforced by controller by monitoring
+ the rate and size of data in the stream.
+ Scaling policy describes if and when to automatically scale based on
+ incoming traffic conditions into the stream. The policy supports two
+ flavours - traffic as rate of events per second and traffic as rate of
+ bytes per second. The application specifies their desired traffic
+ rates into each segment by means of scaling policy and the supplied
+ value is chosen to compute thresholds that determine when to scale a
+ given stream.
+ Retention Policy describes the amount of data that needs to be
+ retained into pravega cluster for this stream. We support a time based
+ and a size based retention policy where applications can choose
+ whether they want to retain data in the stream by size or by time by
+ choosing the appropriate policy and supplying their desired values.</p>
+<h5 id="stream-state">Stream State<a name="streamState"></a><a class="headerlink" href="#stream-state" title="Permanent link">&para;</a></h5>
+<p>Znode which captures the state of the stream. It is an enum with
+ values from <em>Creating, Active, Updating, Scaling, Truncating, Sealing,
+ and Sealed</em>. Once Active, a stream transitions between performing a
+ specific operation and active until it is sealed. A transition map is
+ defined in the
+ <a href="https://github.com/pravega/pravega/blob/master/controller/src/main/java/io/pravega/controller/store/stream/tables/State.java">State</a>
+ class which allows and prohibits various state transitions.
+ Stream state describes the current state of the stream. It transitions
+ from <em>ACTIVE</em> to respective action based on the action being performed
+ on the stream. For example, during scaling the state of the stream
+ transitions from <em>ACTIVE</em> to <em>SCALING</em> and once scaling completes, it
+ transitions back to <em>ACTIVE</em>. Stream state is used as a barrier to
+ ensure only one type of operation is being performed on a given stream
+ at any point in time. Only certain state transitions are allowed and
+ are described in the State Transition object. Only legitimate state
+ transitions are allowed and any attempt for disallowed transition
+ results in appropriate exception.</p>
+<h5 id="truncation-record">Truncation Record<a class="headerlink" href="#truncation-record" title="Permanent link">&para;</a></h5>
+<p>This corresponds to the stream cut which was last used to truncate the
+ given stream. All stream segment queries superimpose the truncation
+ record and return segments that are strictly greater than or equal to
+ the stream cut in truncation record.</p>
+<h5 id="sealed-segments-record">Sealed Segments Record<a class="headerlink" href="#sealed-segments-record" title="Permanent link">&para;</a></h5>
+<p>Since the segment table is append only, any additional information
+ that we need to persist when a segment is sealed is stored in sealed
+ segments record. Presently, it simple contains a map of segment number
+ to its sealed size.</p>
+<p>Transaction Related metadata records:</p>
+<h5 id="active-transactions">Active Transactions<a class="headerlink" href="#active-transactions" title="Permanent link">&para;</a></h5>
+<p>Each new transaction is created under this Znode. This stores metadata
+ corresponding to each transaction as <em>ActiveTransactionRecord</em>. Once a
+ transaction is completed, a new node is created under the global
+ Completed Transaction Znode and removed from under the stream specific
+ active transaction node.</p>
+<h5 id="completed-transactions">Completed Transactions<a class="headerlink" href="#completed-transactions" title="Permanent link">&para;</a></h5>
+<p>All completed transactions for all streams are moved under this single
+ znode upon completion (via either commit or abort paths). We can
+ subsequently garbage collect these values periodically following any
+ collection scheme we deem fit. We have not implemented any scheme at
+ this point though.</p>
+<h4 id="stream-store-caching">Stream Store Caching<a name="streamStoreCaching"></a><a class="headerlink" href="#stream-store-caching" title="Permanent link">&para;</a></h4>
+<p>Since there could be multiple concurrent requests for a given stream
+being processed by same controller instance, it is suboptimal to read
+the value by querying zookeeper every time. So we have introduced an
+in-memory cache that each stream store maintains. It caches retrieved
+metadata per stream so that there is maximum one copy of the data per
+stream in the cache. There are two in-memory caches: a) a cache of
+multiple stream objects in the store, b) cache properties of a stream in
+the stream object.</p>
+<p>We have introduced a concept of operation context and at the start of
+any new operation a new operation context is created. The creation of a
+new operation context invalidates the cached entities for a stream and
+each entity is lazily retrieved from the store whenever requested. If a
+value is updated during the course of the operation, it is again
+invalidated in the cache so that other concurrent read/update operations
+on the stream get the new value for their subsequent steps.  </p>
+<h3 id="stream-buckets">Stream Buckets<a name="streamBuckets"></a><a class="headerlink" href="#stream-buckets" title="Permanent link">&para;</a></h3>
+<p>To enable some scenarios, we may need our background workers to
+periodically work on each of the streams in our cluster to perform
+some specific action on them. We bring in a notion of a bucket to
+distribute this periodic background work across all available
+controller instances. For this we hash each stream into one of the
+predefined buckets and then distribute buckets across available
+controller instances.</p>
+<p>Number of buckets for a cluster is a fixed (configurable) value for
+the lifetime of a cluster.</p>
+<p>Controller instances map all available streams in the system into
+buckets and distribute buckets amongst themselves so that all long
+running background work can be uniformly distributed across multiple
+controller instances. Each bucket corresponds to a unique Znode in
+zookeeper. Fully qualified scoped stream name is used to compute a
+hashed to assign the stream to a bucket. All controller instances, upon
+startup, attempt to take ownership of buckets. Upon failover, ownerships
+are transferred as surviving nodes compete to acquire ownership of
+orphaned buckets. The controller instance which owns a bucket is
+responsible for all long running scheduled background work corresponding
+to all nodes under the bucket. Presently this entails running periodic
+workflows to capture stream-cuts (called Retention-Set) for each stream at desired frequencies.</p>
+<h5 id="retention-set">Retention Set<a class="headerlink" href="#retention-set" title="Permanent link">&para;</a></h5>
+<p>One retention set per stream is stored under the corresponding
+ bucket/stream Znode. As we compute stream-cuts periodically, we keep
+ preserving them under this Znode. As some automatic truncation is
+ performed, the stream-cuts that are no longer valid are purged from
+ this set.</p>
+<h3 id="controller-cluster-listener">Controller Cluster Listener<a name="controllerClusterListener"></a><a class="headerlink" href="#controller-cluster-listener" title="Permanent link">&para;</a></h3>
+<p>Each node in Pravega Cluster registers itself under a cluster Znode as
+an ephemeral node. This includes both controller and segment store
+nodes. Each controller instance registers a watch on the cluster Znode
+to listen for cluster change notifications. These notifications are of
+the kind node-added and node-removed.</p>
+<p>One controller instance assumes leadership amongst all controller
+instances. This leader controller instance is responsible for handling
+segment store node change notifications. Based on change in topology,
+controller instance periodically rebalances segment containers to
+segment store node mapping.</p>
+<p>All controller instances listen for controller node change
+notifications. Each controller instance has multiple sub components that
+implement the failover-sweeper interface. Presently there are three
+components that implement failover sweeper interface namely,
+<em>TaskSweeper, EventProcessors</em> and <em>TransactionSweeper</em>. Whenever a
+controller instance is identified to have been removed from the cluster,
+the cluster listener invokes all registered failover sweepers to
+optimistically try to sweep all the orphaned work previously owned by
+the failed controller host.</p>
+<h5 id="host-store">Host Store<a name="hostStore"></a><a class="headerlink" href="#host-store" title="Permanent link">&para;</a></h5>
+<p>Host store interface is used to store Segment Container to Segment Store
+node mapping. It exposes APIs like getHostForSegment where it computes
+consistent hash of segment id to compute the owner Segment Container.
+Then based on the container-host mapping, it returns the appropriate Uri
+to the caller.</p>
+<h3 id="background-workers">Background workers<a name="backgroundWorkers"></a><a class="headerlink" href="#background-workers" title="Permanent link">&para;</a></h3>
+<p>Controller process has two different mechanisms/frameworks for
+processing background work. These background works typically entail
+multiple steps and updates to metadata under a specific metadata root
+entity and potential interactions with one or more segment stores.</p>
+<p>We initially started with a simple task framework that allows ability to
+run tasks that take exclusive rights over a given resource (typically a
+stream) and allow for tasks to failover from one controller instance to
+another. However, this model was limiting in its scope and locking
+semantics and had no inherent notion of ordering of tasks as multiple
+tasks could race to acquire working rights (lock) on a resource
+concurrently and any one of them could succeed.</p>
+<p>To overcome this limitation we came up with a new infrastructure called
+Event Processor. Event processor is the classic eat-your-own-dog-food.
+It is built using pravega streams. This provides us a neat mechanism to
+ensure mutually exclusive and ordered processing.</p>
+<h4 id="task-framework">Task Framework<a name="taskFramework"></a><a class="headerlink" href="#task-framework" title="Permanent link">&para;</a></h4>
+<p>Task framework is designed to run exclusive background processing per
+resource such that in case of controller instance failure, the work can
+easily failover to another controller instance and brought to
+completion. The framework, on its own, does not guarantee idempotent
+processing and the author of a task has to handle it if required. The
+model of tasks is defined to work on a given resource exclusively, which
+means no other task can run concurrently on the same resource. This is
+implemented by way of a persisted distributed lock implemented on
+zookeeper. The failover of a task is achieved by following a scheme of
+indexing the work a given process is performing. So if a process fails,
+another process will sweep all outstanding work and attempt to transfer
+ownership to itself. Note: upon failure of a controller process,
+multiple surviving controller processes can concurrently attempt
+sweeping of orphaned tasks. Each of them will index the task in their
+host-index but exactly one of them will be able to successfully acquire
+the lock on the resource and hence permission to process the task. The
+parameters for executing a task are serialized and stored under the
+resource.</p>
+<p>Currently we use task framework only for create stream tasks. All the
+other background processing is done using event processor framework.</p>
+<h4 id="event-processor-framework">Event Processor Framework<a name="eventProcFramework"></a><a class="headerlink" href="#event-processor-framework" title="Permanent link">&para;</a></h4>
+<p>Event processors framework is a background worker sub system which reads
+events from an internal stream and processes it, hence the name event
+processor. All event processors in our system provide <em>at least</em> <em>once</em>
+<em>processing</em> guarantee. And in its basic flavor, the framework also
+provides strong ordering guarantees. But we also have different subtypes
+of event processors that allow concurrent processing.</p>
+<p>We create different event processors for different kinds of work.
+Presently we have three different event processors in our system for
+committing transaction, aborting transactions and processing stream
+specific requests like scale update seal etc. Each controller instance
+has one event processor of each type. The event processor framework
+allows for multiple readers to be created per event processor. All
+readers for a specific event processor across controller instances share
+the same reader group, which guarantees mutually exclusive distribution
+of work across controller instances. Each reader gets a dedicated thread
+where it reads the event, calls for its processing and upon completion
+of processing, updates its checkpoint. Events are posted in the event
+processor specific stream and are routed to specific segments based on
+using scoped stream name as the routing key.</p>
+<p>We have two flavors of event processors, one that performs serial
+processing, which essentially means it reads an event and initiates its
+processing and waits on it to complete before moving on to next event.
+This provides strong ordering guarantees in processing. And it
+checkpoints after processing each event.  Commit transaction is
+implemented using this base flavor of event processor. The degree of
+parallelism for processing these events is upper bounded by number of
+segments in the internal stream and lower bounded by number of readers.
+Multiple events from across different streams could land up in the same
+segment and since we perform serial processing, serial processing has
+the drawback that processing stalls or flooding of events from one
+stream could adversely impact latencies for unrelated streams.</p>
+<p>To overcome these drawbacks we designed Concurrent Event Processor as an
+overlay on Serial Event processor. Concurrent event processor, as name
+implies, allows us to process multiple events concurrently. Here the
+reader thread reads an event, schedules it’s asynchronous processing and
+returns to read the next event. There is a ceiling on number of events
+that are concurrently processed at any point in time and as processing
+of some event completes, newer events are allowed to be fetched.  The
+checkpoint scheme here becomes slightly more involved because we want to
+guarantee at least once processing.</p>
+<p>However, with concurrent processing the ordering guarantees get broken.
+However, it is important to note that we only need ordering guarantees
+for processing events from a stream and not across streams. In order to
+satisfy ordering guarantee, we overlay Concurrent Event Processor with
+Serialized Request Handler, which queues up events from the same stream
+in an in-memory queue and processes them in order.</p>
+<p><em>Commit Transaction</em> processing is implemented on a dedicated Serial Event
+Processor because we want strong Commit ordering while ensuring that
+commit does not interfere with processing of other kinds of requests on
+the stream.</p>
+<p><em>Abort Transaction</em> processing is implemented on a dedicated Concurrent
+Event Processor which performs abort processing on transactions from
+across streams concurrently.</p>
+<p>All other requests for streams is implemented on a Serialized Request
+Handler which ensures exactly one request per stream is being processed
+at any given time and there is ordering guarantee within request
+processing. However, it allows for concurrent requests from across
+streams to go on concurrently. Workflows like scale, truncation, seal,
+update and delete stream are implemented for processing on the Request
+Event processor.</p>
+<h2 id="roles-and-responsibilities">Roles and Responsibilities<a name="rolesAndResponsibilities"></a><a class="headerlink" href="#roles-and-responsibilities" title="Permanent link">&para;</a></h2>
+<h3 id="stream-operations">Stream Operations<a name="streamOperations"></a><a class="headerlink" href="#stream-operations" title="Permanent link">&para;</a></h3>
+<p>Controller is the store of truth for all stream related metadata.
+Pravega clients (EventStreamReaders and EventStreamWriters), in
+conjunction with the controller, ensure that stream invariants are
+satisfied and honored as they work on streams. The controller maintains
+the metadata of streams, including the entire history of segments.
+Client accessing a stream need to contact the controller to obtain
+information about segments.</p>
+<p>Clients query controller in order to know how to navigate streams. For
+this purpose controller exposes appropriate APIs to get active segments,
+successors, predecessors and segment information and Uris. These queries
+are served using metadata stored and accessed via stream store
+interface.</p>
+<p>Controller also provides workflows to modify state and behavior of the
+stream. These workflows include create, scale, truncation, update, seal,
+and delete. These workflows are invoked both via direct APIs and in some
+cases as applicable via background policy manager (auto-scale and retention).</p>
+<p><img src="../img/RequestProcessing.png" width="600" height="300" />
+</p><p align="center">
+  <i>Request processing</i>
+</p>
+
+<h4 id="create-stream">Create Stream<a name="createStream"></a><a class="headerlink" href="#create-stream" title="Permanent link">&para;</a></h4>
+<p>Create stream is implemented as a task on Task Framework. Create stream
+workflow first creates initial stream metadata with stream state set to
+<em>CREATING</em>. Following this, it identifies segment containers that should
+own and create segments for this stream and calls create-segment
+concurrently. Once all create segments complete, the create stream task
+completes thus moving the stream to <em>ACTIVE</em> state. All failures are
+retried few times with exponential backoffs. However, if it is unable to
+complete any step, the stream is left dangling in <em>CREATING</em> state.</p>
+<h4 id="update-stream">Update Stream<a class="headerlink" href="#update-stream" title="Permanent link">&para;</a></h4>
+<p>Update stream is implemented as a task on Serialized Request
+Handler/Concurrent Event Processor framework. Update stream is invoked
+by an explicit API call into controller. It first posts an Update
+Request event into request-stream. Following that it tries to create a
+temporary update property. If it fails to create the temporary update
+property, the request is failed and the caller is notified of the
+failure to update a stream due to conflict with another ongoing update.</p>
+<p>The event is picked by Request Event processor. When the processing
+starts, the update stream task expects to find the temporary update
+stream property to be present. If it does not find the property, the
+update processing is delayed by pushing event the back in the in-memory
+queue until it deems the event expired. If it finds the property to be
+updated during this period, before the expiry, the event is processed
+and update stream operation is performed. Now that the processing
+starts, it first sets the state to <em>UPDATING</em>. Following this the stream
+configuration is updated in the metadata store followed by notifying
+segment stores for all active segments of the stream about change in
+policy. Now the state is reset to <em>ACTIVE</em>.</p>
+<h4 id="scale-stream">Scale Stream<a name="scaleStream"></a><a class="headerlink" href="#scale-stream" title="Permanent link">&para;</a></h4>
+<p>Scale can be invoked either by explicit API call (referred to as manual
+scale) or performed automatically based on scale policy (referred to as
+auto-scale). We first write the event followed by updating the segment
+table by creating new entries for desired segments to be created. This
+step is idempotent and ensures that if an existing ongoing scale
+operation is in progress, then this attempt to start a new scale fails.
+The start of processing is similar to mechanism followed in update
+stream. If metadata is updated, the event processes and proceeds with
+executing the task. If the metadata is not updated within the desired
+time frame, the event is discarded.</p>
+<p>Once scale processing starts, it first sets the stream state <em>SCALING</em>.
+This is followed by creating new segments in segment stores. After
+successfully creating new segments, it updates the history table with a
+partial record corresponding to new epoch which contains list of
+segments as they would appear post scale. Each new epoch creation also
+creates a new root epoch node under which metadata for all transactions
+from that epoch reside. So as the scale is performed, there would be a
+node corresponding to old epoch and now there will also be a root node
+for new epoch. Any transaction creation from this point on will be done
+against new epoch. Now the workflow attempts to complete scale by
+opportunistically attempting to delete the old epoch. Old epoch can be
+deleted if and only if there are no transactions under its tree. Once we
+are sure there are no transactions on old epoch, we can proceed with
+sealing old segments and completing the scale. After old segments are
+sealed successfully, the partial record in history table is now
+completed whereby completing the scale workflow. The state is now reset
+to <em>ACTIVE</em>.</p>
+<h4 id="truncate-stream">Truncate Stream<a name="truncateStream"></a><a class="headerlink" href="#truncate-stream" title="Permanent link">&para;</a></h4>
+<p>Truncate follows similar mechanism to update and has a temporary
+stream-property for truncation that is used to supply input for truncate
+stream. Once truncate workflow identifies that it can proceed, it first
+sets the state to <em>TRUNCATING</em>. Truncate workflow then looks at the
+requested stream-cut, and checks if it is greater than or equal to the
+existing truncation point, only then is it a valid input for truncation
+and the workflow commences. The truncation workflow takes the requested
+stream-cut and computes all segments that are to be deleted as part of
+this truncation request. It then calls into respective segment stores to
+delete identified segments. Post deletion, we call truncate on segments
+that are described in the stream cut at the offsets as described in the
+stream cut. Following this the truncation record is updated with the new
+truncation point and deleted segments.  The state is reset to <em>ACTIVE</em>.</p>
+<h4 id="seal-stream">Seal Stream<a class="headerlink" href="#seal-stream" title="Permanent link">&para;</a></h4>
+<p>Seal stream can be requested via an explicit API call into controller.
+It first posts a seal-stream event into request stream followed by
+attempts to set the state of stream to <em>SEALING</em>. If the event is picked
+and does not find the stream to be in desired state, it postpones the
+seal stream processing by reposting it at the back of in-memory queue.
+Once the stream is set to sealing state, all active segments for the
+stream are sealed by calling into segment store. After this the stream
+is marked as <em>SEALED</em> in the stream metadata.</p>
+<h4 id="delete-stream">Delete Stream<a name="deleteStream"></a><a class="headerlink" href="#delete-stream" title="Permanent link">&para;</a></h4>
+<p>Delete stream can be requested via an explicit API call into controller.
+The request first verifies if the stream is in <em>SEALED</em> state. Only sealed
+streams can be deleted and an event to this effect is posted in request
+stream. When the event is picked for processing, it verifies the stream
+state again and then proceeds to delete all segments that belong to this
+stream from its inception by calling into segment store. Once all
+segments are deleted successfully, the stream metadata corresponding to
+this stream is cleaned up.</p>
+<h3 id="stream-policy-manager">Stream Policy Manager<a name="streamPolicyManager"></a><a class="headerlink" href="#stream-policy-manager" title="Permanent link">&para;</a></h3>
+<p>As described earlier, there are two types of user defined policies that controller is responsible for enforcing, namely Automatic Scaling and Automatic Retention. 
+Controller is not just the store for stream policy but it actively enforces those user-defined policies for their streams. </p>
+<h4 id="scaling-infrastructure">Scaling infrastructure<a name="scalingInfra"></a><a class="headerlink" href="#scaling-infrastructure" title="Permanent link">&para;</a></h4>
+<p>Scaling infrastructure is built in conjunction with segment stores. As
+controller creates new segments in segment stores, it passes user
+defined scaling policies to segment stores. The Segment store then
+monitors traffic for the said segment and reports to controller if some
+thresholds, as determined from policy, are breached. Controller receives
+these notifications via events posted in dedicated internal streams.
+There are two types of traffic reports that can be received for
+segments. First type identifies if a segment should be scaled up (split)
+and second type identifies if a segment should be scaled down. For
+segments eligible for scale up, controller immediately posts request for
+segment scale up in the request stream for Request Event Processor to
+process. However, for scale down, controller needs to wait for at least
+two neighboring segments to become eligible for scale down. For this
+purpose it simply marks the segment as cold in the metadata store. And
+if and when there are neighboring segments that are marked as cold,
+controller consolidates them and posts a scale down request for them.
+The scale requests processing is then performed asynchronously on the
+Request Event processor.   </p>
+<h4 id="retention-infrastructure">Retention infrastructure<a class="headerlink" href="#retention-infrastructure" title="Permanent link">&para;</a></h4>
+<p>The retention policy defines how much data should be retained for a
+given stream. This can be defined as time based or size based. To apply
+this policy, controller periodically collects stream-cuts for the stream
+and opportunistically performs truncation on previously collected stream
+cuts if policy dictates it. Since this is a periodic background work
+that needs to be performed for all streams that have a retention policy
+defined, there is an imperative need to fairly distribute this workload
+across all available controller instances. To achieve this we rely on
+bucketing streams into predefined sets and distributing these sets
+across controller instances. This is done by using zookeeper to store
+this distribution. Each controller instance, during bootstrap, attempts
+to acquire ownership of buckets. All streams under a bucket are
+monitored for retention opportunities by the owning controller. At each
+period, controller collects a new stream cut and adds it to a
+retention-set for the said stream. Post this it looks for candidate
+stream-cuts stored in retention-set which are eligible for truncation
+based on the defined retention policy. For example, in time based
+retention, the latest stream-cut older than specified retention period
+is chosen as the truncation point.</p>
+<h3 id="transaction-manager">Transaction Manager<a name="transactionManager"></a><a class="headerlink" href="#transaction-manager" title="Permanent link">&para;</a></h3>
+<p>Another important role played by controller is that of transaction
+manager. It is responsible for creation and committing and abortion of
+transactions. Since controller is the central brain and agency in our
+cluster, and is the holder of truth about stream, the writers request
+controller to perform all control plane actions with respect to
+transactions. Controller plays active roles in providing guarantees for
+transactions from the time since they are created till the time they are
+committed or aborted. Controller tracks each transaction for their
+specified timeouts and if the timeout exceeds, it automatically aborts
+the transaction.</p>
+<p>Controller is responsible for ensuring that the transaction and a
+potential concurrent scale operation play well with each other and
+ensure all promises made with respect to either are honored and
+enforced.</p>
+<p><img src="../img/TransactionManagement.png" width="600" height="300" />
+</p><p align="center">
+  <i>Transaction Management Diagram</i>
+</p>
+
+<p>Client calls into controller process to create, ping commit or abort
+transactions. Each of these requests is received on controller and handled by the Transaction Utility module which 
+implements the business logic for processing each request. </p>
+<h4 id="create-transaction">Create transaction<a name="createTxn"></a><a class="headerlink" href="#create-transaction" title="Permanent link">&para;</a></h4>
+<p>Writers interact with Controller to create new transactions. Controller Service passes the create transaction request to Transaction Utility module.
+The create transaction function in the module performs follows steps in order to create a transaction:</p>
+<ol>
+<li>Generates a unique UUID for the transaction. </li>
+<li>It fetches current active set of segments for the stream from metadata store and its corresponding epoch identifier from the history. </li>
+<li>It creates a new transaction record in the zookeeper using the metadata store interface. </li>
+<li>It then requests segment store to create special transaction segments that are inherently linked to the parent active segments. </li>
+</ol>
+<p>While creating transactions, controller ensures that parent segments are not sealed as we attempt to create corresponding transaction segments. 
+And during the lifespan of a transaction, should a scale commence, it should wait for transactions on older epoch to finish before the scale proceeds
+to seal segments from old epoch. </p>
+<h4 id="commit-transaction">Commit Transaction<a name="commitTxn"></a><a class="headerlink" href="#commit-transaction" title="Permanent link">&para;</a></h4>
+<p>Upon receiving request to commit a transaction, Controller Service passes the request to Transaction Utility module. 
+This module first tries to mark the transaction for commit in the transaction specific metadata record via metadata store.
+Following this, it posts a commit event in the internal Commit Stream.
+Commit transaction workflow is implemented on commit event processor and
+thereby processed asynchronously. The commit transaction workflow checks for eligibility of transaction to be committed, and if true,
+it performs the commit workflow with indefinite retries until it
+succeeds. If the transaction is not eligible for commit, which typically
+happens if transaction is created on a new epoch while the old epoch is
+still active, then such events are reposted into the internal stream to
+be picked later.</p>
+<p>Once a transaction is committed successfully, the record for the
+transaction is removed from under its epoch root. Then if there is an
+ongoing scale, then it calls to attempt to complete the ongoing scale.
+Trying to complete scale hinges on ability to delete old epoch which can
+be deleted if and only if there are no outstanding active transactions against the said epoch (refer to scale workflow for more details).   </p>
+<h4 id="abort-transaction">Abort Transaction<a name="abortTxn"></a><a class="headerlink" href="#abort-transaction" title="Permanent link">&para;</a></h4>
+<p>Abort, like commit, can be requested explicitly by the application.
+However, abort can also be initiated automatically if the transaction’s
+timeout elapses. Controller tracks the timeout for each and every
+transaction in the system and whenever timeout elapses, or upon explicit
+user request, transaction utility module marks the transaction for abort in its
+respective metadata. Post this, the event is picked for processing by
+abort event processor and transactions abort is immediately attempted.
+There is no ordering requirement for abort transaction and hence it is
+performed concurrently and across streams.</p>
+<p>Like commit, once the transaction is aborted, its node is deleted from
+its epoch root and if there is an ongoing scale, it complete scale flow
+is attempted.</p>
+<h4 id="ping-transaction">Ping Transaction<a name="pingTxn"></a><a class="headerlink" href="#ping-transaction" title="Permanent link">&para;</a></h4>
+<p>Since controller has no visibility into data path with respect to data
+being written to segments in a transaction, Controller is unaware if a
+transaction is being actively worked upon or not and if the timeout
+elapses it may attempt to abort the transaction. To enable applications
+to control the destiny of a transaction, controller exposes an API to
+allow applications to renew transaction timeout period. This mechanism
+is called ping and whenever application pings a transaction, controller
+resets its timer for respective transaction.</p>
+<h4 id="transaction-timeout-management">Transaction Timeout Management<a name="txnTimeout"></a><a class="headerlink" href="#transaction-timeout-management" title="Permanent link">&para;</a></h4>
+<p>Controllers track each transaction for their timeouts. This is
+implemented as timer wheel service. Each transaction, upon creation gets
+registered into the timer service on the controller where it is created.
+Subsequent pings for the transaction could be received on different
+controller instances and timer management is transferred to latest
+controller instance based on ownership mechanism implemented via
+zookeeper. Upon timeout expiry, an automatic abort is attempted and if
+it is able to successfully set transaction status to abort, the abort
+workflow is initiated.</p>
+<p>Each transaction that a controller is monitoring for timeouts is added
+to this processes index. If such a controller instance fails or crashes,
+other controller instances will receive node failed notification and
+attempt to sweep all outstanding transactions from the failed instance
+and monitor their timeouts from that point onward.</p>
+<h3 id="segment-container-to-host-mapping">Segment Container to Host Mapping<a name="containerToHost"></a><a class="headerlink" href="#segment-container-to-host-mapping" title="Permanent link">&para;</a></h3>
+<p>Controller is also responsible for assignment of segment containers to
+segment store nodes. The responsibility of maintaining this mapping
+befalls a single controller instance that is chosen via a leader
+election using zookeeper. This leader controller monitors lifecycle of
+segment store nodes as they are added to/removed from the cluster and
+performs redistribution of segment containers across available segment
+store nodes. This distribution mapping is stored in a dedicated ZNode.
+Each segment store periodically polls this znode to look for changes and
+if changes are found, it shuts down and relinquishes containers it no
+longer owns and attempts to acquire ownership of containers that are
+assigned to it.</p>
+<p>The details about implementation, esp with respect to how the metadata is stored and managed is already discussed <a href="#controllerClusterListener">here</a>.</p>
+<h2 id="resources">Resources<a name="resources"></a><a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="http://pravega.io/">Pravega</a></li>
+<li><a href="https://github.com/pravega/pravega/tree/master/controller">Code</a></li>
+<li><a href=".">Other Documents</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../segment-containers/" title="Segment Containers" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Segment Containers
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../wire-protocol/" title="Wire Protocol" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Wire Protocol
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

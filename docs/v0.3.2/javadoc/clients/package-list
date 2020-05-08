@@ -1,0 +1,7 @@
+io.pravega.client
+io.pravega.client.admin
+io.pravega.client.batch
+io.pravega.client.state
+io.pravega.client.stream
+io.pravega.client.stream.notifications
+io.pravega.client.stream.notifications.notifier

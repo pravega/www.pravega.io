@@ -1,0 +1,1379 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="http://pravega.io/key-features/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
+    
+    
+      
+        <title>Key Features - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-1508605-1", "pravega.io")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#pravega-key-features" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Exploring Pravega
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Key Features
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Key Features
+      </label>
+    
+    <a href="./" title="Key Features" class="md-nav__link md-nav__link--active">
+      Key Features
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pravega-design-principles" class="md-nav__link">
+    Pravega Design Principles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pravega-storage-reimagined-for-a-streaming-world" class="md-nav__link">
+    Pravega: Storage Reimagined for a Streaming World
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exactly-once-semantics" class="md-nav__link">
+    Exactly Once Semantics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pravega-streams-are-ordered" class="md-nav__link">
+    Pravega Streams are Ordered
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-scaling" class="md-nav__link">
+    Auto Scaling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-computing-primitive" class="md-nav__link">
+    Distributed Computing Primitive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-efficiency" class="md-nav__link">
+    Write Efficiency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-efficiency" class="md-nav__link">
+    Read Efficiency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unlimited-retention" class="md-nav__link">
+    Unlimited Retention
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-efficiency" class="md-nav__link">
+    Storage Efficiency
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/kubernetes-install/" title="Deployment on Kubernetes" class="md-nav__link">
+      Deployment on Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/docker-swarm/" title="Deployment on Docker Swarm" class="md-nav__link">
+      Deployment on Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Pravega Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Pravega Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/auth-plugin/" title="Pravega Authentication/Authorization Plugin" class="md-nav__link">
+      Pravega Authentication/Authorization Plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/client-auth/" title="Client Auth Interface" class="md-nav__link">
+      Client Auth Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-authorization-authentication/" title="Pravega Security Authorization/Authentication" class="md-nav__link">
+      Pravega Security Authorization/Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-configurations/" title="Pravega Security Configurations" class="md-nav__link">
+      Pravega Security Configurations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-encryption/" title="Pravega Security Encryption" class="md-nav__link">
+      Pravega Security Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/securing-distributed-mode-cluster/" title="Securing Pravega in Distributed Mode" class="md-nav__link">
+      Securing Pravega in Distributed Mode
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pravega-design-principles" class="md-nav__link">
+    Pravega Design Principles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pravega-storage-reimagined-for-a-streaming-world" class="md-nav__link">
+    Pravega: Storage Reimagined for a Streaming World
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exactly-once-semantics" class="md-nav__link">
+    Exactly Once Semantics
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pravega-streams-are-ordered" class="md-nav__link">
+    Pravega Streams are Ordered
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-scaling" class="md-nav__link">
+    Auto Scaling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#distributed-computing-primitive" class="md-nav__link">
+    Distributed Computing Primitive
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-efficiency" class="md-nav__link">
+    Write Efficiency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-efficiency" class="md-nav__link">
+    Read Efficiency
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unlimited-retention" class="md-nav__link">
+    Unlimited Retention
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-efficiency" class="md-nav__link">
+    Storage Efficiency
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/key-features.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="pravega-key-features">Pravega Key Features<a class="headerlink" href="#pravega-key-features" title="Permanent link">&para;</a></h1>
+<p>This document explains some of the key features of Pravega.  It may be
+advantageous if you are already familiar with the core <a href="../pravega-concepts/">Pravega Concepts</a>.</p>
+<h2 id="pravega-design-principles">Pravega Design Principles<a class="headerlink" href="#pravega-design-principles" title="Permanent link">&para;</a></h2>
+<p>Pravega was designed to support the new generation of streaming applications.
+Applications that deal with a large amount of data arriving continuously that
+needs to generate an accurate analysis of that data by considering the factors like:</p>
+<ul>
+<li>Delayed data,</li>
+<li>Data arriving out of order,</li>
+<li>Failure conditions.</li>
+</ul>
+<p>There are several Open Source tools to enable developers to build such applications,
+including <a href="https://flink.apache.org/">Apache Flink</a>, <a href="https://beam.apache.org/">Apache Beam</a>, <a href="https://spark.apache.org/docs/2.2.0/streaming-programming-guide.html">Spark Streaming</a>, etc.
+These applications uses the following systems to ingest and store data: <a href="https://kafka.apache.org/">Apache Kafka</a>, <a href="http://activemq.apache.org/">Apache ActiveMQ</a>, <a href="https://www.rabbitmq.com/">RabbitMQ</a>, <a href="http://cassandra.apache.org/">Apache Cassandra</a>, <a href="https://hadoop.apache.org/">Apache HDFS</a>.</p>
+<p>Pravega focuses on both ingesting and storing Stream data. Pravega approaches streaming applications from a storage perspective. It enables applications to ingest Stream data continuously and stores it permanently. Such Stream data can be accessed with low latency (order of milliseconds) and also analyzes historical data.</p>
+<p>The design of Pravega incorporates lessons learned from using the <a href="http://lambda-architecture.net/"><strong>Lambda Architecture</strong></a>
+to build streaming applications and the challenges to deploy streaming applications
+at scale that consistently deliver accurate results in a fault tolerant manner.
+The Pravega Architecture provides strong durability and consistency guarantees,
+delivering a rock solid foundation to build streaming applications upon.</p>
+<p>With the Lambda Architecture, the developer uses a complex combination of middleware
+tools that include batch style middleware mainly influenced by <strong>Hadoop</strong> and
+continuous processing tools like <strong>Storm, Samza, Kafka</strong> and others.</p>
+<p><img alt="Lambda" src="../img/lambda.png" /></p>
+<p>In this architecture, batch processing is used to deliver accurate, but potentially
+out of date analysis of data. The second path processes data as it is ingested, and
+in principle the results are inaccurate, which justifies the first
+batch path. The programming models of the speed layer are different than those used in the
+batch layer. An implementation of the Lambda Architecture can be difficult to maintain
+and manage in production. This style of big data application design consequently has
+been losing traction. A different kind of architecture has been gaining traction recently
+that does not rely on a batch processing data path. This architecture is called <a href="http://milinda.pathirage.org/kappa-architecture.com/"><strong>Kappa</strong></a>.</p>
+<p>The Kappa Architecture style is a reaction to the complexity of the Lambda Architecture
+and relies on components that are designed for streaming, supporting stronger
+semantics and delivering both fast and accurate data analysis. The Kappa
+Architecture provides a simpler approach:</p>
+<p><img alt="Kappa" src="../img/kappa.png" /></p>
+<p>There is only one data path to execute, and one implementation of the application logic
+to maintain. With the right tools, built for the demands of processing
+streaming data in a fast and accurate fashion, it becomes simpler to design
+and run applications in the space of IoT:(connected cars, finance, risk management, online
+services, etc.). Using the right tools, it is possible to build such pipelines and serve
+applications that present high volume and demand low latency.</p>
+<p>Applications often require more than one stage of processing. Any practical system for stream
+analytics must be able to accommodate the composition of stages in the form of data pipelines:</p>
+<p><img alt="Pipeline" src="../img/pipeline.png" /></p>
+<p>With data pipelines, it is important to think of guarantees end-to-end rather than on a
+per component basis. Our goal in Pravega is to enable the design and implementation of data pipelines with strong guarantees end-to-end.</p>
+<h2 id="pravega-storage-reimagined-for-a-streaming-world">Pravega: Storage Reimagined for a Streaming World<a class="headerlink" href="#pravega-storage-reimagined-for-a-streaming-world" title="Permanent link">&para;</a></h2>
+<p>Pravega introduces a new storage primitive, a Stream, that matches
+continuous processing of unbounded data.  In Pravega, a Stream is a named,
+durable, append-only and unbounded sequence of bytes.  With this primitive, and
+the key features discussed in this document, Pravega is an ideal component to
+combine with Stream processing engines such as <a href="https://flink.apache.org/">Flink</a> to build streaming
+applications. Because of Pravega's key features, we imagine that it will be the
+fundamental storage primitive for a new generation of streaming-oriented
+middleware.</p>
+<p>Let's examine the key features of Pravega:</p>
+<h2 id="exactly-once-semantics">Exactly Once Semantics<a class="headerlink" href="#exactly-once-semantics" title="Permanent link">&para;</a></h2>
+<p>By exactly once semantics we mean that Pravega ensures that data is not duplicated
+and no event is missed despite failures. Of course, this statement comes with a
+number of caveats, like any other system that promises exactly-once semantics, but
+let's not dive into the gory details here. An important consideration is that
+exactly-once semantics is a natural part of Pravega and has been a goal and part
+of the design from day zero.</p>
+<p>To achieve exactly once semantics, Pravega <a href="../pravega-concepts/#streams">Streams</a> are durable, ordered,
+consistent and <a href="../pravega-concepts/#transactions">transactional</a>. We discuss durable and transactional in separate sections below.</p>
+<h3 id="pravega-streams-are-ordered">Pravega Streams are Ordered<a class="headerlink" href="#pravega-streams-are-ordered" title="Permanent link">&para;</a></h3>
+<p>By ordering, we mean that data is observed by Readers in the order it is written.
+In Pravega, data is written along with an application-defined Routing Key.  
+Pravega makes <a href="../pravega-concepts/#ordering-guarantees">ordering guarantees</a> in terms of Routing Keys. For example, two Events with the same Routing Key will always be read by a Reader in the order they were
+written. Pravega's ordering guarantees allow data reads to be replayed (e.g.
+when applications crash) and the results of replaying the reads will be the
+same.</p>
+<p>By consistency, we mean all Readers see the same ordered view of data for a
+given Routing Key, even in the face of failure. Systems that are "mostly
+consistent" are not sufficient for building accurate data processing.</p>
+<p>Systems that provide <strong>"at least once"</strong> semantics might present duplication. In
+such systems, a data producer might write the same data twice in some scenarios.
+In Pravega, writes are idempotent, rewrites done as a result of reconnection
+don't result in data duplication. Note that we make no guarantee when the data
+coming from the source already contains duplicates. Written data is opaque to
+Pravega and it makes no attempt to remove existing duplicates.</p>
+<p>Pravega has not limited the focus to exactly-once semantics for writing, however.
+We also provide, and are actively working on extending the features, that enable
+exactly-once end-to-end for a data pipeline. The strong consistency guarantees
+that the Pravega store provides along with the semantics of a data analytics
+engine like Flink enables such end-to-end guarantees.</p>
+<h2 id="auto-scaling">Auto Scaling<a class="headerlink" href="#auto-scaling" title="Permanent link">&para;</a></h2>
+<p>Unlike systems with static partitioning, Pravega can automatically scale
+individual data streams to accommodate changes in data ingestion rate.</p>
+<p>Imagine an IoT application with millions of devices feeding thousands of data
+streams with information about those devices. Imagine a pipeline of Flink jobs
+that process those Streams to derive business value from all that raw IoT data:</p>
+<ul>
+<li>Predicting device failures,</li>
+<li>Optimizing service delivery through those devices,</li>
+<li>Tailoring a customer's experience when interacting with those devices.</li>
+</ul>
+<p>Building such an application at scale is difficult without having the
+components be able to scale automatically as the rate of data increases and
+decreases.</p>
+<p>With Pravega, it is easy to elastically and independently scale data ingestion,
+storage and processing – orchestrating the scaling of every component in a data
+pipeline.</p>
+<p>Pravega's support of <a href="../pravega-concepts/#elastic-streams-auto-scaling">Auto Scaling</a> starts with the idea that Streams are partitioned into Stream Segments. A Stream may have one or more Stream Segments; recall that a Stream Segment is a partition of the Stream associated with a range of Routing Keys.<br />
+Any data written into the Stream is written to the Stream Segment associated with the
+data's Routing Key. Writers use domain specific meaningful Routing Keys (like
+customer ID, Timestamp, Machine ID, etc.) to group similar together.  </p>
+<p>A Stream Segment is the fundamental unit of parallelism in Pravega Streams. </p>
+<ul>
+<li>
+<p><strong>Parallel Writes:</strong> A Stream with multiple Stream Segments can support more parallelism of data
+writes; multiple Writers writing data into the different Stream Segments
+potentially involving all the Pravega Servers in the cluster.</p>
+</li>
+<li>
+<p><strong>Parallel reads:</strong> On the Reader side, the number of Stream Segments represents the maximum degree of read parallelism possible. If a Stream has <em>N</em> Stream Segments, then a Reader Group
+with <em>N</em> Readers can consume from the Stream in parallel. Increase the number of
+Stream Segments, you can increase the number of Readers in the Reader Group to
+increase the scale of processing the data from that Stream. And of course if
+the number of Stream Segments decreases, it would be a good idea to reduce the
+number of Readers.</p>
+</li>
+</ul>
+<p>A Stream can be configured to grow the number of Stream Segments as more data is
+written to the Stream, and to shrink when data volume drops off.  We refer to
+this configuration as the Stream's Service Level Objective or SLO.  Pravega
+monitors the rate of data input to the Stream and uses the SLO to add or remove
+Stream Segments from a Stream.  Segments are added by splitting a Segment.
+ Segments are removed by merging two Segments. See <a href="../pravega-concepts/#elastic-streams-auto-scaling">Auto Scaling</a> for more detail on how Pravega manages Stream Segments.</p>
+<p>It is possible to coordinate the Auto Scaling of Streams in Pravega with
+application scale out (in the works). Using metadata available from Pravega,
+applications can configure the scaling of their application components; for
+example, to drive the number of instances of a Flink job. Alternatively, you
+could use software such as <a href="https://www.cloudfoundry.org/">Cloud Foundry</a>, <a href="https://github.com/mesosphere/marathon">Mesos/Marathon</a>, <a href="https://kubernetes.io/">Kubernetes</a> or the
+<a href="https://www.docker.com/">Docker stack</a> to deploy new instances of an application to react to increased
+parallelism at the Pravega level, or to terminate instances as Pravega scales
+down in response to reduced rate of data ingestion.</p>
+<h2 id="distributed-computing-primitive">Distributed Computing Primitive<a class="headerlink" href="#distributed-computing-primitive" title="Permanent link">&para;</a></h2>
+<p>Pravega is great for distributed applications, such as microservices; it can be
+used as a data storage mechanism, for messaging between microservices and for
+other distributed computing services such as leader election. </p>
+<p>State Synchronizer, a part of the Pravega API, is the basis of sharing state
+across a cluster with consistency and optimistic concurrency. State Synchronizer is based on a fundamental conditional write operation in Pravega,
+so that data is written only if it would appear at a given position in the
+Stream. If a conditional write operation cannot meet the condition, it fails.</p>
+<p>State Synchronizer is therefore a strong synchronization primitive that can be
+used for shared state in a cluster, membership management, leader election and
+other distributed computing scenarios.</p>
+<p>For more information, refer to <a href="../state-synchronizer/">State Synchronizer</a>.</p>
+<h2 id="write-efficiency">Write Efficiency<a class="headerlink" href="#write-efficiency" title="Permanent link">&para;</a></h2>
+<p>Pravega write latency is of the order of milliseconds. It seamlessly scales
+to handle high throughput reads and writes from thousands of concurrent
+clients, making it ideal for IoT and other time sensitive applications.</p>
+<p>Streams are light weight, Pravega can support millions of Streams, this frees
+the application from worrying about static configuration of Streams and preallocating
+a small fixed number of Streams and limiting Stream resource.</p>
+<p>Write operations in Pravega are low latency, under <em>10ms</em> to return an
+acknowledgment is returned to a Writer. Furthermore, writes are optimized so
+that I/O throughput is limited by network bandwidth;  the persistence mechanism
+is not the bottleneck. Pravega uses Apache BookKeeper to persist all write
+operations. BookKeeper persists and protects the data very efficiently.
+Because data is protected before the write operation is acknowledged to the
+Writer, data is always durable. As we discuss below, data durability is a
+fundamental characteristic of a storage primitive. To add further efficiency,
+writes to BookKeeper often involve data from multiple Stream Segments, so the
+cost of persisting data to disk can be amortized over several write operations.</p>
+<p>There is no durability performance trade-off with Pravega.</p>
+<h2 id="read-efficiency">Read Efficiency<a class="headerlink" href="#read-efficiency" title="Permanent link">&para;</a></h2>
+<p>A Reader can read from a Stream either at the <strong>tail</strong> of
+the Stream or at any part of the Stream's history.  Unlike some log-based
+systems that use the same kind of storage for tail reads and writes as well as
+reads to historical data, Pravega uses two types of storage.  </p>
+<ul>
+<li>The tail of the Stream is in so-called <a href="../pravega-concepts/#a-note-on-tiered-storage">Tier 1 storage</a>.</li>
+<li>The historical part of the Stream is in <a href="../pravega-concepts/#a-note-on-tiered-storage">Tier 2 Storage</a>.</li>
+</ul>
+<p>Pravega uses efficient in-memory read ahead cache, taking advantage of the fact
+that Streams are usually read in large contiguous chunks and that HDFS is well
+suited for those sort of large, high-throughput reads. It is also worth noting
+that tail reads do not impact the performance of writes.</p>
+<h2 id="unlimited-retention">Unlimited Retention<a class="headerlink" href="#unlimited-retention" title="Permanent link">&para;</a></h2>
+<p>Data in Streams can be retained based on the application needs. It is constrained to the amount of data available, which is unbounded given the use
+of cloud storage in Tier 2. Pravega provides one convenient API to
+access both <strong>real-time</strong> and <strong>historical data</strong>. With Pravega, batch and real-time
+applications can both be handled efficiently; <em>yet another reason why Pravega is
+a great storage primitive for Kappa architectures</em>.</p>
+<p>If there is a value to retain old data, why not keep it around? For example,
+in a machine learning example, you may want to periodically change the model and
+train the new version of the model against as much historical data as possible
+to enhance and yield more accurate predictive power of the model. With Pravega
+auto-tiering, retaining lots of historical data does not affect the performance of
+tail reads and writes. </p>
+<p>Size of a stream is not limited by the storage capacity of a single server, but
+rather, it is limited only by the storage capacity of your storage cluster or cloud
+provider. As cost of storage decreases, the economic incentive to delete data
+goes away.</p>
+<h2 id="storage-efficiency">Storage Efficiency<a class="headerlink" href="#storage-efficiency" title="Permanent link">&para;</a></h2>
+<p>Use Pravega to build pipelines of data processing, combining batch, real-time
+and other applications without duplicating data for every step of the pipeline.</p>
+<p>Consider the following data processing environment:</p>
+<ul>
+<li><strong>Real time</strong> processing using Spark, Flink, and or Storm</li>
+<li><strong>Batch</strong> processing using Hadoop</li>
+<li><strong>Full text search</strong> can be performed using Lucene-based or Search mechanism like Elastic Search.</li>
+<li><strong>Micro-services</strong> apps can be supported using one (or several) NoSQL databases.</li>
+</ul>
+<p><img alt="Pipeline replica" src="../img/pipeline.separate.replicas.png" /></p>
+<p>Using traditional approaches, one set of source data, for example, sensor data
+from an IoT app, would be ingested and replicated separately by each system.
+You would end up with three replicas of the data protected in the pub/sub system, three
+copies in HDFS, three copies in Lucene and three copies in the NoSQL database.  When we
+consider the source data is measured in TB, the cost of data replication
+separated by middleware category becomes prohibitively expensive.</p>
+<p>Consider the same pipeline using Pravega and middleware adapted to use Pravega
+for its storage:</p>
+<p><img alt="Single Source Pipeline" src="../img/pipeline.single.source.png" /></p>
+<p>With Pravega, the data is ingested and protected in one place; Pravega provides
+the single source of truth for the entire pipeline. Furthermore, with the bulk
+of the data being stored in Tier 2 enabled with erasure coding to efficiently
+protect the data, the storage cost of the data is substantially reduced.</p>
+<h1 id="durability">Durability<a class="headerlink" href="#durability" title="Permanent link">&para;</a></h1>
+<p>With Pravega, you don't  face a compromise between performance, durability and
+consistency. Pravega provides durable storage of streaming data with strong
+consistency, ordering guarantees and great performance.</p>
+<p>Durability is a fundamental storage primitive requirement.  Storage that could
+lose data is not reliable storage.  Systems based on such storage are not
+production quality.</p>
+<p>Once a write operation is acknowledged, the data will never be lost, even when
+failures occur. This is because Pravega always saves data in protected,
+persistent storage before the write operation returns to the Writer.</p>
+<p>With Pravega, data in the Stream is protected. A Stream can be treated as a
+system of record, just as you would treat data stored in databases or files.</p>
+<h1 id="transaction-support">Transaction Support<a class="headerlink" href="#transaction-support" title="Permanent link">&para;</a></h1>
+<p>A developer uses a Pravega Transaction to ensure that a set of events are
+written to a Stream atomically.</p>
+<p>A Pravega Transaction is part of Pravega's Writer API. Data can be written to a
+Stream directly through the API, or an application can write data through a
+Transaction.  With Transactions, a Writer can persist data now, and later
+decide whether the data should be appended to a Stream or abandoned.</p>
+<p>Using a Transaction, data is written to the Stream only when the Transaction is
+committed. When the Transaction is committed, all data written to the
+Transaction is atomically appended to the Stream. Because Transactions are
+implemented in the same way as Stream Segments, data written to a Transaction is
+just as durable as data written directly to a Stream. If a Transaction is
+abandoned (e.g. if the Writer crashes) the Transaction is aborted and all data
+is discarded. Of course, an application can choose to abort the Transaction
+through the API if a condition occurs that suggests the Writer should discard
+the data. </p>
+<p>Transactions are key to chaining Flink jobs together.  When a Flink job uses
+Pravega as a sink, it can begin a Transaction, and if it successfully finishes
+processing, commit the Transaction, writing the data into its Pravega based
+sink.  If the job fails for some reason, the Transaction times out and data is
+not written.  When the job is restarted, there is no "partial result" in the
+sink that would need to be managed or cleaned up.</p>
+<p>Combining Transactions and other key features of Pravega, it is possible to
+chain Flink jobs together, having one job's Pravega based sink be the source for
+a downstream Flink job. This provides the ability for an entire pipeline of
+Flink jobs to have end-to-end exactly once, guaranteed ordering of data processing.</p>
+<p>Of course, it is possible for Transactions across multiple Streams be
+coordinated with Transactions, so that a Flink job can use two or more
+Pravega based sinks to provide source input to downstream Flink jobs.  In
+addition, it is possible for application logic to coordinate Pravega
+Transactions with external databases such as Flink's checkpoint store. For more information, see <a href="../transactions/">Transaction</a> section.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../terminology/" title="Terminology" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Terminology
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../faq/" title="Pravega FAQ" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Pravega FAQ
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+  </body>
+</html>

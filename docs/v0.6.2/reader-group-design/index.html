@@ -1,0 +1,1091 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="http://pravega.io/reader-group-design/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Reader Groups - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#reader-groups-design" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Reader Groups
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Reader Groups
+      </label>
+    
+    <a href="./" title="Reader Groups" class="md-nav__link md-nav__link--active">
+      Reader Groups
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" title="Motivation" class="md-nav__link">
+    Motivation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consistent-replicated-state" title="Consistent Replicated State" class="md-nav__link">
+    Consistent Replicated State
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reader-group-apis" title="Reader Group APIs" class="md-nav__link">
+    Reader Group APIs
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/kubernetes-install/" title="Deployment on Kubernetes" class="md-nav__link">
+      Deployment on Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/docker-swarm/" title="Deployment on Docker Swarm" class="md-nav__link">
+      Deployment on Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Pravega Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Pravega Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/auth-plugin/" title="Pravega Authentication/Authorization Plugin" class="md-nav__link">
+      Pravega Authentication/Authorization Plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/client-auth/" title="Client Auth Interface" class="md-nav__link">
+      Client Auth Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-authorization-authentication/" title="Pravega Security Authorization/Authentication" class="md-nav__link">
+      Pravega Security Authorization/Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-configurations/" title="Pravega Security Configurations" class="md-nav__link">
+      Pravega Security Configurations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-encryption/" title="Pravega Security Encryption" class="md-nav__link">
+      Pravega Security Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/securing-distributed-mode-cluster/" title="Securing Pravega in Distributed Mode" class="md-nav__link">
+      Securing Pravega in Distributed Mode
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#motivation" title="Motivation" class="md-nav__link">
+    Motivation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#consistent-replicated-state" title="Consistent Replicated State" class="md-nav__link">
+    Consistent Replicated State
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reader-group-apis" title="Reader Group APIs" class="md-nav__link">
+    Reader Group APIs
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/reader-group-design.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="reader-groups-design">Reader Groups Design<a class="headerlink" href="#reader-groups-design" title="Permanent link">&para;</a></h1>
+<h2 id="motivation">Motivation<a class="headerlink" href="#motivation" title="Permanent link">&para;</a></h2>
+<p>A set of Readers can be grouped together in order that the set of Events in a Stream can be read in parallel. This grouping of Readers is called a Reader Group. Pravega guarantees that each Event in the Stream is read by exactly one Reader in the Reader Group.</p>
+<p>Each Reader in a Reader Group is assigned zero or more Stream Segments.
+The Reader assigned to a Stream Segment is the only Reader within the Reader Group that reads Events from that Stream Segment. This is the fundamental mechanism by which Pravega makes ordering guarantees of Event delivery to a Reader – a Reader will receive Events in the order they were written into a Stream Segment.
+There are several challenges associated with this mechanism:</p>
+<ul>
+<li>How to maintain the mapping of which Reader within a Reader Group is assigned which Stream Segment?</li>
+<li>How to manage the above mapping when Stream Segments split and merge?</li>
+<li>How to manage the above mapping when Readers are added to the Reader Group?</li>
+<li>How to manage the above mapping when Readers leave the Reader Group either by an explicit operation or the Reader becoming unavailable due to network outage or the Reader process failing?</li>
+</ul>
+<p>To address these challenges, we use <a href="../state-synchronizer-design/">State Synchronizer</a> to enable coordination among Readers.</p>
+<h3 id="consistent-replicated-state">Consistent Replicated State<a class="headerlink" href="#consistent-replicated-state" title="Permanent link">&para;</a></h3>
+<p>A consistent replicated state object representing the Reader Group metadata will be created in each Reader. This Reader Group metadata consists of:</p>
+<ul>
+<li>A map of online Readers to the Stream Segments they own.</li>
+<li>A list of positions in Stream Segments that can be taken over.</li>
+</ul>
+<p>Every time the Readers in a Reader Group change, the state can be updated. The replicated state is updated every time a Reader starts reading a new Stream Segment. Thus every Reader is aware of the Stream Segments owned by all the Readers in the their Reader Group.</p>
+<p>Given this information:</p>
+<ul>
+<li>A new Reader can infer which Stream Segments are available to read from. (By virtue of it being absent from the state).</li>
+<li>Dealing with a Stream Segment being merged becomes easy, because the last reader to reach the end of its pre-merge Stream Segment knows it can freely take ownership of the new Stream Segment.</li>
+<li>Readers can see their relative load and how they are progressing relative to the other Readers in their group and can decide to transfer Stream Segments if things are out of balance.</li>
+<li>This allows Readers to take action directly to ensure all the events are read without the need for some external tracker.</li>
+</ul>
+<h2 id="reader-group-apis">Reader Group APIs<a class="headerlink" href="#reader-group-apis" title="Permanent link">&para;</a></h2>
+<p>The external APIs to manage Reader Groups could be added to the <code>ReaderGroupManager</code> object. It consist of:</p>
+<p><div class="codehilite"><pre><span></span>    <span class="n">ReaderGroup</span> <span class="nf">createReaderGroup</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Stream</span> <span class="n">stream</span><span class="o">,</span> <span class="n">ReaderGroupConfig</span> <span class="n">config</span><span class="o">);</span>
+    <span class="n">ReaderGroup</span> <span class="nf">getReaderGroup</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Stream</span> <span class="n">stream</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">deleteReaderGroup</span><span class="o">(</span><span class="n">ReaderGroup</span> <span class="n">group</span><span class="o">);</span>
+</pre></div>
+When a Reader Group is created, it creates a <a href="../state-synchronizer-design/">State Synchronizer</a> shared by the Readers. To join a Reader Group, Readers would just specify it in their configuration:</p>
+<p><div class="codehilite"><pre><span></span><span class="n">ClientFactory</span> <span class="n">clientFactory</span> <span class="o">=</span> <span class="n">ClientFactory</span><span class="o">.</span><span class="na">withScope</span><span class="o">(</span><span class="n">scope</span><span class="o">,</span> <span class="n">controllerURI</span><span class="o">);</span>
+<span class="n">EventStreamReader</span><span class="o">&lt;</span> <span class="n">T</span> <span class="o">&gt;</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">clientFactory</span><span class="o">.</span><span class="na">createReader</span><span class="o">(</span><span class="n">readerId</span><span class="o">,</span> <span class="n">READER_GROUP_NAME</span><span class="o">,</span> <span class="n">serializer</span><span class="o">,</span> <span class="n">readerConfig</span><span class="o">);</span>
+</pre></div>
+The Readers, while joining the group, access the information stored on the state to determine which Stream Segments to read from. Once when they shut down, they update the state so that other Readers can take over their Stream Segments.</p>
+<h1 id="detecting-pravega-reader-failure">Detecting Pravega Reader Failure<a class="headerlink" href="#detecting-pravega-reader-failure" title="Permanent link">&para;</a></h1>
+<p>We still need some effective mechanism to identify, whether Readers are alive or not. The problem is greatly simplified because it need not produce a view of the cluster or manage any state. The component would just need to detect a Reader failure and invoke the <code>void ReaderOffline(String ReaderId, Position lastPosition);</code> API on the Reader Group.</p>
+<p>For consistency, the "Failure detector" should not declare a host as dead that is still processing events. Doing so could violate exactly once processing guarantees.</p>
+<h2 id="new-reader-added">New Reader Added<a class="headerlink" href="#new-reader-added" title="Permanent link">&para;</a></h2>
+<ol>
+<li>When a Reader joins a group its online status is added to the shared state.</li>
+<li>Other Readers receive updates to the shared state.</li>
+<li>When a Reader with more than average number of Stream Segments sees the new Reader, it may give up a Stream Segment by writing its position for that Stream Segment to the shared state.</li>
+<li>The new Reader can take over a Stream Segment by recording that it is doing so in the shared state.</li>
+<li>The new Reader can start reading from the position it read from the shared state for the Stream Segment it picked up.</li>
+</ol>
+<p>There are no races between multiple Readers coming online concurrently because only one of them can successfully claim ownership of any given Stream Segment.</p>
+<h2 id="stream-segments-get-merged">Stream Segments Get Merged<a class="headerlink" href="#stream-segments-get-merged" title="Permanent link">&para;</a></h2>
+<ol>
+<li>When a Reader comes to the end of its Stream Segment it records this information in the shared state.</li>
+<li>When all of the Stream Segments that are getting merged together are completed, a Reader may claim ownership of the following Stream Segment.</li>
+</ol>
+<p>There is no ambiguity as to who the owner is, because it is stored in the shared state. There is no risk of a Stream Segment being ignored because every Reader can see the available Stream Segments by looking at the shared state and claim them.</p>
+<h2 id="reader-offline">Reader Offline<a class="headerlink" href="#reader-offline" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>When a Reader dies, the <code>void ReaderOffline(String ReaderId, Position lastPosition);</code> API method will be invoked either by the Reader itself in a graceful shutdown (internally to the close method) or via a "liveness detector". In either case the Reader's last position is written to the state.</p>
+</li>
+<li>
+<p>If a null <code>Position</code> is sent then the last checkpointed position will be written to the state.</p>
+</li>
+<li>This is used by the newer Readers when they take ownership of the Stream Segment(s) that were read by the older/offline reader.</li>
+<li>Any Reader can decide to take over one or more of the Stream Segments owned by the old Reader from where it left off by recording their intention to do so in the state object.</li>
+<li>Once the state has been updated by the new Reader, it is considered the owner of the Stream Segment and can read from it.</li>
+</ol>
+<h1 id="other-considerations-on-reader-groups">Other Considerations on Reader Groups<a class="headerlink" href="#other-considerations-on-reader-groups" title="Permanent link">&para;</a></h1>
+<h2 id="what-happens-if-a-reader-does-not-keep-up-to-date">What happens if a Reader does not keep up to date?<a class="headerlink" href="#what-happens-if-a-reader-does-not-keep-up-to-date" title="Permanent link">&para;</a></h2>
+<p>A Reader with out-of-date state can read from their existing Stream Segments without interference. The only disadvantage to this is that they will not shed load to another Reader should one become available. However, because they have to write to the shared state to start reading from any Stream Segment which they don't already own, they must fetch up-to-date information before moving on to a new Stream Segment.</p>
+<h2 id="impact-of-availability-and-latency">Impact of availability and latency<a class="headerlink" href="#impact-of-availability-and-latency" title="Permanent link">&para;</a></h2>
+<p>Reading and updating the state object can occur in parallel to reading, so there would likely be no visible latency impact.
+A stream would be unavailable for reading if Pravega failed in such a way that the Stream Segment containing the Reader Group information went down and remained offline for long enough for the Readers to exhaust all the events in their existing Stream Segments. Of course, if Pravega failed in this way, odds are at least some portion of the stream would also be directly impacted and not be able to read any events. This sort of failure mode would manifest as latency for the Reader, similar to what would happen if they had reached the tail of the stream.</p>
+<p>This is preferable to using an external system to manage this coordination, as that would require adding new components that can fail in different ways, as opposed to further relying on a small set that we need to make highly available anyway. This is particularly notable in the case of a network partition. If the network is split any Readers that are on the same side of the partition as the Pravega servers can continue working. If we were to utilize an external service, that service could be cut off and Readers might not be able to make progress even if they could talk to Pravega.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                StateSynchronizer
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../javadoc/" title="Java API Reference" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Java API Reference
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

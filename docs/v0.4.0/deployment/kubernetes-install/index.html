@@ -1,0 +1,1583 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="http://pravega.io/deployment/kubernetes-install/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>Deployment on Kubernetes - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#deploying-in-kubernetes" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Deployment on Kubernetes
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Deployment on Kubernetes
+      </label>
+    
+    <a href="./" title="Deployment on Kubernetes" class="md-nav__link md-nav__link--active">
+      Deployment on Kubernetes
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-the-pravega-operator" title="Install the Pravega Operator" class="md-nav__link">
+    Install the Pravega Operator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-sample-pravega-cluster" title="Deploy a sample Pravega cluster" class="md-nav__link">
+    Deploy a sample Pravega cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale-a-pravega-cluster" title="Scale a Pravega Cluster" class="md-nav__link">
+    Scale a Pravega Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-a-pravega-cluster" title="Upgrade a Pravega Cluster" class="md-nav__link">
+    Upgrade a Pravega Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-the-pravega-cluster" title="Uninstall the Pravega cluster" class="md-nav__link">
+    Uninstall the Pravega cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-the-pravega-cluster_1" title="Uninstall the Pravega cluster" class="md-nav__link">
+    Uninstall the Pravega cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-the-pravega-operator" title="Uninstall the Pravega Operator" class="md-nav__link">
+    Uninstall the Pravega Operator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-non-default-service-accounts" title="Use non-default service accounts" class="md-nav__link">
+    Use non-default service accounts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-on-a-custom-namespace-with-rbac-enabled" title="Installing on a Custom Namespace with RBAC enabled" class="md-nav__link">
+    Installing on a Custom Namespace with RBAC enabled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-google-filestore-storage-as-tier-2" title="Use Google Filestore Storage as Tier 2" class="md-nav__link">
+    Use Google Filestore Storage as Tier 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tune-pravega-configuration" title="Tune Pravega configuration" class="md-nav__link">
+    Tune Pravega configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-external-access" title="Enable External Access" class="md-nav__link">
+    Enable External Access
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#releases" title="Releases" class="md-nav__link">
+    Releases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker-swarm/" title="Deployment on Docker Swarm" class="md-nav__link">
+      Deployment on Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Pravega Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Pravega Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../auth/auth-plugin/" title="Pravega Authentication/Authorization Plugin" class="md-nav__link">
+      Pravega Authentication/Authorization Plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../auth/client-auth/" title="Client Auth Interface" class="md-nav__link">
+      Client Auth Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/pravega-security-authorization-authentication/" title="Pravega Security Authorization/Authentication" class="md-nav__link">
+      Pravega Security Authorization/Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/pravega-security-configurations/" title="Pravega Security Configurations" class="md-nav__link">
+      Pravega Security Configurations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/pravega-security-encryption/" title="Pravega Security Encryption" class="md-nav__link">
+      Pravega Security Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../security/securing-distributed-mode-cluster/" title="Securing Pravega in Distributed Mode" class="md-nav__link">
+      Securing Pravega in Distributed Mode
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" title="Requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" title="Usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-the-pravega-operator" title="Install the Pravega Operator" class="md-nav__link">
+    Install the Pravega Operator
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-a-sample-pravega-cluster" title="Deploy a sample Pravega cluster" class="md-nav__link">
+    Deploy a sample Pravega cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scale-a-pravega-cluster" title="Scale a Pravega Cluster" class="md-nav__link">
+    Scale a Pravega Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upgrade-a-pravega-cluster" title="Upgrade a Pravega Cluster" class="md-nav__link">
+    Upgrade a Pravega Cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-the-pravega-cluster" title="Uninstall the Pravega cluster" class="md-nav__link">
+    Uninstall the Pravega cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-the-pravega-cluster_1" title="Uninstall the Pravega cluster" class="md-nav__link">
+    Uninstall the Pravega cluster
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uninstall-the-pravega-operator" title="Uninstall the Pravega Operator" class="md-nav__link">
+    Uninstall the Pravega Operator
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration" title="Configuration" class="md-nav__link">
+    Configuration
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-non-default-service-accounts" title="Use non-default service accounts" class="md-nav__link">
+    Use non-default service accounts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-on-a-custom-namespace-with-rbac-enabled" title="Installing on a Custom Namespace with RBAC enabled" class="md-nav__link">
+    Installing on a Custom Namespace with RBAC enabled
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-google-filestore-storage-as-tier-2" title="Use Google Filestore Storage as Tier 2" class="md-nav__link">
+    Use Google Filestore Storage as Tier 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tune-pravega-configuration" title="Tune Pravega configuration" class="md-nav__link">
+    Tune Pravega configuration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enable-external-access" title="Enable External Access" class="md-nav__link">
+    Enable External Access
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#releases" title="Releases" class="md-nav__link">
+    Releases
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/deployment/kubernetes-install.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="deploying-in-kubernetes">Deploying in Kubernetes<a class="headerlink" href="#deploying-in-kubernetes" title="Permanent link">&para;</a></h1>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="#requirements">Requirements</a><ul>
+<li><a href="#pravega-operator">Pravega Operator</a></li>
+</ul>
+</li>
+<li><a href="#usage">Usage</a>    <ul>
+<li><a href="#install-the-pravega-operator">Installation of the Pravega Operator</a></li>
+<li><a href="#deploy-a-sample-pravega-cluster">Deploy a sample Pravega Cluster</a></li>
+<li><a href="#scale-a-pravega-cluster">Scale a Pravega Cluster</a></li>
+<li><a href="#upgrade-a-pravega-cluster">Upgrade a Pravega Cluster</a></li>
+<li><a href="#uninstall-the-pravega-cluster">Uninstall the Pravega Cluster</a></li>
+<li><a href="#uninstall-the-pravega-operator">Uninstall the Pravega Operator</a></li>
+</ul>
+</li>
+<li><a href="#configuration">Configuration</a><ul>
+<li><a href="#use-non-default-service-accounts">Use non-default service accounts</a></li>
+<li><a href="#installing-on-a-custom-namespace-with-rbac-enabled">Installing on a Custom Namespace with RBAC enabled</a></li>
+<li><a href="#use-google-filestore-storage-as-tier-2">Tier 2: Google Filestore Storage</a></li>
+<li><a href="#tune-pravega-configuration">Tune Pravega Configurations</a></li>
+<li><a href="#enable-external-access">Enable External Access</a></li>
+</ul>
+</li>
+<li><a href="#releases">Releases</a></li>
+</ul>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Kubernetes 1.8+</li>
+<li>An existing Apache Zookeeper 3.5 cluster. This can be easily deployed using our <a href="https://github.com/pravega/zookeeper-operator">Zookeeper Operator</a>.</li>
+<li><a href="https://github.com/pravega/pravega-operator/edit/master/README.md">Pravega Operator</a> manages Pravega clusters deployed to Kubernetes and automates tasks related to operating a Pravega cluster.</li>
+</ul>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<h3 id="install-the-pravega-operator">Install the Pravega Operator<a class="headerlink" href="#install-the-pravega-operator" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Note: If you are running on Google Kubernetes Engine (GKE), please <a href="https://github.com/pravega/pravega-operator#installation-on-google-kubernetes-engine">check this first</a>.</p>
+</blockquote>
+<p>Run the following command to install the <code>PravegaCluster</code> custom resource definition (CRD), create the <code>pravega-operator</code> service account, roles, bindings, and the deploy the Pravega Operator.</p>
+<div class="codehilite"><pre><span></span>$ kubectl create -f deploy
+</pre></div>
+
+<p>Verify that the Pravega Operator is running.</p>
+<div class="codehilite"><pre><span></span>$ kubectl get deploy
+NAME                 DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+pravega-operator     1         1         1            1           17s
+</pre></div>
+
+<h3 id="deploy-a-sample-pravega-cluster">Deploy a sample Pravega cluster<a class="headerlink" href="#deploy-a-sample-pravega-cluster" title="Permanent link">&para;</a></h3>
+<p>Pravega requires a long term storage provider known as Tier 2 storage. The following Tier 2 storage providers are supported:</p>
+<ul>
+<li>Filesystem (NFS)</li>
+<li><a href="#using-google-filestore-storage-as-tier-2">Google Filestore</a></li>
+<li><a href="https://www.dellemc.com/sr-me/storage/ecs/index.htm">DellEMC ECS</a></li>
+<li>HDFS (must support Append operation)</li>
+</ul>
+<p>The following example uses an NFS volume provisioned by the <a href="https://github.com/kubernetes/charts/tree/master/stable/nfs-server-provisioner">NFS Server Provisioner</a> helm chart to provide Tier 2 storage.</p>
+<div class="codehilite"><pre><span></span>$ helm install stable/nfs-server-provisioner
+</pre></div>
+
+<p>Verify that the <code>nfs</code> storage class is now available.</p>
+<div class="codehilite"><pre><span></span>$ kubectl get storageclass
+NAME                 PROVISIONER                                             AGE
+nfs                  cluster.local/elevated-leopard-nfs-server-provisioner   24s
+...
+</pre></div>
+
+<blockquote>
+<p>Note: This is ONLY intended as a demo and should NOT be used for production deployments.</p>
+</blockquote>
+<p>Once the NFS server provisioner is installed, you can create a <code>PersistentVolumeClaim</code> that will be used as Tier 2 for Pravega. Create a <code>pvc.yaml</code> file with the following content.</p>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pravega-tier2</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">storageClassName</span><span class="p p-Indicator">:</span> <span class="s">&quot;nfs&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">accessModes</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteMany</span>
+  <span class="l l-Scalar l-Scalar-Plain">resources</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">requests</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">storage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">50Gi</span>
+</pre></div>
+
+<p><div class="codehilite"><pre><span></span>$ kubectl create -f pvc.yaml
+</pre></div>
+Use the following YAML template to install a small development Pravega Cluster (3 Bookies, 1 Controller, 3 Segment Stores). Create a <code>pravega.yaml</code> file with the following content.</p>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="s">&quot;pravega.pravega.io/v1alpha1&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="s">&quot;PravegaCluster&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;example&quot;</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0.4.0</span>
+  <span class="l l-Scalar l-Scalar-Plain">zookeeperUri</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">ZOOKEEPER_HOST</span><span class="p p-Indicator">]</span><span class="l l-Scalar l-Scalar-Plain">:2181</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">bookkeeper</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">replicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">repository</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pravega/bookkeeper</span>
+    <span class="l l-Scalar l-Scalar-Plain">autoRecovery</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+
+  <span class="l l-Scalar l-Scalar-Plain">pravega</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">controllerReplicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+    <span class="l l-Scalar l-Scalar-Plain">segmentStoreReplicas</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">repository</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pravega/pravega</span>
+    <span class="l l-Scalar l-Scalar-Plain">tier2</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">filesystem</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">persistentVolumeClaim</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">claimName</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pravega-tier2</span>
+</pre></div>
+
+<p>where:</p>
+<ul>
+<li><code>[ZOOKEEPER_HOST]</code> is the host or IP address of your Zookeeper deployment.</li>
+</ul>
+<p>Deploy the Pravega cluster.</p>
+<div class="codehilite"><pre><span></span>$ kubectl create -f pravega.yaml
+</pre></div>
+
+<p>Verify that the cluster instances and its components are being created.</p>
+<div class="codehilite"><pre><span></span>$ kubectl get PravegaCluster
+NAME      VERSION   DESIRED MEMBERS   READY MEMBERS   AGE
+example   0.4.0     7                 0               25s
+</pre></div>
+
+<p>After a couple of minutes, all cluster members should become ready.</p>
+<div class="codehilite"><pre><span></span>$ kubectl get PravegaCluster
+NAME      VERSION   DESIRED MEMBERS   READY MEMBERS   AGE
+example   0.4.0     7                 7               2m
+</pre></div>
+
+<div class="codehilite"><pre><span></span>$ kubectl get all -l pravega_cluster=example
+NAME                                              READY   STATUS    RESTARTS   AGE
+pod/example-bookie-0                              1/1     Running   0          2m
+pod/example-bookie-1                              1/1     Running   0          2m
+pod/example-bookie-2                              1/1     Running   0          2m
+pod/example-pravega-controller-64ff87fc49-kqp9k   1/1     Running   0          2m
+pod/example-pravega-segmentstore-0                1/1     Running   0          2m
+pod/example-pravega-segmentstore-1                1/1     Running   0          1m
+pod/example-pravega-segmentstore-2                1/1     Running   0          30s
+
+NAME                                            TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)              AGE
+service/example-bookie-headless                 ClusterIP   None          &lt;none&gt;        3181/TCP             2m
+service/example-pravega-controller              ClusterIP   10.23.244.3   &lt;none&gt;        10080/TCP,9090/TCP   2m
+service/example-pravega-segmentstore-headless   ClusterIP   None          &lt;none&gt;        12345/TCP            2m
+
+NAME                                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/example-pravega-controller-64ff87fc49   1         1         1       2m
+
+NAME                                            DESIRED   CURRENT   AGE
+statefulset.apps/example-bookie                 3         3         2m
+statefulset.apps/example-pravega-segmentstore   3         3         2m
+</pre></div>
+
+<p>By default, a <code>PravegaCluster</code> instance is only accessible within the cluster through the Controller <code>ClusterIP</code> service. From within the Kubernetes cluster, a client can connect to Pravega at:</p>
+<div class="codehilite"><pre><span></span>tcp://&lt;pravega-name&gt;-pravega-controller.&lt;namespace&gt;:9090
+</pre></div>
+
+<p>And the <code>REST</code> management interface is available at:</p>
+<div class="codehilite"><pre><span></span>http://&lt;pravega-name&gt;-pravega-controller.&lt;namespace&gt;:10080/
+</pre></div>
+
+<p><a href="#enable-external-access">Check this</a> to enable external access to a Pravega cluster.</p>
+<h3 id="scale-a-pravega-cluster">Scale a Pravega Cluster<a class="headerlink" href="#scale-a-pravega-cluster" title="Permanent link">&para;</a></h3>
+<p>You can scale Pravega components independently by modifying their corresponding field in the Pravega resource spec. You can either <code>kubectl edit</code> the cluster or <code>kubectl patch</code> it. If you edit it, update the number of replicas for BookKeeper, Controller, and/or Segment Store and save the updated spec.</p>
+<p>Example of patching the Pravega resource to scale the Segment Store instances to 4.</p>
+<div class="codehilite"><pre><span></span>kubectl patch PravegaCluster example --type=&#39;json&#39; -p=&#39;[{&quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/spec/pravega/segmentStoreReplicas&quot;, &quot;value&quot;: 4}]&#39;
+</pre></div>
+
+<h3 id="upgrade-a-pravega-cluster">Upgrade a Pravega Cluster<a class="headerlink" href="#upgrade-a-pravega-cluster" title="Permanent link">&para;</a></h3>
+<p>Check out the <a href="https://github.com/pravega/pravega-operator/blob/master/doc/upgrade-cluster.md">Upgrade Guide</a>.</p>
+<h3 id="uninstall-the-pravega-cluster">Uninstall the Pravega cluster<a class="headerlink" href="#uninstall-the-pravega-cluster" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>$ kubectl delete -f pravega.yaml
+$ kubectl delete -f pvc.yaml
+</pre></div>
+
+<h3 id="uninstall-the-pravega-cluster_1">Uninstall the Pravega cluster<a class="headerlink" href="#uninstall-the-pravega-cluster_1" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>$ kubectl delete -f pravega.yaml
+$ kubectl delete -f pvc.yaml
+</pre></div>
+
+<h3 id="uninstall-the-pravega-operator">Uninstall the Pravega Operator<a class="headerlink" href="#uninstall-the-pravega-operator" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Note that the Pravega clusters managed by the Pravega operator will NOT be deleted even if the operator is uninstalled.</p>
+</blockquote>
+<p>To delete all clusters, delete all cluster CR objects before uninstalling the Pravega Operator.</p>
+<div class="codehilite"><pre><span></span>$ kubectl delete -f deploy
+</pre></div>
+
+<h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
+<h3 id="use-non-default-service-accounts">Use non-default service accounts<a class="headerlink" href="#use-non-default-service-accounts" title="Permanent link">&para;</a></h3>
+<p>You can optionally configure non-default service accounts for the Bookkeeper, Pravega Controller, and Pravega Segment Store pods.</p>
+<p>For BookKeeper, set the <code>serviceAccountName</code> field under the <code>bookkeeper</code> block.</p>
+<div class="codehilite"><pre><span></span>...
+spec:
+  bookkeeper:
+    serviceAccountName: bk-service-account
+...
+</pre></div>
+
+<p>For Pravega, set the <code>controllerServiceAccountName</code> and <code>segmentStoreServiceAccountName</code> fields under the <code>pravega</code> block.</p>
+<div class="codehilite"><pre><span></span>...
+spec:
+  pravega:
+    controllerServiceAccountName: ctrl-service-account
+    segmentStoreServiceAccountName: ss-service-account
+...
+</pre></div>
+
+<p>If external access is enabled in your Pravega cluster, Segment Store pods will require access to some Kubernetes API endpoints to obtain the external IP and port. Make sure that the service account you are using for the Segment Store has, at least, the following permissions.</p>
+<div class="codehilite"><pre><span></span>kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pravega-components
+  namespace: &quot;pravega-namespace&quot;
+rules:
+- apiGroups: [&quot;pravega.pravega.io&quot;]
+  resources: [&quot;*&quot;]
+  verbs: [&quot;get&quot;]
+- apiGroups: [&quot;&quot;]
+  resources: [&quot;pods&quot;, &quot;services&quot;]
+  verbs: [&quot;get&quot;]
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pravega-components
+rules:
+- apiGroups: [&quot;&quot;]
+  resources: [&quot;nodes&quot;]
+  verbs: [&quot;get&quot;]
+</pre></div>
+
+<p>Replace the <code>namespace</code> with your own namespace.</p>
+<h3 id="installing-on-a-custom-namespace-with-rbac-enabled">Installing on a Custom Namespace with RBAC enabled<a class="headerlink" href="#installing-on-a-custom-namespace-with-rbac-enabled" title="Permanent link">&para;</a></h3>
+<p>Create the namespace.</p>
+<div class="codehilite"><pre><span></span>$ kubectl create namespace pravega-io
+</pre></div>
+
+<p>Update the namespace configured in the <code>deploy/role_binding.yaml</code> file.</p>
+<div class="codehilite"><pre><span></span>$ sed -i -e &#39;s/namespace: default/namespace: pravega-io/g&#39; deploy/role_binding.yaml
+</pre></div>
+
+<p>Apply the changes.</p>
+<div class="codehilite"><pre><span></span>$ kubectl -n pravega-io apply -f deploy
+</pre></div>
+
+<p>Note that the Pravega Operator only monitors the <code>PravegaCluster</code> resources which are created in the same namespace, <code>pravega-io</code> in this example. Therefore, before creating a <code>PravegaCluster</code> resource, make sure an Operator exists in that namespace.</p>
+<div class="codehilite"><pre><span></span>$ kubectl -n pravega-io create -f example/cr.yaml
+</pre></div>
+
+<div class="codehilite"><pre><span></span>$ kubectl -n pravega-io get pravegaclusters
+NAME      AGE
+pravega   28m
+</pre></div>
+
+<div class="codehilite"><pre><span></span>$ kubectl -n pravega-io get pods -l pravega_cluster=pravega
+NAME                                          READY     STATUS    RESTARTS   AGE
+pravega-bookie-0                              1/1       Running   0          29m
+pravega-bookie-1                              1/1       Running   0          29m
+pravega-bookie-2                              1/1       Running   0          29m
+pravega-pravega-controller-6c54fdcdf5-947nw   1/1       Running   0          29m
+pravega-pravega-segmentstore-0                1/1       Running   0          29m
+pravega-pravega-segmentstore-1                1/1       Running   0          29m
+pravega-pravega-segmentstore-2                1/1       Running   0          29m
+</pre></div>
+
+<h3 id="use-google-filestore-storage-as-tier-2">Use Google Filestore Storage as Tier 2<a class="headerlink" href="#use-google-filestore-storage-as-tier-2" title="Permanent link">&para;</a></h3>
+<ol>
+<li><a href="https://console.cloud.google.com/filestore/instances">Create a Google Filestore</a>.</li>
+</ol>
+<blockquote>
+<p>Refer to <a href="https://cloud.google.com/filestore/docs/accessing-fileshares">https://cloud.google.com/filestore/docs/accessing-fileshares</a> for more information</p>
+</blockquote>
+<ol>
+<li>Create a <code>pv.yaml</code> file with the <code>PersistentVolume</code> specification to provide Tier 2 storage.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolume</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pravega-volume</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">capacity</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">storage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1T</span>
+  <span class="l l-Scalar l-Scalar-Plain">accessModes</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteMany</span>
+  <span class="l l-Scalar l-Scalar-Plain">nfs</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/[FILESHARE]</span>
+    <span class="l l-Scalar l-Scalar-Plain">server</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">IP_ADDRESS</span><span class="p p-Indicator">]</span>
+</pre></div>
+
+<p>where:</p>
+<ul>
+<li><code>[FILESHARE]</code> is the name of the fileshare on the Cloud Filestore instance (e.g. <code>vol1</code>)</li>
+<li>
+<p><code>[IP_ADDRESS]</code> is the IP address for the Cloud Filestore instance (e.g. <code>10.123.189.202</code>)</p>
+</li>
+<li>
+<p>Deploy the <code>PersistentVolume</code> specification.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span>$ kubectl create -f pv.yaml
+</pre></div>
+
+<ol>
+<li>Create and deploy a <code>PersistentVolumeClaim</code> to consume the volume created.</li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">PersistentVolumeClaim</span>
+<span class="l l-Scalar l-Scalar-Plain">apiVersion</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pravega-tier2</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">storageClassName</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">accessModes</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteMany</span>
+  <span class="l l-Scalar l-Scalar-Plain">resources</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">requests</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">storage</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">50Gi</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>$ kubectl create -f pvc.yaml
+</pre></div>
+
+<p>Use the same <code>pravega.yaml</code> above to deploy the Pravega cluster.</p>
+<h3 id="tune-pravega-configuration">Tune Pravega configuration<a class="headerlink" href="#tune-pravega-configuration" title="Permanent link">&para;</a></h3>
+<p>Pravega has many configuration options for setting up metrics, tuning, etc. The available options can be found
+<a href="https://github.com/pravega/pravega/blob/master/config/config.properties">here</a> and are
+expressed through the <code>pravega/options</code> part of the resource specification. All values must be expressed as Strings.</p>
+<div class="codehilite"><pre><span></span><span class="nn">...</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">pravega</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">options</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">metrics.enableStatistics</span><span class="p p-Indicator">:</span> <span class="s">&quot;true&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">metrics.statsdHost</span><span class="p p-Indicator">:</span> <span class="s">&quot;telegraph.default&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">metrics.statsdPort</span><span class="p p-Indicator">:</span> <span class="s">&quot;8125&quot;</span>
+<span class="nn">...</span>
+</pre></div>
+
+<h3 id="enable-external-access">Enable External Access<a class="headerlink" href="#enable-external-access" title="Permanent link">&para;</a></h3>
+<p>By default, a Pravega cluster uses <code>ClusterIP</code> services which are only accessible from within Kubernetes. However, when creating the Pravega cluster resource, you can opt to enable external access.</p>
+<p>In Pravega, clients initiate the communication with the Pravega Controller, which is a stateless component frontended by a Kubernetes service that load-balances the requests to the backend pods. Then, clients discover the individual Segment Store instances to which they directly read and write data to. Clients need to be able to reach each and every Segment Store pod in the Pravega cluster.</p>
+<p>If your Pravega cluster needs to be consumed by clients from outside Kubernetes (or from another Kubernetes deployment), you can enable external access in two ways, depending on your environment constraints and requirements. Both ways will create one service for all Controllers, and one service for each Segment Store pod.</p>
+<ol>
+<li>Via <a href="https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer"><code>LoadBalancer</code></a> service type.</li>
+<li>Via <a href="https://kubernetes.io/docs/concepts/services-networking/service/#nodeport"><code>NodePort</code></a> service type.</li>
+</ol>
+<p>For more information, Please check <a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">Kubernetes documentation</a>.</p>
+<p>Example of configuration for using <code>LoadBalancer</code> service types:</p>
+<div class="codehilite"><pre><span></span><span class="nn">...</span>
+<span class="l l-Scalar l-Scalar-Plain">spec</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">externalAccess</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">enabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+<span class="nn">...</span>
+</pre></div>
+
+<p>Clients will need to connect to the external Controller address and will automatically discover the external address of all Segment Store pods.</p>
+<h2 id="releases">Releases<a class="headerlink" href="#releases" title="Permanent link">&para;</a></h2>
+<p>The latest Pravega releases can be found on the <a href="https://github.com/pravega/pravega-operator/releases">GitHub Release</a> project page.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../manual-install/" title="Manual Install" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Manual Install
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../docker-swarm/" title="Deployment on Docker Swarm" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Deployment on Docker Swarm
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

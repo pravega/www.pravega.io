@@ -1,0 +1,1333 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="http://pravega.io/metrics/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>Pravega Metrics - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#1-metrics-interfaces-and-examples-usage" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Pravega Metrics
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/docker-swarm/" title="Deployment in Docker Swarm" class="md-nav__link">
+      Deployment in Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Pravega Metrics
+      </label>
+    
+    <a href="./" title="Pravega Metrics" class="md-nav__link md-nav__link--active">
+      Pravega Metrics
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-metrics-service-provider-interface-statsprovider" title="1.1. Metrics Service Provider — Interface StatsProvider" class="md-nav__link">
+    1.1. Metrics Service Provider — Interface StatsProvider
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-metric-logger-interface-statslogger" title="1.2. Metric Logger — interface StatsLogger" class="md-nav__link">
+    1.2. Metric Logger — interface StatsLogger
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13-metric-sub-logger-opstatslogger" title="1.3. Metric Sub Logger — OpStatsLogger" class="md-nav__link">
+    1.3. Metric Sub Logger — OpStatsLogger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-metric-logger-interface-dynamiclogger" title="1.4 Metric Logger — interface DynamicLogger" class="md-nav__link">
+    1.4 Metric Logger — interface DynamicLogger
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-metrics-service-provider-interface-statsprovider" title="1.1. Metrics Service Provider — Interface StatsProvider" class="md-nav__link">
+    1.1. Metrics Service Provider — Interface StatsProvider
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-metric-logger-interface-statslogger" title="1.2. Metric Logger — interface StatsLogger" class="md-nav__link">
+    1.2. Metric Logger — interface StatsLogger
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13-metric-sub-logger-opstatslogger" title="1.3. Metric Sub Logger — OpStatsLogger" class="md-nav__link">
+    1.3. Metric Sub Logger — OpStatsLogger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-metric-logger-interface-dynamiclogger" title="1.4 Metric Logger — interface DynamicLogger" class="md-nav__link">
+    1.4 Metric Logger — interface DynamicLogger
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/metrics.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<p>In Pravega Metrics Framework, we use <a href="http://metrics.dropwizard.io/3.1.0/apidocs">Dropwizard Metrics</a> as the underlying library, and provide our own API to make it easier to use.</p>
+<h1 id="1-metrics-interfaces-and-examples-usage">1. Metrics interfaces and examples usage<a class="headerlink" href="#1-metrics-interfaces-and-examples-usage" title="Permanent link">&para;</a></h1>
+<p>There are four basic interfaces: StatsProvider, StatsLogger (short for Statistics Logger), OpStatsLogger (short for Operation Statistics Logger, and it is included in StatsLogger) and Dynamic Logger.
+StatsProvider provides us the whole Metric service; StatsLogger is the place at which we register and get required Metrics (<a href="http://metrics.dropwizard.io/3.1.0/manual/core/#counters">Counter</a>/<a href="http://metrics.dropwizard.io/3.1.0/manual/core/#gauges">Gauge</a>/<a href="http://metrics.dropwizard.io/3.1.0/manual/core/#timers">Timer</a>/<a href="http://metrics.dropwizard.io/3.1.0/manual/core/#histograms">Histograms</a>); while OpStatsLogger is a sub-metric for complex ones (Timer/Histograms).</p>
+<h2 id="11-metrics-service-provider-interface-statsprovider">1.1. Metrics Service Provider — Interface StatsProvider<a class="headerlink" href="#11-metrics-service-provider-interface-statsprovider" title="Permanent link">&para;</a></h2>
+<p>The starting point of Pravega Metric framework is the StatsProvider interface, it provides start and stop method for Metric service. Regarding the reporters, currently we have support for CSV reporter and StatsD reporter.
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">StatsProvider</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="n">MetricsConfig</span> <span class="n">conf</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">close</span><span class="o">();</span>
+    <span class="n">StatsLogger</span> <span class="nf">createStatsLogger</span><span class="o">(</span><span class="n">String</span> <span class="n">scope</span><span class="o">);</span>
+    <span class="n">DynamicLogger</span> <span class="nf">createDynamicLogger</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+* start(): Initializes <a href="http://metrics.dropwizard.io/3.1.0/manual/core/#metric-registries">MetricRegistry</a> and reporters for our Metrics service. 
+* close(): Shutdown of Metrics service.
+* createStatsLogger(): Creates and returns a StatsLogger instance, which is used to retrieve a metric and do metric insertion and collection in Pravega code. 
+* createDynamicLogger(): Create a dynamic logger.</p>
+<h2 id="12-metric-logger-interface-statslogger">1.2. Metric Logger — interface StatsLogger<a class="headerlink" href="#12-metric-logger-interface-statslogger" title="Permanent link">&para;</a></h2>
+<p>Using this interface we can register required metrics for simple types like <a href="http://metrics.dropwizard.io/3.1.0/manual/core/#counters">Counter</a> and <a href="http://metrics.dropwizard.io/3.1.0/manual/core/#gauges">Gauge</a> and some complex statistics type of Metric OpStatsLogger, through which we provide <a href="http://metrics.dropwizard.io/3.1.0/manual/core/#timers">Timer</a> and <a href="http://metrics.dropwizard.io/3.1.0/manual/core/#histograms">Histogram</a>.
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">StatsLogger</span> <span class="o">{</span>
+    <span class="n">OpStatsLogger</span> <span class="nf">createStats</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+    <span class="n">Counter</span> <span class="nf">createCounter</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+    <span class="n">Meter</span> <span class="nf">createMeter</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+    <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Number</span><span class="o">&gt;</span> <span class="n">Gauge</span> <span class="nf">registerGauge</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">value</span><span class="o">);</span>
+    <span class="n">StatsLogger</span> <span class="nf">createScopeLogger</span><span class="o">(</span><span class="n">String</span> <span class="n">scope</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+* createStats(): Register and get a OpStatsLogger, which is used for complex type of metrics.
+* createCounter(): Register and get a Counter metric.
+* createMeter(): Create and register a Meter metric.
+* registerGauge(): Register a Gauge metric. 
+* createScopeLogger(): Create the stats logger under given scope name.</p>
+<h3 id="13-metric-sub-logger-opstatslogger">1.3. Metric Sub Logger — OpStatsLogger<a class="headerlink" href="#13-metric-sub-logger-opstatslogger" title="Permanent link">&para;</a></h3>
+<p>OpStatsLogger provides complex statistics type of Metric, usually it is used in operations such as CreateSegment, ReadSegment, we could use it to record the number of operation, time/duration of each operation.
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">OpStatsLogger</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">reportSuccessEvent</span><span class="o">(</span><span class="n">Duration</span> <span class="n">duration</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">reportFailEvent</span><span class="o">(</span><span class="n">Duration</span> <span class="n">duration</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">reportSuccessValue</span><span class="o">(</span><span class="kt">long</span> <span class="n">value</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">reportFailValue</span><span class="o">(</span><span class="kt">long</span> <span class="n">value</span><span class="o">);</span>
+    <span class="n">OpStatsData</span> <span class="nf">toOpStatsData</span><span class="o">();</span>
+    <span class="kt">void</span> <span class="nf">clear</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+* reportSuccessEvent() : Used to track Timer of a successful operation and will record the latency in Nanoseconds in required metric. 
+* reportFailEvent() : Used to track Timer of a failed operation and will record the latency in Nanoseconds in required metric.<br />
+* reportSuccessValue() : Used to track Histogram of a success value.
+* reportFailValue() : Used to track Histogram of a failed value. 
+* toOpStatsData() :  Used to support JMX exports and inner test.
+* clear : Used to clear stats for this operation.</p>
+<h3 id="14-metric-logger-interface-dynamiclogger">1.4 Metric Logger — interface DynamicLogger<a class="headerlink" href="#14-metric-logger-interface-dynamiclogger" title="Permanent link">&para;</a></h3>
+<p>A simple interface that only exposes simple type metrics: Counter/Gauge/Meter.
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DynamicLogger</span> <span class="o">{</span>
+<span class="kt">void</span> <span class="nf">incCounterValue</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">long</span> <span class="n">delta</span><span class="o">);</span>
+<span class="kt">void</span> <span class="nf">updateCounterValue</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">long</span> <span class="n">value</span><span class="o">);</span>
+<span class="kt">void</span> <span class="nf">freezeCounter</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+<span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Number</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">reportGaugeValue</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">T</span> <span class="n">value</span><span class="o">);</span>
+<span class="kt">void</span> <span class="nf">freezeGaugeValue</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+<span class="kt">void</span> <span class="nf">recordMeterEvents</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">long</span> <span class="n">number</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+* incCounterValue() : Increase Counter with given value
+* updateCounterValue() : Updates the counter with given value
+* freezeCounter() : Notifies that the counter will not be updated
+* reportGaugeValue() : Reports Gauge value
+* freezeGaugeValue() : Notifies that the gauge value will not be updated.
+* recordMeterEvents()  : Record the occurrence of a given number of events in Meter.</p>
+<h1 id="2-example-for-starting-a-metric-service">2. Example for starting a Metric service<a class="headerlink" href="#2-example-for-starting-a-metric-service" title="Permanent link">&para;</a></h1>
+<p>This example is from file io.pravega.segmentstore.server.host.ServiceStarter. It starts Pravega SegmentStore service and a Metrics service is started as a sub service.
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">ServiceStarter</span> <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="kd">private</span> <span class="n">StatsProvider</span> <span class="n">statsProvider</span><span class="o">;</span>
+    <span class="o">...</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">...</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Initializing metrics provider ...&quot;</span><span class="o">);</span>
+        <span class="n">MetricsConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">MetricsConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                                                    <span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">MetricsConfig</span><span class="o">.</span><span class="na">METRICS_PREFIX</span><span class="o">,</span> <span class="s">&quot;metrics-prefix&quot;</span><span class="o">)</span>
+                                                    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+        <span class="n">MetricsProvider</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">metricsConfig</span><span class="o">);</span>
+        <span class="n">statsProvider</span> <span class="o">=</span> <span class="n">MetricsProvider</span><span class="o">.</span><span class="na">getMetricsProvider</span><span class="o">();</span>
+        <span class="n">statsProvider</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> <span class="c1">// Here metric service is started as a sub-service</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">shutdown</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">...</span>
+         <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">statsProvider</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">statsProvider</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">statsProvider</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Metrics statsProvider is now closed.&quot;</span><span class="o">);</span>
+         <span class="o">}</span>
+         <span class="o">...</span>
+    <span class="o">}</span>
+<span class="o">...</span>
+<span class="o">}</span>
+</pre></div></p>
+<h2 id="21-example-for-dynamic-counter-and-opstatsloggertimer">2.1. Example for Dynamic Counter and OpStatsLogger(Timer)<a class="headerlink" href="#21-example-for-dynamic-counter-and-opstatsloggertimer" title="Permanent link">&para;</a></h2>
+<p>This is an example from io.pravega.segmentstore.server.host.handler.PravegaRequestProcessor. In this class, we registered two metrics: One timer (createStreamSegment), one dynamic counter (segmentReadBytes).
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PravegaRequestProcessor</span> <span class="kd">extends</span> <span class="n">FailingRequestProcessor</span> <span class="kd">implements</span> <span class="n">RequestProcessor</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">StatsLogger</span> <span class="n">STATS_LOGGER</span> <span class="o">=</span> <span class="n">MetricsProvider</span><span class="o">.</span><span class="na">createStatsLogger</span><span class="o">(</span><span class="s">&quot;segmentstore&quot;</span><span class="o">);</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DynamicLogger</span> <span class="n">DYNAMIC_LOGGER</span> <span class="o">=</span> <span class="n">MetricsProvider</span><span class="o">.</span><span class="na">getDynamicLogger</span><span class="o">();</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">OpStatsLogger</span> <span class="n">createStreamSegment</span> <span class="o">=</span> <span class="n">STATS_LOGGER</span><span class="o">.</span><span class="na">createStats</span><span class="o">(</span><span class="n">SEGMENT_CREATE_LATENCY</span><span class="o">);</span>
+
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleReadResult</span><span class="o">(</span><span class="n">ReadSegment</span> <span class="n">request</span><span class="o">,</span> <span class="n">ReadResult</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">segment</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getSegment</span><span class="o">();</span>
+            <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">ReadResultEntryContents</span><span class="o">&gt;</span> <span class="n">cachedEntries</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+            <span class="n">ReadResultEntry</span> <span class="n">nonCachedEntry</span> <span class="o">=</span> <span class="n">collectCachedEntries</span><span class="o">(</span><span class="n">request</span><span class="o">.</span><span class="na">getOffset</span><span class="o">(),</span> <span class="n">result</span><span class="o">,</span> <span class="n">cachedEntries</span><span class="o">);</span>
+
+            <span class="kt">boolean</span> <span class="n">truncated</span> <span class="o">=</span> <span class="n">nonCachedEntry</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">==</span> <span class="n">Truncated</span><span class="o">;</span>
+            <span class="kt">boolean</span> <span class="n">endOfSegment</span> <span class="o">=</span> <span class="n">nonCachedEntry</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">==</span> <span class="n">EndOfStreamSegment</span><span class="o">;</span>
+            <span class="kt">boolean</span> <span class="n">atTail</span> <span class="o">=</span> <span class="n">nonCachedEntry</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getType</span><span class="o">()</span> <span class="o">==</span> <span class="n">Future</span><span class="o">;</span>
+
+            <span class="k">if</span> <span class="o">(!</span><span class="n">cachedEntries</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="n">endOfSegment</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// We managed to collect some data. Send it.</span>
+                <span class="n">ByteBuffer</span> <span class="n">data</span> <span class="o">=</span> <span class="n">copyData</span><span class="o">(</span><span class="n">cachedEntries</span><span class="o">);</span>
+                <span class="n">SegmentRead</span> <span class="n">reply</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentRead</span><span class="o">(</span><span class="n">segment</span><span class="o">,</span> <span class="n">request</span><span class="o">.</span><span class="na">getOffset</span><span class="o">(),</span> <span class="n">atTail</span><span class="o">,</span> <span class="n">endOfSegment</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+                <span class="n">connection</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">reply</span><span class="o">);</span>
+                <span class="n">DYNAMIC_LOGGER</span><span class="o">.</span><span class="na">incCounterValue</span><span class="o">(</span><span class="n">nameFromSegment</span><span class="o">(</span><span class="n">SEGMENT_READ_BYTES</span><span class="o">,</span> <span class="n">segment</span><span class="o">),</span> <span class="n">reply</span><span class="o">.</span><span class="na">getData</span><span class="o">().</span><span class="na">array</span><span class="o">().</span><span class="na">length</span><span class="o">);</span> <span class="c1">// Increasing the counter value for the counter metric SEGMENT_READ_BYTES</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">truncated</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// We didn&#39;t collect any data, instead we determined that the current read offset was truncated.</span>
+                <span class="c1">// Determine the current Start Offset and send that back.</span>
+                <span class="n">segmentStore</span><span class="o">.</span><span class="na">getStreamSegmentInfo</span><span class="o">(</span><span class="n">segment</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span> <span class="n">TIMEOUT</span><span class="o">)</span>
+                        <span class="o">.</span><span class="na">thenAccept</span><span class="o">(</span><span class="n">info</span> <span class="o">-&gt;</span>
+                                <span class="n">connection</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">SegmentIsTruncated</span><span class="o">(</span><span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getStreamSegmentOffset</span><span class="o">(),</span> <span class="n">segment</span><span class="o">,</span> <span class="n">info</span><span class="o">.</span><span class="na">getStartOffset</span><span class="o">())))</span>
+                        <span class="o">.</span><span class="na">exceptionally</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">handleException</span><span class="o">(</span><span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getStreamSegmentOffset</span><span class="o">(),</span> <span class="n">segment</span><span class="o">,</span> <span class="s">&quot;Read segment&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">));</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">Preconditions</span><span class="o">.</span><span class="na">checkState</span><span class="o">(</span><span class="n">nonCachedEntry</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">,</span> <span class="s">&quot;No ReadResultEntries returned from read!?&quot;</span><span class="o">);</span>
+                <span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">requestContent</span><span class="o">(</span><span class="n">TIMEOUT</span><span class="o">);</span>
+                <span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getContent</span><span class="o">()</span>
+                        <span class="o">.</span><span class="na">thenAccept</span><span class="o">(</span><span class="n">contents</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                            <span class="n">ByteBuffer</span> <span class="n">data</span> <span class="o">=</span> <span class="n">copyData</span><span class="o">(</span><span class="n">Collections</span><span class="o">.</span><span class="na">singletonList</span><span class="o">(</span><span class="n">contents</span><span class="o">));</span>
+                            <span class="n">SegmentRead</span> <span class="n">reply</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SegmentRead</span><span class="o">(</span><span class="n">segment</span><span class="o">,</span> <span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getStreamSegmentOffset</span><span class="o">(),</span> <span class="kc">false</span><span class="o">,</span> <span class="n">endOfSegment</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+                            <span class="n">connection</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">reply</span><span class="o">);</span>
+                            <span class="n">DYNAMIC_LOGGER</span><span class="o">.</span><span class="na">incCounterValue</span><span class="o">(</span><span class="n">nameFromSegment</span><span class="o">(</span><span class="n">SEGMENT_READ_BYTES</span><span class="o">,</span> <span class="n">segment</span><span class="o">),</span> <span class="n">reply</span><span class="o">.</span><span class="na">getData</span><span class="o">().</span><span class="na">array</span><span class="o">().</span><span class="na">length</span><span class="o">);</span> <span class="c1">// Increasing the counter value for the counter metric SEGMENT_READ_BYTES</span>
+                        <span class="o">})</span>
+                        <span class="o">.</span><span class="na">exceptionally</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="n">Exceptions</span><span class="o">.</span><span class="na">unwrap</span><span class="o">(</span><span class="n">e</span><span class="o">)</span> <span class="k">instanceof</span> <span class="n">StreamSegmentTruncatedException</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="c1">// The Segment may have been truncated in Storage after we got this entry but before we managed</span>
+                                <span class="c1">// to make a read. In that case, send the appropriate error back.</span>
+                                <span class="n">connection</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">SegmentIsTruncated</span><span class="o">(</span><span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getStreamSegmentOffset</span><span class="o">(),</span> <span class="n">segment</span><span class="o">,</span> <span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getStreamSegmentOffset</span><span class="o">()));</span>
+                            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                                <span class="n">handleException</span><span class="o">(</span><span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getStreamSegmentOffset</span><span class="o">(),</span> <span class="n">segment</span><span class="o">,</span> <span class="s">&quot;Read segment&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+                            <span class="o">}</span>
+                            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+                        <span class="o">})</span>
+                        <span class="o">.</span><span class="na">exceptionally</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">handleException</span><span class="o">(</span><span class="n">nonCachedEntry</span><span class="o">.</span><span class="na">getStreamSegmentOffset</span><span class="o">(),</span> <span class="n">segment</span><span class="o">,</span> <span class="s">&quot;Read segment&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+
+
+    <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">createSegment</span><span class="o">(</span><span class="n">CreateSegment</span> <span class="n">createStreamsSegment</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">Timer</span> <span class="n">timer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timer</span><span class="o">();</span>
+
+            <span class="n">Collection</span><span class="o">&lt;</span><span class="n">AttributeUpdate</span><span class="o">&gt;</span> <span class="n">attributes</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+                    <span class="k">new</span> <span class="n">AttributeUpdate</span><span class="o">(</span><span class="n">SCALE_POLICY_TYPE</span><span class="o">,</span> <span class="n">AttributeUpdateType</span><span class="o">.</span><span class="na">Replace</span><span class="o">,</span> <span class="o">((</span><span class="n">Byte</span><span class="o">)</span> <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getScaleType</span><span class="o">()).</span><span class="na">longValue</span><span class="o">()),</span>
+                    <span class="k">new</span> <span class="n">AttributeUpdate</span><span class="o">(</span><span class="n">SCALE_POLICY_RATE</span><span class="o">,</span> <span class="n">AttributeUpdateType</span><span class="o">.</span><span class="na">Replace</span><span class="o">,</span> <span class="o">((</span><span class="n">Integer</span><span class="o">)</span> <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getTargetRate</span><span class="o">()).</span><span class="na">longValue</span><span class="o">()),</span>
+                    <span class="k">new</span> <span class="n">AttributeUpdate</span><span class="o">(</span><span class="n">CREATION_TIME</span><span class="o">,</span> <span class="n">AttributeUpdateType</span><span class="o">.</span><span class="na">None</span><span class="o">,</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">())</span>
+            <span class="o">);</span>
+
+           <span class="k">if</span> <span class="o">(!</span><span class="n">verifyToken</span><span class="o">(</span><span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getSegment</span><span class="o">(),</span> <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getRequestId</span><span class="o">(),</span>
+                   <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getDelegationToken</span><span class="o">(),</span> <span class="n">READ_UPDATE</span><span class="o">,</span> <span class="s">&quot;Create Segment&quot;</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span><span class="o">;</span>
+           <span class="o">}</span>
+           <span class="n">log</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">&quot;Creating stream segment {}&quot;</span><span class="o">,</span> <span class="n">createStreamsSegment</span><span class="o">);</span>
+            <span class="n">segmentStore</span><span class="o">.</span><span class="na">createStreamSegment</span><span class="o">(</span><span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getSegment</span><span class="o">(),</span> <span class="n">attributes</span><span class="o">,</span> <span class="n">TIMEOUT</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">thenAccept</span><span class="o">(</span><span class="n">v</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="n">createStreamSegment</span><span class="o">.</span><span class="na">reportSuccessEvent</span><span class="o">(</span><span class="n">timer</span><span class="o">.</span><span class="na">getElapsed</span><span class="o">());</span> <span class="c1">// Reporting success event for Timer metric createStreamSegment</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">SegmentCreated</span><span class="o">(</span><span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getRequestId</span><span class="o">(),</span> <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getSegment</span><span class="o">()));</span>
+                    <span class="o">})</span>
+                    <span class="o">.</span><span class="na">whenComplete</span><span class="o">((</span><span class="n">res</span><span class="o">,</span> <span class="n">e</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="k">if</span> <span class="o">(</span><span class="n">statsRecorder</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="n">statsRecorder</span><span class="o">.</span><span class="na">createSegment</span><span class="o">(</span><span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getSegment</span><span class="o">(),</span>
+                                        <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getScaleType</span><span class="o">(),</span> <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getTargetRate</span><span class="o">());</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                            <span class="n">createStreamSegment</span><span class="o">.</span><span class="na">reportFailEvent</span><span class="o">(</span><span class="n">timer</span><span class="o">.</span><span class="na">getElapsed</span><span class="o">());</span> <span class="c1">// Reporting fail event for Timer metric createStreamSegment</span>
+                            <span class="n">handleException</span><span class="o">(</span><span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getRequestId</span><span class="o">(),</span> <span class="n">createStreamsSegment</span><span class="o">.</span><span class="na">getSegment</span><span class="o">(),</span> <span class="s">&quot;Create segment&quot;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+                        <span class="o">}</span>
+                    <span class="o">});</span>
+        <span class="o">}</span>
+
+    <span class="err">…</span>
+<span class="o">}</span>
+</pre></div>
+From the above example, we can see the reuired steps of how to register and use a metric in desired class and method:</p>
+<ol>
+<li>Get a StatsLogger from MetricsProvider: 
+<div class="codehilite"><pre><span></span>StatsLogger STATS_LOGGER = MetricsProvider.getStatsLogger();
+</pre></div></li>
+<li>Register all the desired metrics through StatsLogger:
+<div class="codehilite"><pre><span></span>static final OpStatsLogger CREATE_STREAM_SEGMENT = STATS_LOGGER.createStats(SEGMENT_CREATE_LATENCY);
+</pre></div></li>
+<li>Use these metrics within code at appropriate place where you would like to collect and record the values.
+<div class="codehilite"><pre><span></span>Metrics.CREATE_STREAM_SEGMENT.reportSuccessEvent(timer.getElapsedNanos());
+</pre></div>
+Here CREATE_STREAM_SEGMENT is the name of this metric, and CREATE_STREAM_SEGMENT is the name of our Metrics logger, it will track operations of createSegment, and we will get the time of each createSegment operation happened, how long each operation takes, and other numbers computed based on them.</li>
+</ol>
+<h3 id="211-output-example-of-opstatslogger">2.1.1 Output example of OpStatsLogger<a class="headerlink" href="#211-output-example-of-opstatslogger" title="Permanent link">&para;</a></h3>
+<p>An example output of OpStatsLogger CREATE_SEGMENT reported through CSV reporter:
+<div class="codehilite"><pre><span></span>$ cat CREATE_STREAM_SEGMENT.csv 
+t,count,max,mean,min,stddev,p50,p75,p95,p98,p99,p999,mean_rate,m1_rate,m5_rate,m15_rate,rate_unit,duration_unit
+1480928806,1,8.973952,8.973952,8.973952,0.000000,8.973952,8.973952,8.973952,8.973952,8.973952,8.973952,0.036761,0.143306,0.187101,0.195605,calls/second,millisecond
+</pre></div></p>
+<h3 id="22-example-for-dynamic-gauge-and-opstatsloggerhistogram">2.2. Example for Dynamic Gauge and OpStatsLogger(Histogram)<a class="headerlink" href="#22-example-for-dynamic-gauge-and-opstatsloggerhistogram" title="Permanent link">&para;</a></h3>
+<p>This is an example from io.pravega.controller.store.stream.AbstractStreamMetadataStore. In this class, we report a Dynamic Gauge which represents the open transactions and  one histogram (CREATE_STREAM).
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractStreamMetadataStore</span> <span class="kd">implements</span> <span class="n">StreamMetadataStore</span>  <span class="o">{</span>
+    <span class="o">...</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">OpStatsLogger</span> <span class="n">CREATE_STREAM</span> <span class="o">=</span> <span class="n">STATS_LOGGER</span><span class="o">.</span><span class="na">createStats</span><span class="o">(</span><span class="n">MetricsNames</span><span class="o">.</span><span class="na">CREATE_STREAM</span><span class="o">);</span> <span class="c1">// get stats logger from MetricsProvider</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DynamicLogger</span> <span class="n">DYNAMIC_LOGGER</span> <span class="o">=</span> <span class="n">MetricsProvider</span><span class="o">.</span><span class="na">getDynamicLogger</span><span class="o">();</span> <span class="c1">// get dynamic logger from MetricsProvider</span>
+
+    <span class="o">...</span>
+    <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">CreateStreamResponse</span><span class="o">&gt;</span> <span class="nf">createStream</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">scope</span><span class="o">,</span>
+                                                       <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span>
+                                                       <span class="kd">final</span> <span class="n">StreamConfiguration</span> <span class="n">configuration</span><span class="o">,</span>
+                                                       <span class="kd">final</span> <span class="kt">long</span> <span class="n">createTimestamp</span><span class="o">,</span>
+                                                       <span class="kd">final</span> <span class="n">OperationContext</span> <span class="n">context</span><span class="o">,</span>
+                                                       <span class="kd">final</span> <span class="n">Executor</span> <span class="n">executor</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">withCompletion</span><span class="o">(</span><span class="n">getStream</span><span class="o">(</span><span class="n">scope</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">context</span><span class="o">).</span><span class="na">create</span><span class="o">(</span><span class="n">configuration</span><span class="o">,</span> <span class="n">createTimestamp</span><span class="o">),</span> <span class="n">executor</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">thenApply</span><span class="o">(</span><span class="n">result</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">getStatus</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">CreateStreamResponse</span><span class="o">.</span><span class="na">CreateStatus</span><span class="o">.</span><span class="na">NEW</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="n">CREATE_STREAM</span><span class="o">.</span><span class="na">reportSuccessValue</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span> <span class="c1">// Report success event for histogram metric CREATE_STREAM</span>
+                            <span class="n">DYNAMIC_LOGGER</span><span class="o">.</span><span class="na">reportGaugeValue</span><span class="o">(</span><span class="n">nameFromStream</span><span class="o">(</span><span class="n">OPEN_TRANSACTIONS</span><span class="o">,</span> <span class="n">scope</span><span class="o">,</span> <span class="n">name</span><span class="o">),</span> <span class="mi">0</span><span class="o">);</span> <span class="c1">// Report gauge value for Dynamic Gauge metric OPEN_TRANSACTIONS </span>
+                        <span class="o">}</span>
+
+                        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+                    <span class="o">});</span>
+        <span class="o">}</span>
+    <span class="o">...</span>
+ <span class="o">}</span>
+</pre></div></p>
+<h3 id="23-example-for-dynamic-meter">2.3 Example for Dynamic Meter<a class="headerlink" href="#23-example-for-dynamic-meter" title="Permanent link">&para;</a></h3>
+<p>This is an example from io.pravega.segmentstore.server.SegmentStoreMetrics. In this class, we report a Dynamic Meter which represents the segments created.
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">SegmentStoreMetrics</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">DynamicLogger</span> <span class="n">DYNAMIC_LOGGER</span> <span class="o">=</span> <span class="n">MetricsProvider</span><span class="o">.</span><span class="na">getDynamicLogger</span><span class="o">();</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">createSegment</span><span class="o">()</span> <span class="o">{</span>
+            <span class="n">DYNAMIC_LOGGER</span><span class="o">.</span><span class="na">recordMeterEvents</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">createSegmentCount</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>  <span class="c1">// Record event for meter metric createSegmentCount</span>
+        <span class="o">}</span> 
+ <span class="o">}</span>
+</pre></div></p>
+<h1 id="3-metric-reporter-and-configurations">3. Metric reporter and Configurations<a class="headerlink" href="#3-metric-reporter-and-configurations" title="Permanent link">&para;</a></h1>
+<p>Reporters are the way through which we export all the measurements being made by the metrics. We currently provide StatsD and CSV output. It is not difficult to add new output formats, such as JMX/SLF4J.
+CSV reporter will export each Metric out into one file. 
+StatsD reporter will export Metrics through UDP/TCP to a StatsD server.
+The reporter could be configured through MetricsConfig.
+<div class="codehilite"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MetricsConfig</span> <span class="kd">extends</span> <span class="n">ComponentConfig</span> <span class="o">{</span>
+    <span class="c1">//region Members</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">COMPONENT_CODE</span> <span class="o">=</span> <span class="s">&quot;metrics&quot;</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">ENABLE_STATISTICS</span> <span class="o">=</span> <span class="s">&quot;enableStatistics&quot;</span><span class="o">;</span> <span class="c1">//enable metric, or will report nothing, default = true,  </span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="n">DYNAMIC_CACHE_SIZE</span> <span class="o">=</span> <span class="s">&quot;dynamicCacheSize&quot;</span><span class="o">;</span> <span class="c1">//dynamic cache size , default = 10000000L</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">DYNAMIC_CACHE_EVICTION_DURATION_MINUTES</span> <span class="o">=</span> <span class="s">&quot;dynamicCacheEvictionDurationMs&quot;</span><span class="o">;</span> <span class="c1">//dynamic cache evcition duration, default = 30</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">OUTPUT_FREQUENCY</span> <span class="o">=</span> <span class="s">&quot;statsOutputFrequencySeconds&quot;</span><span class="o">;</span> <span class="c1">//reporter output frequency, default = 60</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">METRICS_PREFIX</span> <span class="o">=</span> <span class="s">&quot;metricsPrefix&quot;</span><span class="o">;</span> <span class="c1">//Metrics Prefix, default = &quot;pravega&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">CSV_ENDPOINT</span> <span class="o">=</span> <span class="s">&quot;csvEndpoint&quot;</span><span class="o">;</span> <span class="c1">// CSV reporter output dir, default = &quot;/tmp/csv&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">STATSD_HOST</span> <span class="o">=</span> <span class="s">&quot;statsDHost&quot;</span><span class="o">;</span> <span class="c1">// StatsD server host for the reporting, default = &quot;localhost&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">STATSD_PORT</span> <span class="o">=</span> <span class="s">&quot;statsDPort&quot;</span><span class="o">;</span> <span class="c1">// StatsD server port, default = &quot;8125&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">GRAPHITE_HOST</span> <span class="o">=</span> <span class="s">&quot;graphiteHost&quot;</span><span class="o">;</span> <span class="c1">// Graphite server host for the reporting, default = &quot;localhost&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">GRAPHITE_PORT</span> <span class="o">=</span> <span class="s">&quot;graphitePort&quot;</span><span class="o">;</span> <span class="c1">// Graphite server port, default = &quot;2003&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">JMX_DOMAIN</span> <span class="o">=</span> <span class="s">&quot;jmxDomain&quot;</span><span class="o">;</span> <span class="c1">// JMX domain for the reporting, default = &quot;domain&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">GANGLIA_HOST</span> <span class="o">=</span> <span class="s">&quot;gangliaHost&quot;</span><span class="o">;</span> <span class="c1">// Ganglia server host for the reporting, default = &quot;localhost&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">GANGLIA_PORT</span> <span class="o">=</span> <span class="s">&quot;gangliaPort&quot;</span><span class="o">;</span> <span class="c1">// Ganglia server port, default = &quot;8649&quot;</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">ENABLE_CSV_REPORTER</span> <span class="o">=</span> <span class="s">&quot;enableCSVReporter&quot;</span><span class="o">;</span> <span class="c1">// Enables CSV reporter, default = true</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">ENABLE_STATSD_REPORTER</span> <span class="o">=</span> <span class="s">&quot;enableStatsdReporter&quot;</span><span class="o">;</span> <span class="c1">// Enables StatsD reporter, default = true</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">ENABLE_GRAPHITE_REPORTER</span> <span class="o">=</span> <span class="s">&quot;enableGraphiteReporter&quot;</span><span class="o">;</span> <span class="c1">// Enables Graphite reporter, default = false</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">ENABLE_JMX_REPORTER</span> <span class="o">=</span> <span class="s">&quot;enableJMXReporter&quot;</span><span class="o">;</span> <span class="c1">// Enables JMX reporter, default = false</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">ENABLE_GANGLIA_REPORTER</span> <span class="o">=</span><span class="s">&quot;enableGangliaReporter&quot;</span><span class="o">;</span> <span class="c1">// Enables Ganglia reporter, default = false</span>
+    <span class="kd">public</span> <span class="kd">final</span> <span class="kd">static</span> <span class="n">Property</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">&gt;</span> <span class="n">ENABLE_CONSOLE_REPORTER</span> <span class="o">=</span> <span class="s">&quot;enableConsoleReporter&quot;</span><span class="o">;</span> <span class="c1">// Enables Console reporter, default = false</span>
+    <span class="o">...</span>
+<span class="o">}</span>
+</pre></div></p>
+<h1 id="4-steps-to-add-your-own-metrics">4. Steps to add your own Metrics<a class="headerlink" href="#4-steps-to-add-your-own-metrics" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Step 1. When start a segment store/controller service, start a Metrics service as a sub service. Reference above example in ServiceStarter.start()
+<div class="codehilite"><pre><span></span>        <span class="n">statsProvider</span> <span class="o">=</span> <span class="n">MetricsProvider</span><span class="o">.</span><span class="na">getProvider</span><span class="o">();</span>
+        <span class="n">statsProvider</span><span class="o">.</span><span class="na">start</span><span class="o">(</span><span class="n">metricsConfig</span><span class="o">);</span>    
+</pre></div></li>
+<li>
+<p>Step 2. In the class that need Metrics: get StatsLogger through MetricsProvider; then get Metrics from StatsLogger; at last report it at the right place.
+```java
+    static final StatsLogger STATS_LOGGER = MetricsProvider.getStatsLogger(); &lt; --- 1
+    static final DynamicLogger DYNAMIC_LOGGER = MetricsProvider.getDynamicLogger();</p>
+<p>public static class Metrics { &lt; --- 2
+    //Using Stats Logger
+    static final String CREATE_STREAM = "stream_created"; 
+    static final OpStatsLogger CREATE_STREAM = STATS_LOGGER.createStats(CREATE_STREAM);
+    static final String SEGMENT_CREATE_LATENCY = "segment_create_latency_ms";
+    static final OpStatsLogger createStreamSegment = STATS_LOGGER.createStats(SEGMENT_CREATE_LATENCY);</p>
+<div class="codehilite"><pre><span></span>//Using Dynamic Logger
+static final String SEGMENT_READ_BYTES = &quot;segmentstore.segment_read_bytes&quot;;  //Dynamic Counter
+static final String OPEN_TRANSACTIONS = &quot;controller.transactions_opened&quot;;    //Dynamic Gauge
+...
+</pre></div>
+
+
+<p>}</p>
+<p>//to report success or increment
+Metrics.CREATE_STREAM.reportSuccessValue(1); &lt; --- 3
+Metrics.createStreamSegment.reportSuccessEvent(timer.getElapsed());
+DYNAMIC_LOGGER.incCounterValue(Metrics.SEGMENT_READ_BYTES, 1);
+DYNAMIC_LOGGER.reportGaugeValue(OPEN_TRANSACTIONS, 0);</p>
+<p>//in case of failure
+Metrics.CREATE_STREAM.reportFailValue(1);
+Metrics.createStreamSegment.reportFailEvent(timer.getElapsed());</p>
+<p>//to freeze
+DYNAMIC_LOGGER.freezeCounter(Metrics.SEGMENT_READ_BYTES);
+DYNAMIC_LOGGER.freezeGaugeValue(OPEN_TRANSACTIONS);
+  ```</p>
+<h1 id="5-available-metrics-and-their-names">5. Available Metrics and their names<a class="headerlink" href="#5-available-metrics-and-their-names" title="Permanent link">&para;</a></h1>
+</li>
+<li>
+<p>Metrics in Segment Store Service
+````
+segmentstore.segment_read_latency_ms
+segmentstore.segment_write_latency_ms 
+segmentstore.segment_create_latency_ms</p>
+</li>
+</ul>
+<p>//Dynamic
+segmentstore.segment_read_bytes.$scope.$stream.$segment.Counter
+segmentstore.segment_write_bytes.$scope.$stream.$segment.Counter
+````</p>
+<ul>
+<li>Tier-2 Storage Metrics: Read/Write Latency, Read/Write Rate <br />
+````
+hdfs.tier2_read_latency_ms
+hdfs.tier2_write_latency_ms</li>
+</ul>
+<p>//Dynamic
+hdfs.tire2_read_bytes.Counter
+hdfs.tier2_write_bytes.Counter
+<code>* Cache Metrics</code>
+rocksdb.cache_insert_latency
+rocksdb.cache_get_latency
+````</p>
+<ul>
+<li>Tier-1 DurableDataLog Metrics: Read/Write Latency, Read/Write Rate  <br />
+````
+bookkeeper.bookkeeper_total_write_latency
+bookkeeper.bookkeeper_write_latency
+bookkeeper.bookkeeper_write_bytes
+bookkeeper.bookkeeper_write_queue_size
+bookkeeper.bookkeeper_write_queue_fill</li>
+</ul>
+<p>//Dynamic
+bookkeeper.bookkeeper_ledger_count.$containerId.Gauge
+````</p>
+<ul>
+<li>Container-specific metrics
+````
+process_operations_latency.$containerId
+process_operations_batch_size.$containerId
+operation_queue_size.$containerId
+operation_processor_in_flight.$containerId
+operation_queue_wait_time.$containerId
+operation_processor_delay_ms.$containerId
+operation_commit_latency_ms.$containerId
+operation_latency_ms.$containerId
+operation_commit_metadata_txn_count.$containerId
+operation_commit_memory_latency_ms.$containerId
+operation_log_size.$containerId</li>
+</ul>
+<p>//Dynamic
+container_append_count.$containerId.Meter
+container_append_offset_count.$containerId.Meter
+container_update_attributes_count.$containerId.Meter
+container_get_attributes_count.$containerId.Meter
+container_read_count.$containerId.Meter
+container_get_info_count.$containerId.Meter
+container_create_segment_count.$containerId.Meter
+container_delete_segment_count.$containerId.Meter
+container_merge_segment_count.$containerId.Meter
+container_seal_count.$containerId.Meter
+container_truncate_count.$containerId.Meter
+active_segments.$containerId.Gauge
+````</p>
+<ul>
+<li>Metrics in Controller </li>
+</ul>
+<p>````
+controller.stream_created
+controller.stream_sealed
+controller.stream_deleted</p>
+<p>//Dynamic
+controller.transactions_created.$scope.$stream.Counter
+controller.transactions_committed.$scope.$stream.Counter
+controller.transactions_aborted.$scope.$stream.Counter
+controller.transactions_opened.$scope.$stream.Gauge
+controller.transactions_timedout.$scope.$stream.Counter
+controller.segments_count.$scope.$stream.Gauge
+controller.$scope.$stream.segments_splits.$scope.$stream.Counter
+controller.$scope.$stream.segments_merges.$scope.$stream.Counter
+controller.retention_frequency.$scope.$stream.Meter
+controller.truncated_size..$scope.$stream.Gauge
+<code>* General Metrics</code>
+cache_size_bytes
+cache_gen
+thread_pool_queue_size
+thread_pool_active_threads
+````</p>
+<h1 id="6-useful-links">6. Useful links<a class="headerlink" href="#6-useful-links" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="http://metrics.dropwizard.io/3.1.0/apidocs">Dropwizard Metrics</a></li>
+<li><a href="https://github.com/b/statsd_spec">Statsd_spec</a></li>
+<li><a href="https://github.com/etsy/statsd">etsy_StatsD</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Running in the Cloud (AWS)
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../contributing/" title="Coding guildelines" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Coding guildelines
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

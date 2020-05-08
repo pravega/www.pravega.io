@@ -1,0 +1,927 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega Flink Connectors">
+      
+      
+        <link rel="canonical" href="http://pravega.io/table-api/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Table API - Exploring Pravega Flink Connectors</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#table-connector" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega Flink Connectors
+              </span>
+              <span class="md-header-nav__topic">
+                Table API
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega Flink Connectors
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../quickstart/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streaming/" title="Streaming" class="md-nav__link">
+      Streaming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../batch/" title="Batch" class="md-nav__link">
+      Batch
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Table API
+      </label>
+    
+    <a href="./" title="Table API" class="md-nav__link md-nav__link--active">
+      Table API
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-source" title="Table Source" class="md-nav__link">
+    Table Source
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-formats" title="Custom Formats" class="md-nav__link">
+    Custom Formats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-attribute-support" title="Time Attribute Support" class="md-nav__link">
+    Time Attribute Support
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-sink" title="Table Sink" class="md-nav__link">
+    Table Sink
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-formats_1" title="Custom Formats" class="md-nav__link">
+    Custom Formats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Metrics" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configurations/" title="Configurations" class="md-nav__link">
+      Configurations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../serialization/" title="Serialization" class="md-nav__link">
+      Serialization
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Releasing Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Releasing Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../how-to-release/" title="How To Release" class="md-nav__link">
+      How To Release
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publishing-artifacts/" title="Publishing Artifacts" class="md-nav__link">
+      Publishing Artifacts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-source" title="Table Source" class="md-nav__link">
+    Table Source
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-formats" title="Custom Formats" class="md-nav__link">
+    Custom Formats
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-attribute-support" title="Time Attribute Support" class="md-nav__link">
+    Time Attribute Support
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table-sink" title="Table Sink" class="md-nav__link">
+    Table Sink
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-formats_1" title="Custom Formats" class="md-nav__link">
+    Custom Formats
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/flink-connectors/tree/master/documentation/src/docs/table-api.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="table-connector">Table Connector</h1>
+<p>The Flink connector library for Pravega provides a table source and table sink for use with the Flink Table API.  The Table API provides a unified API for both the Flink streaming and batch environment.  See the below sections for details.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#table-source">Table Source</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#custom-formats">Custom Formats</a></li>
+<li><a href="#time-attribute-support">Time Attribute Support</a></li>
+<li><a href="#table-sink">Table Sink</a></li>
+<li><a href="#parameters-1">Parameters</a></li>
+<li><a href="#custom-formats-1">Custom Formats</a></li>
+</ul>
+<h2 id="table-source">Table Source</h2>
+<p>A Pravega Stream may be used as a table source within a Flink table program. The Flink Table API is oriented around Flink's <code>TableSchema</code> classes which describe the table fields.  A concrete subclass of <code>FlinkPravegaTableSource</code> is then used to parse raw stream data as <code>Row</code> objects that conform to the table schema.  The connector library provides out-of-box support for JSON-formatted data with <code>FlinkPravegaJsonTableSource</code>, and may be extended to support other formats.</p>
+<h4 id="example">Example</h4>
+<p>The following example uses the provided table source to read JSON-formatted events from a Pravega Stream:</p>
+<div class="highlight"><pre><span></span><span class="c1">// Create a Flink Table environment</span>
+<span class="n">ExecutionEnvironment</span>  <span class="n">env</span> <span class="o">=</span> <span class="n">ExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+<span class="c1">// Load the Pravega configuration</span>
+<span class="n">PravegaConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">PravegaConfig</span><span class="o">.</span><span class="na">fromParams</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+
+<span class="n">String</span><span class="o">[]</span> <span class="n">fieldNames</span> <span class="o">=</span> <span class="o">{</span><span class="s">&quot;user&quot;</span><span class="o">,</span> <span class="s">&quot;uri&quot;</span><span class="o">,</span> <span class="s">&quot;accessTime&quot;</span><span class="o">};</span>
+
+<span class="c1">// Read data from the stream using Table reader</span>
+<span class="n">TableSchema</span> <span class="n">tableSchema</span> <span class="o">=</span> <span class="n">TableSchema</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;user&quot;</span><span class="o">,</span> <span class="n">Types</span><span class="o">.</span><span class="na">STRING</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;uri&quot;</span><span class="o">,</span> <span class="n">Types</span><span class="o">.</span><span class="na">STRING</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">field</span><span class="o">(</span><span class="s">&quot;accessTime&quot;</span><span class="o">,</span> <span class="n">Types</span><span class="o">.</span><span class="na">SQL_TIMESTAMP</span><span class="o">())</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">FlinkPravegaJsonTableSource</span> <span class="n">source</span> <span class="o">=</span> <span class="n">FlinkPravegaJsonTableSource</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                                        <span class="o">.</span><span class="na">forStream</span><span class="o">(</span><span class="n">stream</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">withPravegaConfig</span><span class="o">(</span><span class="n">pravegaConfig</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">failOnMissingField</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">withRowtimeAttribute</span><span class="o">(</span><span class="s">&quot;accessTime&quot;</span><span class="o">,</span>
+                                                <span class="k">new</span> <span class="n">ExistingField</span><span class="o">(</span><span class="s">&quot;accessTime&quot;</span><span class="o">),</span>
+                                                <span class="k">new</span> <span class="n">BoundedOutOfOrderTimestamps</span><span class="o">(</span><span class="mi">30000L</span><span class="o">))</span>
+                                        <span class="o">.</span><span class="na">withSchema</span><span class="o">(</span><span class="n">tableSchema</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">withReaderGroupScope</span><span class="o">(</span><span class="n">stream</span><span class="o">.</span><span class="na">getScope</span><span class="o">())</span>
+                                        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="c1">// (Option-1) Read table as stream data</span>
+<span class="n">StreamTableEnvironment</span> <span class="n">tableEnv</span> <span class="o">=</span> <span class="n">TableEnvironment</span><span class="o">.</span><span class="na">getTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">registerTableSource</span><span class="o">(</span><span class="s">&quot;MyTableRow&quot;</span><span class="o">,</span> <span class="n">source</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">sqlQuery</span> <span class="o">=</span> <span class="s">&quot;SELECT user, count(uri) from MyTableRow GROUP BY user&quot;</span><span class="o">;</span>
+<span class="n">Table</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tableEnv</span><span class="o">.</span><span class="na">sqlQuery</span><span class="o">(</span><span class="n">sqlQuery</span><span class="o">);</span>
+<span class="o">...</span>
+
+<span class="c1">// (Option-2) Read table as batch data (use tumbling window as part of the query)</span>
+<span class="n">BatchTableEnvironment</span> <span class="n">tableEnv</span> <span class="o">=</span> <span class="n">TableEnvironment</span><span class="o">.</span><span class="na">getTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+<span class="n">tableEnv</span><span class="o">.</span><span class="na">registerTableSource</span><span class="o">(</span><span class="s">&quot;MyTableRow&quot;</span><span class="o">,</span> <span class="n">source</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">sqlQuery</span> <span class="o">=</span> <span class="s">&quot;SELECT user, &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;TUMBLE_END(accessTime, INTERVAL &#39;5&#39; MINUTE) AS accessTime, &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;COUNT(uri) AS cnt &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;from MyTableRow GROUP BY &quot;</span> <span class="o">+</span>
+        <span class="s">&quot;user, TUMBLE(accessTime, INTERVAL &#39;5&#39; MINUTE)&quot;</span><span class="o">;</span>
+<span class="n">Table</span> <span class="n">result</span> <span class="o">=</span> <span class="n">tableEnv</span><span class="o">.</span><span class="na">sqlQuery</span><span class="o">(</span><span class="n">sqlQuery</span><span class="o">);</span>
+<span class="o">...</span>
+</pre></div>
+
+<h3 id="parameters">Parameters</h3>
+<p>A builder API is provided to construct an instance of <code>FlinkPravegaJsonTableSource</code>. See the table below for a summary of builder properties. Note that the builder accepts an instance of <code>PravegaConfig</code> for common configuration properties.  See the <a href="../configurations/">configurations</a> page for more information.</p>
+<p>Note that the table source supports both the Flink <strong>streaming</strong> and <strong>batch environments</strong>. In the streaming environment, the table source uses a <a href="../streaming/#flinkpravegareader"><code>FlinkPravegaReader</code></a> connector. In the batch environment, the table source uses a <a href="../batch/#flinkpravegainputformat"><code>FlinkPravegaInputFormat</code></a> connectors. Please see the documentation of <a href="../streaming/">Streaming Connector</a> and <a href="#batch.md">Batch Connector</a> to have a better understanding on the below mentioned parameter list.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>withPravegaConfig</code></td>
+<td>The Pravega client configuration, which includes connection info, security info, and a default scope.</td>
+</tr>
+<tr>
+<td><code>forStream</code></td>
+<td>The stream to be read from, with optional start and/or end position.  May be called repeatedly to read numerous streams in parallel.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td>The uid to identify the checkpoint state of this source.  <em>Applies only to streaming API.</em></td>
+</tr>
+<tr>
+<td><code>withReaderGroupScope</code></td>
+<td>The scope to store the Reader Group synchronization stream into.  <em>Applies only to streaming API.</em></td>
+</tr>
+<tr>
+<td><code>withReaderGroupName</code></td>
+<td>The Reader Group name for display purposes.  <em>Applies only to streaming API.</em></td>
+</tr>
+<tr>
+<td><code>withReaderGroupRefreshTime</code></td>
+<td>The interval for synchronizing the Reader Group state across parallel source instances.  <em>Applies only to streaming API.</em></td>
+</tr>
+<tr>
+<td><code>withCheckpointInitiateTimeout</code></td>
+<td>The timeout for executing a checkpoint of the Reader Group state.  <em>Applies only to streaming API.</em></td>
+</tr>
+<tr>
+<td><code>withSchema</code></td>
+<td>The table schema which describes which JSON fields to expect.</td>
+</tr>
+<tr>
+<td><code>withProctimeAttribute</code></td>
+<td>The name of the processing time attribute in the supplied table schema.</td>
+</tr>
+<tr>
+<td><code>withRowTimeAttribute</code></td>
+<td>supply the name of the rowtime attribute in the table schema, a TimeStampExtractor instance to extract the rowtime attribute value from the event and a <code>WaterMarkStratergy</code> to generate watermarks for the rowtime attribute.</td>
+</tr>
+<tr>
+<td><code>failOnMissingField</code></td>
+<td>A flag indicating whether to fail if a JSON field is missing.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-formats">Custom Formats</h3>
+<p>To work with stream events in a format other than JSON, extend <code>FlinkPravegaTableSource</code>. Please see the implementation of <a href="https://github.com/pravega/flink-connectors/blob/master/src/main/java/io/pravega/connectors/flink/FlinkPravegaJsonTableSource.java"><code>FlinkPravegaJsonTableSource</code></a> for more details.</p>
+<h3 id="time-attribute-support">Time Attribute Support</h3>
+<p>With the use of <code>withProctimeAttribute</code> or <code>withRowTimeAttribute</code> builder method, one could supply the time attribute information of the event. The configured field must be present in the table schema and of type <code>Types.SQL_TIMESTAMP()</code>.</p>
+<h2 id="table-sink">Table Sink</h2>
+<p>A Pravega Stream may be used as an append-only table within a Flink table program.  The Flink Table API is oriented around Flink's <code>TableSchema</code> classes which describe the table fields.  A concrete subclass of <code>FlinkPravegaTableSink</code> is then used to write table rows to a Pravega Stream in a particular format. The connector library provides out-of-box support for JSON-formatted data with <code>FlinkPravegaJsonTableSource</code>, and may be extended to support other formats.</p>
+<h4 id="example_1">Example</h4>
+<p>The following example uses the provided table sink to write JSON-formatted events to a Pravega Stream:</p>
+<div class="highlight"><pre><span></span><span class="c1">// Create a Flink Table environment</span>
+<span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+<span class="n">StreamTableEnvironment</span> <span class="n">tableEnv</span> <span class="o">=</span> <span class="n">TableEnvironment</span><span class="o">.</span><span class="na">getTableEnvironment</span><span class="o">(</span><span class="n">env</span><span class="o">);</span>
+
+<span class="c1">// Load the Pravega configuration</span>
+<span class="n">PravegaConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">PravegaConfig</span><span class="o">.</span><span class="na">fromParams</span><span class="o">(</span><span class="n">ParameterTool</span><span class="o">.</span><span class="na">fromArgs</span><span class="o">(</span><span class="n">args</span><span class="o">));</span>
+
+<span class="c1">// Define a table (see Flink documentation)</span>
+<span class="n">Table</span> <span class="n">table</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1">// Write the table to a Pravega Stream</span>
+<span class="n">FlinkPravegaJsonTableSink</span> <span class="n">sink</span> <span class="o">=</span> <span class="n">FlinkPravegaJsonTableSink</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">forStream</span><span class="o">(</span><span class="s">&quot;sensor_stream&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withPravegaConfig</span><span class="o">(</span><span class="n">config</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withRoutingKeyField</span><span class="o">(</span><span class="s">&quot;sensor_id&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withWriterMode</span><span class="o">(</span><span class="n">EXACTLY_ONCE</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="n">table</span><span class="o">.</span><span class="na">writeToSink</span><span class="o">(</span><span class="n">sink</span><span class="o">);</span>
+</pre></div>
+
+<h3 id="parameters_1">Parameters</h3>
+<p>A builder API is provided to construct an instance of <code>FlinkPravegaJsonTableSink</code>.  See the table below for a summary of builder properties.  Note that the builder accepts an instance of <code>PravegaConfig</code> for common configuration properties.  See the <a href="../configurations/">configurations</a> wiki page for more information.</p>
+<p>Note that the table sink supports both the Flink streaming and batch environments.  In the streaming environment, the table sink uses a <a href="../streaming/#flinkpravegawriter"><code>FlinkPravegaWriter</code></a> connector.  In the batch environment, the table sink uses a <a href="../batch/#flinkpravegaoutpuformat"><code>FlinkPravegaOutputFormat</code></a> connector.  Please see the documentation of <a href="../streaming/">Streaming Connector</a> and <a href="#batch.md">Batch Connector</a> to have a better understanding on the below mentioned parameter list.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>withPravegaConfig</code></td>
+<td>The Pravega client configuration, which includes connection info, security info, and a default scope.</td>
+</tr>
+<tr>
+<td><code>forStream</code></td>
+<td>The stream to be written to.</td>
+</tr>
+<tr>
+<td><code>withWriterMode</code></td>
+<td>The writer mode to provide <em>Best-effort</em>, <em>At-least-once</em>, or <em>Exactly-once</em> guarantees.</td>
+</tr>
+<tr>
+<td><code>withTxnTimeout</code></td>
+<td>The timeout for the Pravega Tansaction that supports the <em>exactly-once</em> writer mode.</td>
+</tr>
+<tr>
+<td><code>withSchema</code></td>
+<td>The table schema which describes which JSON fields to expect.</td>
+</tr>
+<tr>
+<td><code>withRoutingKeyField</code></td>
+<td>The table field to use as the Routing Key for written events.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-formats_1">Custom Formats</h3>
+<p>To work with stream events in a format other than JSON, extend <code>FlinkPravegaTableSink</code>. Please see the implementation of <a href="https://github.com/pravega/flink-connectors/blob/master/src/main/java/io/pravega/connectors/flink/FlinkPravegaJsonTableSink.java"><code>FlinkPravegaJsonTableSink</code></a> for more details.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../batch/" title="Batch" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Batch
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../metrics/" title="Metrics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Metrics
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

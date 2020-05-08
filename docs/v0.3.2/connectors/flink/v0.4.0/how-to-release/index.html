@@ -1,0 +1,665 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega Flink Connectors">
+      
+      
+        <link rel="canonical" href="http://pravega.io/how-to-release/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>How To Release - Exploring Pravega Flink Connectors</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#how-to-release" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega Flink Connectors
+              </span>
+              <span class="md-header-nav__topic">
+                How To Release
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega Flink Connectors
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../quickstart/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streaming/" title="Streaming" class="md-nav__link">
+      Streaming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../batch/" title="Batch" class="md-nav__link">
+      Batch
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../table-api/" title="Table API" class="md-nav__link">
+      Table API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Metrics" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configurations/" title="Configurations" class="md-nav__link">
+      Configurations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../serialization/" title="Serialization" class="md-nav__link">
+      Serialization
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" checked>
+    
+    <label class="md-nav__link" for="nav-8">
+      Releasing Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Releasing Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="How To Release" class="md-nav__link md-nav__link--active">
+      How To Release
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publishing-artifacts/" title="Publishing Artifacts" class="md-nav__link">
+      Publishing Artifacts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/flink-connectors/tree/master/documentation/src/docs/how-to-release.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="how-to-release">How to Release?</h1>
+<p>If you are releasing a version of Pravega/Flink Connector, then you must read and follow the below instructions. The steps mentioned here are based on the experience we are building across releases, if you have any queries, please feel free to open an issue on <a href="https://github.com/pravega/flink-connectors/issues">Github
+Issues</a> or contact us on <a href="https://pravega-io.slack.com/">Slack</a>.</p>
+<p><strong>Note</strong>: In case, if you are updating Flink version, please make sure, the new features or changes introduced in Flink are addressed in the connector.</p>
+<h1 id="preparing-the-branch">Preparing the Branch</h1>
+<p>Preparing the branch consists of making the necessary changes to the branch we will be working on as part of releasing. Following are the possible two situations:</p>
+<ul>
+<li><strong>Bug fix release</strong>: This is a minor release version over an existing release branch.</li>
+<li><strong>Feature release or non-backward-compatible release</strong>: This is a change to either the first or the middle digit, and it requires a new release branch.</li>
+</ul>
+<h2 id="bug-fix-release">Bug Fix Release</h2>
+<p>For bug fix release, no new branch is required. First identify the branch we will be working on. It will be named <code>rX.Y</code>, (e.g., <code>r0.2</code>). The preparation consists of:</p>
+<ol>
+<li>Changing <code>connectorVersion</code> in <code>gradle.properties</code> from <code>X.Y.Z-SNAPSHOT</code> to <code>X.Y.Z</code>. For example, if the current value is <code>connectorVersion=0.2.1-SNAPSHOT</code>, then change it to <code>connectorVersion=0.2.1</code>.</li>
+<li>Merge this change.</li>
+<li>Tag the commit with <code>vX.Y.Z-rc0</code>. (For example, <code>v0.2.1-rc0</code>).</li>
+</ol>
+<p>Please note the following when performing step 3:
+1. There are two ways to tag:
+    -  <strong>Via the command line</strong>:</p>
+<pre><code>    ```
+   &gt; git checkout rX.Y
+   &gt; git tag vX.Y.Z-rc0
+   &gt; git push upstream vX.Y.Z-rc0
+    ```
+Ensure that your `upstream` is set up correctly.
+
+-  **Via GitHub releases**: When creating a release candidate, Github automatically creates the tag if one doesn't exist. This is discussed in the [release candidate](#pushing-arelease-candidate) section.
+</code></pre>
+<ol>
+<li>It is possible that a release candidate is problematic and we need to do a new release candidate. In this case, we need to repeat this tagging step as many times as needed. Note that when creating a new release candidate tag, we do not need to update the Connector version.</li>
+</ol>
+<h2 id="major-release">Major Release</h2>
+<p>In major release, either the middle or the most significant digit is changed. To perform major release, a new branch should be created. Please follow the below steps:</p>
+<blockquote>
+<p><em>For example, assume the new release to be <code>0.3.0</code></em></p>
+</blockquote>
+<div class="highlight"><pre><span></span>  &gt; git checkout master
+  &gt; git tag branch-0.3
+  &gt; git push upstream branch-0.3
+  &gt; git checkout -b r0.3
+  &gt; git push upstream r0.3
+</pre></div>
+
+<p>After the above steps are performed, version changes needs to be updated to both <code>master</code> and <code>r0.3</code>:</p>
+<ul>
+<li>In <code>master</code>, create an issue and corresponding pull request to change the <code>connectorVersion</code> in <code>gradle.properties</code> to <code>0.4.0-SNAPSHOT</code>. Note that we are bumping up the middle digit because, in our example, we are releasing <code>0.3.0</code>. If we were releasing say <code>1.0.0</code>, then we would change <code>connectorVersion</code> to <code>1.1.0-SNAPSHOT</code>.</li>
+<li>In <code>r0.3</code>, create an issue and corresponding pull request to change the <code>connectorVersion</code> in <code>gradle.properties</code> to <code>0.3.0</code>. Once that change is merged, we need to tag the commit point in the same way we described for a bug fix release. See instructions in the previous section.</li>
+</ul>
+<h1 id="pushing-a-release-candidate">Pushing a release candidate</h1>
+<h3 id="step-1-create-a-release-on-github">Step 1: Create a release on GitHub</h3>
+<p>On the GitHub repository page, go to releases and create a new draft:</p>
+<ul>
+<li>Mark it as a "pre-release".</li>
+<li>Fill out the tag field and select the appropriate branch. Note that this is a release candidate, so the tag should look like <code>vX.Y.Z-rcA</code></li>
+</ul>
+<h3 id="step-2-build-the-distribution">Step 2: Build the distribution</h3>
+<p>Run the following commands:</p>
+<blockquote>
+<p>For example, assume the branch to be <code>r0.3</code></p>
+</blockquote>
+<div class="highlight"><pre><span></span>   &gt; git checkout r0.3
+   &gt; ./gradlew clean install
+</pre></div>
+
+<p>The files resulting from the build will be under <code>~/.m2/repository/io/pravega/pravega-connectors-flink_2.11/&lt;RELEASE-VERSION&gt;</code>. For each one of the <code>.jar</code> files in that directory, generate checksums (currently <code>md5</code>, <code>sha1</code>, and <code>sha256</code>). Use the following bash script:</p>
+<div class="highlight"><pre><span></span>#!/bin/bash
+
+for file in ./*.jar ; do md5sum $file &gt; $file.md5 ; done
+for file in ./*.jar ; do shasum -a 1 $file &gt; $file.sha1 ; done
+for file in ./*.jar ; do shasum -a 256 $file &gt; $file.sha256 ; done
+</pre></div>
+
+<blockquote>
+<p><strong>Note</strong>:In the future, we might want to automate the generation of checksums via gradle.</p>
+</blockquote>
+<h3 id="step-3-upload-the-files-to-the-pre-release-draft">Step 3: Upload the files to the pre-release draft</h3>
+<p>In the pre-release draft on GitHub, upload all the jar files (and its checksums) under <code>~/.m2/repository/io/pravega/pravega-connectors-flink_2.11/&lt;RELEASE-VERSION&gt;</code>. Follow the instructions on that appears on the Github release page, it is straightforward.</p>
+<h3 id="step-4-release-notes">Step 4: Release Notes</h3>
+<p>Create a release notes text file containing the following:
+1. Related introductory text, highlighting the important changes featured in the release.
+2. A complete list of commits and it can be obtained using the following command:
+<div class="highlight"><pre><span></span>   &gt; git log &lt;commit-id-of-last-release&gt;..&lt;current-commit-id&gt;
+</pre></div></p>
+<ul>
+<li><code>&lt;commit-id-of-last-release&gt;</code> depends on the kind of release we are doing. If it is a bug fix release, then we can use the tag of the last branch release. For new branches, we have been adding <code>branch-X.Y</code> tags at the branch point for convenience.</li>
+<li><code>&lt;current-commit-id&gt;</code> is the commit point of the release candidate we are working on. If you have manually tagged the release candidate, then you can go ahead and use it in the above mentioned <code>git log</code> command.</li>
+</ul>
+<p>Add the list to the release notes file and attach it the notes box in the release draft. See previous releases for an example of how to put together notes.</p>
+<h2 id="step-5-publishing">Step 5: Publishing</h2>
+<p>The final step is to publish the release candidate by clicking on the button on the draft page. Once published, request the developers and community to validate the candidate.</p>
+<h1 id="releasing">Releasing</h1>
+<p>Once you are happy with the release candidate, we can start the release process. There are two main parts for a Connector release:</p>
+<ul>
+<li>Releasing on GitHub</li>
+<li>Publishing on Sonatype -&gt; Maven Central</li>
+</ul>
+<h2 id="releasing-on-github">Releasing on GitHub</h2>
+<p>The process involved is similar to the creation of a release candidate as mentioned above. The following changes should be applied:
+1. The tag should not have an <code>rcA</code> in it. If the successful rc is <code>v0.3.0-rc0</code>, then the release tag is <code>v0.3.0</code>.
+2. Uncheck the pre-release box.</p>
+<h2 id="publishing-on-sonatype-maven-central">Publishing on Sonatype -&gt; Maven Central</h2>
+<p>For this step, we need a Sonatype account. See this <a href="http://central.sonatype.org/pages/ossrh-guide.html">guide</a> for how to create a Sonatype account. Your account also needs to be associated to Pravega to be able to publish the artifacts.</p>
+<p>Once you are ready, run the following steps:
+<em> Perform the build using the following command:
+<div class="highlight"><pre><span></span>./gradlew clean assemble publishToRepo -PdoSigning=true -Psigning.password=&lt;signing-password&gt; -PpublishUrl=mavenCentral -PpublishUsername=&lt;sonatype-username&gt; -PpublishPassword=&lt;sonatype-password&gt;
+</pre></div>
+</em> Login to Nexus Repository Manager using Sonatype credentials with write access to <code>io.pravega</code> group.
+<em> Under Build Promotion, choose the Staging Repositories, locate the staging repository that was created for the latest publish (format the <code>iopravega-XXXX</code>, like for example <code>iopravega-1004</code>).
+</em> Select the repository and select the <em>Close button</em> in the top menu bar. This will perform validations to ensure that the contents meets the maven requirements (contains signatures, javadocs, sources, etc.). This operation takes minimal time to complete. (Press the <em>Refresh button</em> in the top menu bar occasionally until the operation completes).
+<em> Once the operation completes, locate the URL field in the <em>Summary tab</em> of the newly closed repository (it will be something like <code>https://oss.sonatype.org/content/repositories/iopravega-XXXX</code> where <code>XXXX</code> is the number of the staging repository). This should be tested to ensure that all artifacts are present and functions as expected.
+</em> To test, for example, use the <code>pravega-samples</code> and checkout <code>develop</code> branch to verify that it can locate and build with the staging artifacts. Concretely:
+    1. Change <code>pravegaVersion</code> and <code>connectorVersion</code> in <code>gradle.properties</code> to the staging version.
+    2. Run <code>./gradlew clean build</code>
+<em> After ensuring the correct working of the above mentioned procedures, Please click on the <em>Release button</em> in the top menu bar.
+</em> Please do wait, until it shows up in <a href="http://central.sonatype.org/pages/ossrh-guide.html#SonatypeOSSMavenRepositoryUsageGuide-9.ActivateCentralSync">Maven Central</a>.</p>
+<h2 id="change-the-connector-version">Change the Connector version</h2>
+<p>Once the release is done, create an issue and corresponding pull request to change the <code>connectorVersion</code> in <code>gradle.properties</code> to <code>X.Y.(Z+1)-SNAPSHOT</code> for the release branch.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../serialization/" title="Serialization" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Serialization
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../publishing-artifacts/" title="Publishing Artifacts" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Publishing Artifacts
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
