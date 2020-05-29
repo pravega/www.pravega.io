@@ -1,268 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta property="og:title" content="FAQ - Storage Reimagined for a Streaming World"/> 
-<meta property="og:image" content="http://pravega.io/img/lights.png"/> 
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>Pravega FAQ - Stream as a New Distributed Storage Primitive</title>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, intial-scale=1" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.41, maximum-scale=1" />
+    <title>Pravega — Stream as a New Distributed Storage Primitive</title>
+    <link rel="icon" href="assets/favi.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="js/pravega.js" type="text/javascript"></script>
+    <script src="js/pravegajquery.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="topnav" id="myTopnav">
 
-<!-- Bootstrap Core CSS -->
-<link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <a href="#home" style="float:left; padding: 1px;"> <img src="assets/logo.png" style="float: left;height: 65%; width: 37%;" alt="Logo"> </a>
 
-<!-- Custom Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
-<!-- Plugin CSS -->
-<link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.css">
-<link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-<link rel="stylesheet" href="vendor/device-mockups/device-mockups.min.css">
-
-<!-- Theme CSS -->
-<link href="css/new-age.css" rel="stylesheet">
-
-
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-<link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
-<link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
-
-</head>
-
-<body id="top">
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-  <div class="container"> 
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i> </button>
-      <a class="navbar-brand page-scroll" href="/index.html">
-      <h1><!--img src="img/pravega-logo.png"-->Pravega</h1>
-      </a></div>
-    
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <!--li> <a class="page-scroll" href="#opensource">Open Source</a> </li-->
-        <li> <a class="page-scroll" href="http://pravega.io/index.html#start">Why Pravega</a> </li>
-        <li> <a class="page-scroll" href="http://pravega.io/index.html#future">Architecture</a> </li>
-        <li> <a class="page-scroll usecasenav" href="http://pravega.io/index.html#use">Use Cases</a> </li>
-        <li> <a class="page-scroll" href="http://pravega.io/team.html">Team</a> </li>
-        <li> <a class="page-scroll active" href="faq.html">FAQ</a> </li>
-        <li> <a class="page-scroll active" href="presentations.html">Presentations</a> </li>
-        <!-- <li> <a class="page-scroll" href="http://pravega.io/docs" target="_pravega_docs">Docs</a> </li> -->
-        <li> <a class="dropdown" href="#" class="dropdown-toggle" data-toggle="dropdown">Docs <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="http://pravega.io/docs/latest/" target="_pravega_docs">latest</a></li>
-		<li><a href="http://pravega.io/docs/v0.4.0/" target="_pravega_docs">v0.4.0</a></li>
-                <li><a href="http://pravega.io/docs/v0.3.2/" target="_pravega_docs">v0.3.2</a></li>
-                <li><a href="http://pravega.io/docs/v0.3.1/" target="_pravega_docs">v0.3.1</a></li>
-                <li><a href="http://pravega.io/docs/v0.3.0/" target="_pravega_docs">v0.3.0</a></li>
-                <li><a href="http://pravega.io/docs/v0.2.1/" target="_pravega_docs">v0.2.1</a></li>
-                <li><a href="http://pravega.io/docs/v0.2.0/" target="_pravega_docs">v0.2.0</a></li>
-                <li><a href="http://pravega.io/docs/v0.1.0/" target="_pravega_docs">v0.1.0</a></li>
-                <li><a href="http://pravega.io/docs/v0.1.0-prerelease/" target="_pravega_docs">v0.1.0-prerelease</a></li>
-              </ul>
-        </li>
-        <li> <a class="page-scroll" href="http://blog.pravega.io/2017/04/09/storage-reimagined-for-a-streaming-world/" target="_pravega_blog" >Blog</a> </li>
-        <li> <a class="btn center-btn btn-sml btn-outline page-scroll btn-download" href="https://github.com/pravega/pravega" target="_blank" ><i class="fa fa-github" aria-hidden="true"></i> <span >Download</span></a> </li>
-      </ul>
+        <a href="http://blog.pravega.io/2017/04/09/storage-reimagined-for-a-streaming-world/" target="_blank" style="margin-right: 200px; top:2%;">Blog</a>
+        <a href="media.html" target="_blank">Media</a>
+        <a href="http://pravega.io/docs/latest/" target="_blank">Documentation</a>
+        <a href="faq.html" target="_blank">FAQs</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
     </div>
-    <!-- /.navbar-collapse --> 
-  </div>
-  <!-- /.container-fluid --> 
-</nav>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title" id="myModalLabel" >Pravega Github Repository will be available on May 10th, 2017</h2>
-        <h2 id="msgSubmit" style="display: none;"></h2>
-      </div>
-      <div class="modal-body">
-        <form action="http://pravega.io/register.php" id="registerForm">
-          <div class="form-group">
-            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted"> In case you want us to send you a reminder email.</small> </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
+    <div class="iconbar">
+      <a href="https://pravega-io.slack.com/#pravega-public" style="padding: 22px 2px;" target="_blank"> <img src="assets/slack.png" style="height: 30px; width: 30px;"alt="slack"> </a>
+      <a href="https://groups.google.com/forum/#!forum/pravega-users" style="padding: 22px 2px;" target="_blank"> <img src="assets/google.png" style="height: 30px; width: 30px;"alt="google"> </a>
+      <a href="https://twitter.com/PravegaIO" style="padding: 22px 2px;" target="_blank"> <img src="assets/tweet.png" style="height: 30px; width: 30px;"alt="twitter"> </a>
+      <a href="https://github.com/pravega/pravega" style="padding: 22px 2px;" target="_blank"> <img src="assets/git.png" style="height: 30px; width: 30px;"alt="github"> </a>
+      <a href="https://github.com/pravega/pravega" style="padding: 22px 2px;" target="_blank"> <img src="assets/linkedin.png" style="height: 30px; width: 30px;"alt="Linkedin"> </a>
     </div>
-  </div>
-</div>
-<!-- Modal -->
 
-<!-- Modal -->
-<div class="modal fade" id="myModalJoin" tabindex="-1" role="dialog" aria-labelledby="myModalLabelJoin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title" id="myModalLabel" >Join #Pravega Community!</h2>
-        <h2 id="msgSubmit" style="display: none;">It takes only two steps to join the community on Slack</h2>
+  <div class="container" style="padding-top:10%;">
+    <h1 style="font-size: 4vw; text-align: center; margin-bottom:3%;">Frequently Asked Questions</h1>
+
+    <div class="contentbox" style="background-color: #82d1ca;">
+
+
+
+      <button class="accordionfaq">  <h3>What is Pravega?</h3></button>
+      <div class="panelfaq">
+        <p>Pravega is an open source storage primitive implementing Streams for continuous and unbounded data. See here for more definitions of terms related to Pravega.</p>
       </div>
-      <div class="modal-body">	
-	<ol>
-		<li style="margin-bottom: 10px">Register at <a href="http://pravega-io.slack.com/">http://pravega-io.slack.com</a></li>
-		<li style="margin-bottom: 20px">Join the <a href="https://pravega-io.slack.com/#pravega-public">#pravega-public</a> channel</li>
-	</ol>
-	<div style="margin-bottom: 10px 10ppx 20px 10px; font-size: 75%; color: black; text-align:center ">Do not forget to follow us on <a href="https://twitter.com/PravegaIO" target="_blank" title="Twitter">Twitter</a> and subscribe to <a href="https://groups.google.com/forum/#!forum/pravega-users" target="_blank" title="Google Goups">Users mailing list</a>	</div>
 
+      <button class="accordionfaq"><h3>What does "Pravega" mean?</h3></button>
+      <div class="panelfaq">
+        <p>"Pravega" is a word from Sanskrit referring to "good speed".</p>
       </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-
-<style>
-.col-lg-12 p strong
-{
-font-weight: normal;
-font-size: 20px;
-color: #333;
-}
-
-</style>
-
-<section id="faq" class="faq">
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      <div class="section-heading">
-        <h1>Frequently Asked Questions</h1>
+      <button class="accordionfaq"><h3>Is Pravega similiar to systems such as Kafka and Kinesis?</h3></button>
+      <div class="panelfaq">
+        <p>Pravega is built from the ground up as an enterprise grade storage system to support features such as exactly once, durability, transaction, and dynamic scaling. Pravega is an ideal store for streaming data, data from real-time applications and IoT data. It can be also used for batch and interactive analytics on large amount of data. For complete description, please read key features.</p>
+      </div><button class="accordionfaq"><h3>How can I participate in open source?</h3></button>
+      <div class="panelfaq">
+        <p>Disruptive innovation is accelerated by open source. When Pravega was created, there was no question it made sense to make it open source. We welcome contributions from experienced and new developers alike. Check out the code in Github . More detail about how to get involved can be found here.</p>
+      </div><button class="accordionfaq"><h3>How do I get started?</h3></button>
+      <div class="panelfaq">
+        <p>Read the Getting Started guide for more information, and also visit sample-apps repo for some sample applications.</p>
+      </div><button class="accordionfaq"><h3>Does Pravega support exactly once semantics?</h3></button>
+      <div class="panelfaq">
+        <p>Absolutely. See Key Features for a discussion on how Pravega supports exactly once semantics.</p>
+      </div><button class="accordionfaq"><h3>How does Pravega work with stream processors such as Apache Flink?</h3></button>
+      <div class="panelfaq">
+          <p>So many features of Pravega make it ideal for stream processors. First, Pravega comes out of the box with a Flink connector. Critically, Pravega provides exactly once semantics, making it much easier to develop accurate stream processing applications. The combination of exactly once semantics, durable storage and transactions makes Pravega an ideal way to chain Flink jobs together, providing end-end consistency and exactly once semantics. See here for a list of key features of Pravega.</p>
+      </div><button class="accordionfaq"><h3>How does auto scaling work between stream processors such as Flink</h3></button>
+      <div class="panelfaq">
+        <p>Auto scaling is a feature of Pravega where the number of segments in a stream changes based on the ingestion rate of data. If data arrives at a faster rate, Pravega increases the capacity of a stream by adding segments. When the data rate falls, Pravega can merge segments of a stream. As Pravega scales up and down the capacity of a stream, applications, such as a Flink job can observe this change and respond by adding or reducing the number of job instances consuming the stream. See the "Auto Scaling" section in Key Features for more discussion of auto scaling.</p>
+      </div><button class="accordionfaq"><h3>What consistency guarantees does Pravega provide?</h3></button>
+      <div class="panelfaq">
+        <p>Pravega makes several guarantees. Durability - once data is acknowledged to a client, Pravega guarantees it is protected. Ordering - events with the same routing key will always be read in the order they were written. Exactly once - data written to Pravega will not be duplicated.</p>
       </div>
-    </div>
+      <button class="accordionfaq"><h3>Why is supporting consistency and durability so important for storage systems such as Pravega?</h3></button>
+      <div class="panelfaq">
+        <p>Primarily because it makes building applications easier. Consistency and durability are key for supporting exactly once semantics. Without exactly once semantics, it is difficult to build fault tolerant applications that consistency produce accurate results. See Key Features for a discussion on consistency and durability guarantees play a role in Pravega's support of exactly once semantics.</p>
+      </div>
+      <button class="accordionfaq"><h3>Does Pravega support transactions?</h3></button>
+      <div class="panelfaq">
+        <p>Yes. The Pravega API allows an application to create a transaction on a stream and write data to the transaction. The data is durably stored, just like any other data written to Pravega. When the application chooses, it can commit or abort the transaction. When a transaction is committed, the data in the transaction is atomically appended to the stream. See here for more details on Pravega's transaction support.</p>
+      </div>
+      <button class="accordionfaq"><h3>Does Pravega support transactions across different routing keys?</h3></button>
+      <div class="panelfaq">
+        <p>Yes. A transaction in Pravega is itself a stream; it can have 1 or more segments and data written to the transaction is placed into the segment associated with the data's routing key. When the transaction is committed, the transaction data is appended to the appropriate segment in the stream.</p>
+      </div>
+      <button class="accordionfaq"><h3>Do I need HDFS installed in order to use Pravega?</h3></button>
+      <div class="panelfaq">
+        <p>Yes. Normally, you would deploy an HDFS for Pravega to use as its Tier 2 storage. However, for simple test/dev environments, the so-called standAlone version of Pravega provides its own simulated HDFS. See the Running Pravega guide for more details.</p>
+      </div>
+      <button class="accordionfaq"><h3>Which Tier 2 storage systems does Pravega support?</h3></button>
+      <div class="panelfaq">
+        <p>Pravega is designed to support various types of Tier 2 storage systems. Currently we have implemented HDFS as the first embodiment of Tier 2 storage.</p>
+      </div>
+      <button class="accordionfaq"><h3>What distributed computing primitives does Pravega provide?</h3></button>
+      <div class="panelfaq">
+        <p>Pravega provides an API construct called StateSynchronizer. Using the StateSynchronizer, a developer can use Pravega to build synchronized shared state between multiple processes. This primitive can be used to build all sorts of distributed computing solutions such as shared configuration, leader election, etc. See the "Distributed Computing Primitive" section in Key Features for more details.</p>
+      </div>
+
   </div>
-  <div class="row">
-     <div class="container" style="width: 100%;">
-      <div style="max-width: 1024px; margin: 0px auto;">
-      
-<p><strong>What is Pravega?</strong><br />
-Pravega is an open source storage primitive implementing <b>Streams</b> for continuous and unbounded data.  See <a href="docs/latest/terminology/">here</a> for more definitions of terms related to Pravega.</p>
-<p><strong>What does "Pravega" mean?</strong><br />
-"Pravega" is a word from Sanskrit referring to "good speed".</p>
-<p><strong>Is Pravega similiar to systems such as Kafka and Kinesis?</strong><br/>
-Pravega is built from the ground up as an enterprise grade storage system to support features such as exactly once, durability, transaction, and dynamic scaling.  Pravega is an ideal store for streaming data, data from real-time applications and IoT data. It can be also used for batch and interactive analytics on large amount of data. For complete description, please read <a href="http://pravega.io/docs/latest/key-features/">key features</a>. </p>
-<p><strong>How can I participate in open source?</strong><br />
-Disruptive innovation is accelerated by open source.  When Pravega was created, there was no question it made sense to make it open source.
-We welcome contributions from experienced and new developers alike.  Check out the code in <a href="https://github.com/pravega/pravega">Github</a> .  More detail about how to get involved can be found <a href="docs/latest/contributing/">here</a>.</p>
-<p><strong>How do I get started?</strong><br />
-Read the <a href="docs/latest/getting-started/">Getting Started</a> guide for more information, and also visit <a href="https://github.com/pravega/pravega-samples">sample-apps</a> repo for some sample applications.   </p>
-<p><strong>Does Pravega support exactly once semantics?</strong><br />
-Absolutely.  See <a href="docs/latest/key-features/">Key Features</a> for a discussion on how Pravega supports exactly once semantics.</p>
-<p><strong>How does Pravega work with stream processors such as Apache Flink?</strong><br />
-So many features of Pravega make it ideal for stream processors.  First, Pravega comes out of the box with a Flink connector.  Critically, Pravega provides exactly once semantics, making it much easier to develop accurate stream processing applications.  The combination of exactly once semantics, durable storage and transactions makes Pravega an ideal way to chain Flink jobs together, providing end-end consistency and exactly once semantics.  See <a href="docs/latest/key-features/">here</a> for a list of key features of Pravega.</p>
-<p><strong>How does auto scaling work between stream processors such as Flink</strong><br />
-Auto scaling is a feature of Pravega where the number of segments in a stream changes based on the ingestion rate of data.  If data arrives at a faster rate, Pravega increases the capacity of a stream by adding segments.  When the data rate falls, Pravega can merge segments of a stream. As Pravega scales up and down the capacity of a stream, applications, such as a Flink job can observe this change and respond by adding or reducing the number of job instances consuming the stream. See the "Auto Scaling" section in <a href="docs/latest/key-features/">Key Features</a> for more discussion of auto scaling.</p>
-<p><strong>What consistency guarantees does Pravega provide?</strong><br />
-Pravega makes several guarantees. Durability - once data is acknowledged to a client, Pravega guarantees it is protected.  Ordering - events with the same routing key will always be read in the order they were written. Exactly once - data written to Pravega will not be duplicated.</p>
-<p><strong>Why is supporting consistency and durability so important for storage systems such as Pravega?</strong><br/>
-Primarily because it makes building applications easier. Consistency and durability are key for supporting exactly once semantics. Without exactly once semantics, it is difficult to build fault tolerant applications that consistency produce accurate results.  See <a href="docs/latest/key-features/">Key Features</a> for a discussion on consistency and durability guarantees play a role in Pravega's support of exactly once semantics.</p>
-<p><strong>Does Pravega support transactions?</strong><br />
-Yes.  The Pravega API allows an application to create a transaction on a stream and write data to the transaction.  The data is durably stored, just like any other data written to Pravega.  When the application chooses, it can commit or abort the transaction.  When a transaction is committed, the data in the transaction is atomically appended to the stream.  See <a href="docs/latest/transactions/">here</a> for more details on Pravega's transaction support.</p>
-<p><strong>Does Pravega support transactions across different routing keys?</strong><br />
-Yes.  A transaction in Pravega is itself a stream; it can have 1 or more segments and data written to the transaction is placed into the segment associated with the data's routing key.  When the transaction is committed, the transaction data is appended to the appropriate segment in the stream.</p>
-<p><strong>Do I need HDFS installed in order to use Pravega?</strong><br />
-Yes. Normally, you would deploy an HDFS for Pravega to use as its Tier 2 storage.  However, for simple test/dev environments, the so-called standAlone version of Pravega provides its own simulated HDFS.  See the <a href="docs/latest/deployment/deployment/">Running Pravega</a> guide for more details.</p>
-<p><strong>Which Tier 2 storage systems does Pravega support?</strong><br />
-Pravega is designed to support various types of Tier 2 storage systems.  Currently we have implemented HDFS as the first embodiment of Tier 2 storage.</p>
-<p><strong>What distributed computing primitives does Pravega provide?</strong><br />
-Pravega provides an API construct called StateSynchronizer.  Using the StateSynchronizer, a developer can use Pravega to build synchronized shared state between multiple processes.  This primitive can be used to build all sorts of distributed computing solutions such as shared configuration, leader election, etc.  See the "Distributed Computing Primitive" section in <a href="docs/latest/key-features/">Key Features</a> for more details.</p>
-	  </div>
-	  </div>
-	</div>
-	  
-</section>
+  </div>
 
-
-<!--<section >
+<footer>
   <div class="container">
-    <div class="row">
-      <div class="col-md-12"> <img class="userlogos" title="Partners" src="img/partners.png?updated=yes"> </div>
-      <div class="col-md-12"> <img class="userlogos2" title="Partners" src="img/partners-sml.png"> </div>
-    </div>
-  </div>
-</section>-->
-<section id="join" class="contact">
-<ul class="list-inline list-social">
-      <li class="social-slack"> <a href="#" target="_blank" title="Slack"  data-toggle="modal" data-target="#myModalJoin"><i class="fa fa-slack"></i></a></li>
-      <li class="social-github"> <a href="https://github.com/pravega/pravega" target="_blank" title="Github"><i class="fa fa-github"></i></a></li>
-      <li class="social-twitter"> <a href="https://twitter.com/PravegaIO" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-      <li class="social-google"> <a href="https://groups.google.com/forum/#!forum/pravega-users" target="_blank" title="Google Groups"><i class="fa fa-google"></i></a></li>
-    </ul>
-</section>
-<footer >
-  <div class="container">
-    <p>&copy; 2017 Pravega. All Rights Reserved.</p>
-    <!--<ul class="list-inline">
-      <li> <a href="#">Privacy</a> </li>
-      <li> <a href="#">Terms</a> </li>
-      <li> <a href="#">FAQ</a> </li>
-    </ul>--> 
+    <p style="text-align: center; margin: 2%;">&copy 2020 Pravega. All Rights Reserved.</p>
+
   </div>
 </footer>
+<script type="text/javascript">
+var accf = document.getElementsByClassName("accordionfaq");
+var i;
 
-<!-- jQuery --> 
-<script src="vendor/jquery/jquery.js"></script> 
-
-<!-- Bootstrap Core JavaScript --> 
-<script src="vendor/bootstrap/js/bootstrap.js"></script> 
-
-<!-- Plugin JavaScript --> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script> 
-
-<!-- Theme JavaScript --> 
-<script src="js/new-age.js"></script> 
-
-<!-- Ajax Form -->
-<script>
-
-$("#registerForm").submit(function(event){
-    // cancels the form submission
-    event.preventDefault();
-    submitForm();
-});
-
-function submitForm(){
-    // Initiate Variables With Form Content
-    var email = $("#email").val();
-
-    $.ajax({
-        type: "POST",
-        url: "http://pravega.io/register.php",
-        data: "email=" + email,
-        success : function(text){
-            $( "#registerForm" ).hide();
-            $( "#myModalLabel" ).hide();
-            $( "#msgSubmit" ).html(text).show();
-        }
-    });
+for (i = 0; i < accf.length; i++) {
+  accf[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panelfaq = this.nextElementSibling;
+    if (panelfaq.style.maxHeight) {
+      panelfaq.style.maxHeight = null;
+    } else {
+      panelfaq.style.maxHeight = panelfaq.scrollHeight + "px";
+    }
+  });
 }
 </script>
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-1508605-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-<!-- Logo Carousel JavaScript -->
-</body>
+  </body>
 </html>

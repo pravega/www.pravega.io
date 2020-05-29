@@ -1,0 +1,371 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body, html {
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.topnav {
+  overflow:hidden;
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+
+}
+
+.iconbar {
+  right: 0.5%;
+  top:4%;
+  float: right;
+  display: block;
+  position: fixed;
+  background-color: #3165ad;
+  border-radius: 5px;
+  padding: 2px;
+  width: auto;
+  height: auto;
+  z-index: 100;
+
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: #3165ad;
+  text-align: center;
+  padding: 20px 12px 0px 0px;
+  text-decoration: none;
+  font-size: 20px;
+    left: -5%;
+}
+
+.topnav .icon {
+  display: none;
+  color: #3165ad;
+}
+
+@media screen and (max-width: 760px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    color: #3165ad;
+  }
+
+  .iconbar a.icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  .iconbar{
+      top: 10%;
+    width: 35px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #3165ad;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+    font-size: 15px;
+    color: #3165ad;
+  }
+
+  .button {
+    display: none !important;
+    visibility: hidden;
+  }
+
+}
+
+.banner {
+  width: 100%;
+  height: auto;
+}
+
+.button {
+  position: relative;
+  float:left;
+  background-color: #3165AD; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-top: -2%;
+  outline: none;
+}
+
+.button:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  outline: none;
+}
+
+.button:focus{
+  outline: none;
+}
+
+.modaln {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 5%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modaln-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modaln-header {
+  padding: 2px 16px;
+  background-color: #E1E6E5;
+  color: #337A74;
+}
+
+.modaln-body {
+  padding: 2px 16px;
+  background-color: #white;
+}
+
+
+.imgpr {
+  height: 55%;
+  width: 55%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 0;
+}
+
+.imgplay {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.imgpr:hover .imgplay{
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.imgpr:hover .middle{
+  opacity: 1;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 760px) {
+  .imgplay{
+    opacity: 0.3;
+    cursor: pointer;
+  }
+
+  .middle{
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.container{
+  text-align: center;
+  color: #000000;
+  background-color: #82d1ca;
+  min-width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: 'Roboto';
+}
+
+.contentbox{
+  text-align: center;
+  color: #000000;
+  background-color: #ffffff;
+  margin-top: 2%;
+  margin-left: 22%;
+  margin-right: 22%;
+  overflow:hidden;
+  border-radius: 8px;
+  padding-left: 3%;
+  padding-right: 3%;
+  z-index: 0;
+}
+
+.accordionfaq {
+  background-color: #82d1ca;
+  color: #000000;
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  border-bottom: 1px solid #337A74;
+  height: 100%;
+}
+.active{
+  outline: none;
+  background-color: #ffffff;
+}
+
+.accordionfaq:hover {
+  background-color: #c6f7f3;
+  outline: none;
+}
+.accordionfaq:focus{
+  outline: none;
+}
+
+.accordionfaq::after {
+  content: '\002B';
+  color: #337A74;
+  font-weight: bold;
+  font-size: 25px;
+  float: right;
+  margin-left: 5px;
+  margin-top: -4%;
+  outline: none;
+}
+
+.active:after {
+  content: "\2212";
+  color: #337A74;
+  font-weight: bold;
+  font-size: 25px;
+  float: right;
+  outline: none;
+  border: none;
+  border-bottom: none;
+}
+
+
+.panelfaq {
+  padding: 0 5px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  text-align: left;
+  width: 100%;
+  border: none;
+
+}
+
+.carousel{
+  width: 100%;
+  height: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 760px){
+  .carousel{
+    height: 180px;
+  }
+}
+
+.carousel-item{
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.carousel-indicators{
+  margin-top: 5%;
+  background-color: #337A74;
+  color: #337A74;
+  bottom: 5px;
+}
+
+.carousel-control-next{
+  padding-left: -5%;
+  padding-right: -5%;
+}
+.glyphicon {
+    font-size: 50px;
+}
