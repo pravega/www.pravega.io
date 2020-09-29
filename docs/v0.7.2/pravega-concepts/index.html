@@ -1,0 +1,1575 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="http://pravega.io/pravega-concepts/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Pravega Concepts - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#pravega-concepts" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Pravega Concepts
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Pravega Concepts
+      </label>
+    
+    <a href="./" title="Pravega Concepts" class="md-nav__link md-nav__link--active">
+      Pravega Concepts
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streams" title="Streams" class="md-nav__link">
+    Streams
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" title="Events" class="md-nav__link">
+    Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writers-readers-reader-groups" title="Writers, Readers, Reader Groups" class="md-nav__link">
+    Writers, Readers, Reader Groups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stream-segments" title="Stream Segments" class="md-nav__link">
+    Stream Segments
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events-in-a-stream-segment" title="Events in a Stream Segment" class="md-nav__link">
+    Events in a Stream Segment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-segments-and-connection-pooling" title="Stream Segments and Connection pooling" class="md-nav__link">
+    Stream Segments and Connection pooling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elastic-streams-auto-scaling" title="Elastic Streams: Auto Scaling" class="md-nav__link">
+    Elastic Streams: Auto Scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-stream-segments-and-auto-scaling" title="Events, Stream Segments and Auto Scaling" class="md-nav__link">
+    Events, Stream Segments and Auto Scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-segments-and-reader-groups" title="Stream Segments and Reader Groups" class="md-nav__link">
+    Stream Segments and Reader Groups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-guarantees" title="Ordering Guarantees" class="md-nav__link">
+    Ordering Guarantees
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reader-group-checkpoints" title="Reader Group Checkpoints" class="md-nav__link">
+    Reader Group Checkpoints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transactions" title="Transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-synchronizers" title="State Synchronizers" class="md-nav__link">
+    State Synchronizers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" title="Architecture" class="md-nav__link">
+    Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-the-concepts-together" title="Putting the Concepts Together" class="md-nav__link">
+    Putting the Concepts Together
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-tiered-storage" title="A Note on Tiered Storage" class="md-nav__link">
+    A Note on Tiered Storage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-retention-policies" title="Stream Retention Policies" class="md-nav__link">
+    Stream Retention Policies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/kubernetes-install/" title="Deployment on Kubernetes" class="md-nav__link">
+      Deployment on Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/docker-swarm/" title="Deployment on Docker Swarm" class="md-nav__link">
+      Deployment on Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Pravega Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Pravega Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/auth-plugin/" title="Pravega Authentication/Authorization Plugin" class="md-nav__link">
+      Pravega Authentication/Authorization Plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/client-auth/" title="Client Auth Interface" class="md-nav__link">
+      Client Auth Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-authorization-authentication/" title="Pravega Security Authorization/Authentication" class="md-nav__link">
+      Pravega Security Authorization/Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-configurations/" title="Pravega Security Configurations" class="md-nav__link">
+      Pravega Security Configurations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-encryption/" title="Pravega Security Encryption" class="md-nav__link">
+      Pravega Security Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/securing-distributed-mode-cluster/" title="Securing Pravega in Distributed Mode" class="md-nav__link">
+      Securing Pravega in Distributed Mode
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#streams" title="Streams" class="md-nav__link">
+    Streams
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" title="Events" class="md-nav__link">
+    Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writers-readers-reader-groups" title="Writers, Readers, Reader Groups" class="md-nav__link">
+    Writers, Readers, Reader Groups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stream-segments" title="Stream Segments" class="md-nav__link">
+    Stream Segments
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events-in-a-stream-segment" title="Events in a Stream Segment" class="md-nav__link">
+    Events in a Stream Segment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-segments-and-connection-pooling" title="Stream Segments and Connection pooling" class="md-nav__link">
+    Stream Segments and Connection pooling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elastic-streams-auto-scaling" title="Elastic Streams: Auto Scaling" class="md-nav__link">
+    Elastic Streams: Auto Scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-stream-segments-and-auto-scaling" title="Events, Stream Segments and Auto Scaling" class="md-nav__link">
+    Events, Stream Segments and Auto Scaling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stream-segments-and-reader-groups" title="Stream Segments and Reader Groups" class="md-nav__link">
+    Stream Segments and Reader Groups
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordering-guarantees" title="Ordering Guarantees" class="md-nav__link">
+    Ordering Guarantees
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reader-group-checkpoints" title="Reader Group Checkpoints" class="md-nav__link">
+    Reader Group Checkpoints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#transactions" title="Transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-synchronizers" title="State Synchronizers" class="md-nav__link">
+    State Synchronizers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" title="Architecture" class="md-nav__link">
+    Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#putting-the-concepts-together" title="Putting the Concepts Together" class="md-nav__link">
+    Putting the Concepts Together
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-note-on-tiered-storage" title="A Note on Tiered Storage" class="md-nav__link">
+    A Note on Tiered Storage
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream-retention-policies" title="Stream Retention Policies" class="md-nav__link">
+    Stream Retention Policies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/pravega-concepts.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="pravega-concepts">Pravega Concepts<a class="headerlink" href="#pravega-concepts" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#streams">Streams</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#writers-readers-reader-groups">Writers Readers Reader Groups</a></li>
+<li><a href="#stream-segments">Stream Segments</a><ul>
+<li><a href="#events-in-a-stream-segment">Events in a Stream Segment</a></li>
+<li><a href="#stream-segments-and-connection-pooling">Stream Segments and Connection Pooling</a></li>
+<li><a href="#elastic-streams-auto-scaling">Elastic Streams Auto Scaling</a></li>
+<li><a href="#events-stream-segments-and-auto-scaling">Events Stream Segments and Auto scaling</a></li>
+<li><a href="#stream-segments-and-reader-groups">Stream Segments and Reader Groups</a></li>
+<li><a href="#ordering-guarantees">Ordering Guarantees</a></li>
+<li><a href="#reader-group-checkpoints">Reader Group Checkpoints</a></li>
+</ul>
+</li>
+<li><a href="#transactions">Transactions</a></li>
+<li><a href="#state-synchronizers">State Synchronizers</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#putting-the-concepts-together">Putting the Concepts Together</a></li>
+<li><a href="#a-note-on-tiered-storage">A Note on Tiered Storage</a><ul>
+<li><a href="#stream-retention-policies">Stream Retention Policies</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>Pravega is an open source storage system implementing <strong>Streams</strong> as first-class primitive for storing/serving continuous and unbounded data.</p>
+<p>Next, we overview the key concepts in Pravega. For a concise definition of key terms of Pravega concepts, please see <a href="../terminology/">Terminology</a>.</p>
+<h2 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h2>
+<p>Pravega organizes data into Streams. A Stream is a durable, elastic, append-only, unbounded sequence of bytes having good performance and strong consistency.  A Pravega Stream is
+similar to but more flexible than a "topic" in popular message oriented middleware such as <a href="https://www.rabbitmq.com/">RabbitMQ</a> or <a href="https://kafka.apache.org/">Apache Kafka</a>.</p>
+<p>Pravega Streams are based on an append-only log data structure. By using append-only logs, Pravega rapidly ingests data into durable storage. It supports a large variety of application use cases:</p>
+<ul>
+<li>Stream processing with frameworks like <a href="https://flink.apache.org">Flink</a>.</li>
+<li>Publish/subscribe messaging.</li>
+<li>NoSQL databases like Time Series Database (TSDB).</li>
+<li>Workflow engines.</li>
+<li>Event-oriented applications, etc. </li>
+</ul>
+<p>When a developer creates a Stream in Pravega, s/he gives the Stream a meaningful name such as "IoTSensorData" or "WebApplicationLog20170330" to inform about the type of data it stores. Moreover, Pravega Stream names are organized within Scopes. A Scope acts as a namespace for Stream names; all Stream names are unique within their Scope. Therefore, a Stream is uniquely identified by the combination of its name and Scope. Developers can also define meaningful Scope names, such as "FactoryMachines" or "HRWebsitelogs", to effectively organize collections of Streams. For example, Scopes can be used to classify Streams by tenant (in a multi tenant environment), by department in an organization or by geographic location.</p>
+<p>A Stream is unbounded in size – Pravega itself does not impose any limits on how many <a href="#events"><strong>Events</strong></a> (i.e., bytes) are stored in a Stream. Pravega’s design horizontally scales from few machines to a whole datacenter’s capacity.</p>
+<p>Pravega Streams are divided into <strong>Stream Segments</strong> to handle a large volume of data within a Stream. A Stream Segment is a shard, or partition of the data within a Stream. For more information, please see <a href="#stream-segments">Stream Segments</a> section.</p>
+<p>Applications, such as a Java program reading from an IoT sensor, write data to the tail (front) of the Stream. Analytics applications, such as a <a href="https://flink.apache.org">Flink</a> or <a href="https://hadoop.apache.org/">Hadoop</a> jobs, can read from any point in the Stream. Many applications can read and write the same Stream in parallel. Elasticity, scalability, support for large volume of Stream data and applications are the highlights of Pravega's design. More information on read and write operations in the Streams will be discussed in the <a href="#writers-readers-reader-groups">Readers and Writers</a> section.</p>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<p>Pravega's client API allows applications to write and read data to/from Pravega in the form of <strong>Events</strong>. An Event is represented as a set of bytes within a Stream. For example, an Event could be as simple as a small number of bytes containing a temperature reading from an IoT sensor composed of
+a timestamp, a metric identifier and a value. An Event could also be a web log data
+associated with a user click on a website. Applications make sense of Events using
+standard Java <strong>serializers</strong> and <strong>deserializers</strong>, allowing them to read and write
+objects in Pravega similarly to reading and writing objects from
+files.</p>
+<p>Every Event has a <strong>Routing Key</strong>. A Routing Key is a string used by developers to group similar Events. A Routing Key is often derived from data naturally occurring in the Event,
+like "customer-id" or "machine-id" or a declared/user-defined string. For example, a Routing Key could be a date (to group Events together by time) or it could be a IoT sensor id (to group Events by
+machine). A Routing Key is important in defining the read and write semantics that Pravega guarantees.</p>
+<h2 id="writers-readers-reader-groups">Writers, Readers, Reader Groups<a class="headerlink" href="#writers-readers-reader-groups" title="Permanent link">&para;</a></h2>
+<p><img alt="Reader Client" src="../img/producer.consumer.client.new.png" /></p>
+<p>Pravega provides a client library, written in Java, that implements a convenient
+API for Writer and Reader applications.  The Pravega Java Client Library
+encapsulates the Wire Protocol used to communicate Pravega clients and
+servers.</p>
+<ul>
+<li>
+<p><strong>Writer:</strong> An application that creates Events and writes them into a Stream.
+All data is written by appending to the tail (front) of a Stream.</p>
+</li>
+<li>
+<p><strong>Reader:</strong> An application that reads Events from a Stream.  Readers can read
+from any point in the Stream.  Many Readers will be reading Events from the tail
+of the Stream. Tail reads corresponding to recently written Events are immediately delivered to Readers.
+Some Readers will read from earlier parts of the Stream (called <strong>catch-up reads</strong>). The application developer has control over the Reader's start position in the Stream.</p>
+</li>
+<li>
+<p><strong>Position:</strong> Abstraction that represents where in a Stream a Reader is currently located. The Position object can be used as a recovery
+mechanism by replacing the failed Reader by a new Reader starting at the last saved successful read Position. Using this pattern of persisting position objects, applications can be built guaranteeing exactly-once Event processing in the presence of Reader failures.</p>
+</li>
+<li>
+<p><strong>Reader Groups:</strong> Readers are organized into Reader Groups. A Reader Group is a named collection of
+Readers, which together perform parallel reads from a given Stream. When a
+Reader is created through the Pravega data plane API, the developer includes the
+name of the Reader Group associated with it. Pravega guarantees that each Event published
+to a Stream is sent to exactly one Reader within the Reader Group. There could
+be one or more Readers in the Reader Group and there could be many different Reader Groups simultaneously reading from any given Stream. A Reader Group can be considered as a "composite Reader" or "distributed Reader", that allows a distributed application to read and process Stream data
+in parallel. A large amount of Stream data can be consumed by a coordinated group of Readers in a Reader Group.  For example, a collection of Flink tasks processing Stream data in parallel using Reader Group.</p>
+</li>
+</ul>
+<p>For more details on the basics of working with Pravega Readers and Writers, please see <a href="../basic-reader-and-writer/#working-with-pravega-basic-reader-and-writer">Working with Pravega: Basic Reader and
+Writer</a>.</p>
+<h2 id="stream-segments">Stream Segments<a class="headerlink" href="#stream-segments" title="Permanent link">&para;</a></h2>
+<p>A Stream is split into a set of shards or partitions generally referred as <strong>Stream Segments</strong>.</p>
+<p><img alt="Stream Segment" src="../img/stream.segment.png" /> </p>
+<h3 id="events-in-a-stream-segment">Events in a Stream Segment<a class="headerlink" href="#events-in-a-stream-segment" title="Permanent link">&para;</a></h3>
+<p>The Stream Segments acts as a container for Events within the Stream. When an
+Event is written into a Stream, it is stored in one of the Stream Segments based
+on the Event's Routing Key. Pravega uses consistent hashing to assign Events to
+Stream Segments. Event Routing Keys are hashed to form a "key space". The key
+space is then divided into a number of partitions, corresponding to the number
+of Stream Segments. Consistent hashing determines of Events to Stream Segments.</p>
+<h3 id="stream-segments-and-connection-pooling">Stream Segments and Connection pooling<a class="headerlink" href="#stream-segments-and-connection-pooling" title="Permanent link">&para;</a></h3>
+<p>Event is written to one of the Stream Segments by the Pravega Client based on the Event Routing Key in the Stream. The Stream Segments are managed by the different <a href="../segment-store-service/">Segment Store</a> Service instances in the Stream. A new connection to a Segment Store is created even when multiple Segments are owned by the same Segment Store. Every Segment being read by the Pravega client maps to a new connection.
+The number of connections created increases if the user is writing and reading from multiple Streams.
+The goal of <strong>connection pooling</strong> is to ensure a common pool of connections between the client process and the Segment Stores, which does not require a linear growth of the number of connections with the number of Segments.</p>
+<h3 id="elastic-streams-auto-scaling">Elastic Streams: Auto Scaling<a class="headerlink" href="#elastic-streams-auto-scaling" title="Permanent link">&para;</a></h3>
+<p>A unique feature of Pravega is that the number of parallel Stream Segments in a Stream can automatically <strong>grow</strong> and <strong>shrink</strong> over time based on the I/O load it receives. This feature is known as <strong>Auto Scaling</strong>.</p>
+<p>Consider the following figure that shows the relationship between Routing Keys
+and time.</p>
+<p><img alt="Stream Segment" src="../img/segment.split.merge.overtime.new.png" /> </p>
+<ul>
+<li>
+<p>A Stream starts at time <strong>t0</strong> with a configurable number of Stream Segments.  If the
+rate of data written to the Stream is constant, there will be no change in the number of Stream Segments. </p>
+</li>
+<li>
+<p>At time <strong>t1</strong>, the system noted an increase in the ingestion rate and splits Stream <strong>Segment 1</strong> into two parts. This process is referred as <strong>Scale-Up</strong> Event.</p>
+</li>
+<li>
+<p>Before <strong>t1</strong>, Events with a Routing Key that hashes to the upper part of the key
+space (i.e., values ranging from <strong>200-399</strong>) would be placed in Stream <strong>Segment 1</strong> and those that hash into the
+lower part of the key space (i.e., values ranging from <strong>0-199</strong>) would be placed in Stream <strong>Segment 0</strong>.</p>
+</li>
+<li>
+<p>After <strong>t1</strong>, Stream <strong>Segment 1</strong> is split into Stream <strong>Segment 2</strong> and Stream <strong>Segment 3</strong>. The Stream <strong>Segment 1</strong> is sealed and stops accepting writes.  At this point in time, Events with Routing Key <strong>300</strong> and <em>above</em> are written to Stream <strong>Segment 3</strong> and those between <strong>200</strong> and <strong>299</strong> would be written into Stream <strong>Segment 2</strong>.</p>
+</li>
+<li>
+<p>Stream <strong>Segment 0</strong> continues accepting the same range of Events as before <strong>t1</strong>.  </p>
+</li>
+<li>
+<p>Another scale-up Event occurs at time <strong>t2</strong>, as Stream <strong>Segment 0</strong>’s range of Routing
+Key is split into Stream <strong>Segment 5</strong> and Stream <strong>Segment 4</strong>. Also at this time, Stream <strong>Segment 0</strong> is sealed
+and allows no further writes.</p>
+</li>
+<li>
+<p>Stream Segments covering a contiguous range of the key space can also be merged. At
+time <strong>t3</strong>, Stream <strong>Segment 2</strong>’s range and Stream <strong>Segment 5</strong>’s range are merged to Stream <strong>Segment 6</strong> to
+accommodate a decrease in the load on the Stream.</p>
+</li>
+</ul>
+<p>When a Stream is created, it is configured with a <strong>Scaling Policy</strong> that
+determines how a Stream handles the varying changes in its load. Pravega has three kinds of Scaling Policy:</p>
+<ol>
+<li>
+<p><strong>Fixed</strong>:  The number of Stream Segments does not vary with load.</p>
+</li>
+<li>
+<p><strong>Data-based</strong>: Pravega splits a Stream Segment into multiple ones (i.e., Scale-up Event) if the number of bytes per second written to that Stream Segment increases beyond a defined threshold. Similarly, Pravega merges two adjacent Stream Segments (i.e., Scale-down Event) if the number of bytes written to them fall below a defined threshold. Note that, even if the load for a Stream Segment reaches the defined threshold, Pravega does not immediately trigger a Scale-up/down Event. Instead, the load should be satisfying the scaling policy threshold for a <a href="https://github.com/pravega/pravega/blob/master/client/src/main/java/io/pravega/client/stream/ScalingPolicy.java">sufficient amount of time</a>.</p>
+</li>
+<li>
+<p><strong>Event-based</strong>: Similar to the data-based scaling policy, but it uses number of Events instead of bytes.</p>
+</li>
+</ol>
+<h3 id="events-stream-segments-and-auto-scaling">Events, Stream Segments and Auto Scaling<a class="headerlink" href="#events-stream-segments-and-auto-scaling" title="Permanent link">&para;</a></h3>
+<p>As mentioned earlier in this section, that an Event is written into one of the Stream Segments. By considering Auto Scaling, Stream Segments performs bucketing of Events based on Routing Key and time. It is obvious that, at any given time, Events published to a Stream with a given value of Routing Key will appear in the same Stream Segment.</p>
+<p><img alt="Stream Segment" src="../img/rk.segment.new.png" /> </p>
+<p>It is also worth emphasizing that Events are written only on the active Stream
+Segments. Stream Segments that are sealed do not accept writes. In the figure above,
+at time <strong>now</strong>, only Stream <strong>Segments 3</strong>, <strong>6</strong> and <strong>4</strong> are active and the entire key space is covered between those three Stream Segments.  </p>
+<h3 id="stream-segments-and-reader-groups">Stream Segments and Reader Groups<a class="headerlink" href="#stream-segments-and-reader-groups" title="Permanent link">&para;</a></h3>
+<p>Stream Segments play a major role in understanding the way Reader Groups work.</p>
+<p><img alt="Stream Segment" src="../img/segment.readergroup.png" /> </p>
+<p>Pravega assigns <em>zero</em> <em>or</em> <em>more</em> Stream Segments to each Reader in a Reader Group. Pravega tries to balances the number of Stream Segments assigned to each Reader. In the figure above, <strong>Reader B1</strong> reads from two Stream Segments (<strong>Segment 0</strong> and <strong>Segment 3</strong>), while the other Reader Group (<strong>Reader B2</strong>, <strong>Reader B3</strong>) have only only one Stream Segment to read from. Pravega makes sure that each Stream Segment is read exactly by one Reader in any Reader Group configured with that Stream. Irrespective of  Readers being added to the Reader Group or removed from the Reader Group due to crash, Pravega reassigns Stream Segments to maintain balance among the Readers.</p>
+<p>The number of Stream Segments in a Stream determines the upper bound of
+parallelism of readers within a Reader Group. If there are more Stream Segments, different Reader Groups and many parallel sets of Readers can effectively consume the Stream. In the above figure, <strong>Stream 1</strong> has four Stream Segments. The largest effective Reader Group would contain four Readers. <strong>Reader Group B</strong> in the above figure is not quite optimal. If one more Reader was added to the Reader Group, each Reader would have one Stream Segment to process, thus maximizing read
+parallelism. However, the number of Readers in the Reader Group increases beyond
+4, at least one of the Readers will not be assigned a Stream Segment.</p>
+<p>If <strong>Stream 1</strong> in the figure above experienced a <strong>Scale-Down</strong> event, by reducing the
+number of Stream Segments to three, then the <strong>Reader Group B</strong>  will have an
+ideal number of Readers.</p>
+<p>The number of Stream Segments change over time by using the Pravega's Auto Scaling feature as we discussed in the <a href="#elastic-streams-auto-scaling">Auto Scaling</a> section. The size of any Stream is determined by the storage capacity of the Pravega cluster. More Streams can be obtained by increasing the storage of the Pravega cluster.</p>
+<p>Applications can react to changes in the number of Stream Segments in a Stream by adjusting the number of Readers within a Reader Group to maintain optimal read parallelism. As a cool use case, Pravega may allow Flink to increase or decrease the number of task instances that are processing a Stream in parallel.</p>
+<h3 id="ordering-guarantees">Ordering Guarantees<a class="headerlink" href="#ordering-guarantees" title="Permanent link">&para;</a></h3>
+<p>A Stream comprises a set of Segments that can change over time. Segments that overlap in their area of key space have a defined order.</p>
+<p>An Event written to a Stream is written to a single Stream Segment, and is ordered with respect to the Events of that Stream Segment. The existence and position of an Event within a Stream Segment is strongly consistent.</p>
+<p>Readers can be assigned multiple parallel Stream Segments (from different parts of key space). A Reader reading from multiple Stream Segments will interleave the Events of the Stream Segments, but the order of Events per Stream Segment is retained. Specifically, if <strong>s</strong> is a Stream Segment, and <strong>s</strong> contains two Events <em>i.e.,</em> <strong>s</strong> <strong>=</strong> {<strong>e~1</strong>,<strong>e~2</strong>} where <strong>e~1</strong> precedes <strong>e~2</strong>. Thus, for a Reader reading Stream Segments, it is guaranteed that <strong>e~1</strong> will be read before <strong>e~2</strong>.</p>
+<p>This results in the following ordering guarantees:</p>
+<ul>
+<li>
+<p>Events with the same Routing Key are consumed in the order they were written.</p>
+</li>
+<li>
+<p>Events with different Routing Keys are sent to a specific Stream Segment and will always be
+    read in the same order even if the Reader performs back ups and re-reads.</p>
+</li>
+<li>
+<p>If an Event has been acknowledged to its Writer or has been read by a Reader, it is guaranteed that  it will continue to exist in the same location or position for all subsequent reads until it is deleted.</p>
+</li>
+<li>
+<p>If there are multiple Readers reading a Stream and they all back up to any given point, they will never see any reordering with respect to that point. (It will never be the case that an event that they read before the chosen point now comes after or vice versa).</p>
+</li>
+</ul>
+<h2 id="reader-group-checkpoints">Reader Group Checkpoints<a class="headerlink" href="#reader-group-checkpoints" title="Permanent link">&para;</a></h2>
+<p>Pravega provides the ability for an application to initiate a <strong>Checkpoint</strong> on a
+Reader Group.  The idea with a Checkpoint is to create a consistent "point in
+time" persistence of the state of each Reader in the Reader Group, by using a
+specialized Event (<em>Checkpoint Event</em>) to signal each Reader to preserve its
+state. Once a Checkpoint has been completed, the application can use the
+Checkpoint to reset all the Readers in the Reader Group to the known consistent
+state represented by the Checkpoint.</p>
+<p>For more details on working with Reader Groups, Please see <a href="../basic-reader-and-writer/#readergroup-basics">Reader Group Basics</a>.</p>
+<h2 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h2>
+<p>Pravega supports Transactions. The idea of a Transaction is that a Writer can
+"batch" up a bunch of Events and commit them as a unit into a Stream. This is
+useful, for example, in Flink jobs, using Pravega as a sink. The Flink job
+can continuously produce results for some data processing and use the Transaction
+to durably accumulate the results of the processing. For example, at the end of some sort of
+time window, the Flink job can commit the Transaction and therefore
+make the results of the processing available for downstream processing, or in
+the case of an error, the Transaction is aborted and the results disappear.</p>
+<p>A key difference between Pravega's Transactions and similar approaches (Kafka's producer-side batching) vary with the feature durability. Events added to a Transaction are durable when the Event is acknowledged back to the Writer. However, the Events in the Transaction are <em>not</em> visible to Readers until the Transaction is committed by the Writer. A Transaction is a similar to a Stream and is  associated with multiple Stream Segments.  When an Event is published into a
+Transaction, the Event itself is appended to a Stream Segment of the
+Transaction. </p>
+<p>For example, a Stream has five Stream Segments, when a Transaction is created on that
+Stream, conceptually that Transaction also has five Stream Segments. When an Event is
+published into the Transaction, it is routed and assigned to the same numbered Stream Segment similar to Stream (i.e., Event assigned to Stream <strong>Segment 3</strong> in the Stream will be assigned to <strong>Segment 3</strong> in the Transaction). Once the Transaction is committed, all the Transaction Segments are automatically appended to their corresponding Stream Segment in the Stream. If the Transaction is aborted, the Transaction, all its Stream Segments and all the Events published into the Transaction are removed from Pravega.</p>
+<p><img alt="Transaction" src="../img/trx.commit.new.png" /> </p>
+<p>Events published into a Transaction are visible to the Reader only after the Transaction is committed.</p>
+<p>For more details on working with Transactions, please see <a href="../transactions/">Working with Pravega:
+Transactions</a>.</p>
+<h2 id="state-synchronizers">State Synchronizers<a class="headerlink" href="#state-synchronizers" title="Permanent link">&para;</a></h2>
+<p>Pravega implements various building blocks to materialize the Stream primitive. One of such building blocks, namely <strong>State Synchronizer</strong>, is aimed at coordinating processes in a distributed computing environment. Internally, the <strong>State Synchronizer</strong> uses a Pravega Stream to provide a synchronization
+mechanism for state shared between multiple processes running in a cluster and making it easier to build distributed applications. With State Synchronizer, an application developer can use Pravega to read and make changes to shared state consistently and perform optimistic locking. </p>
+<p><img alt="State synchroner" src="../img/state.synchronizer.png" /> </p>
+<p>State Synchronizer could be used to maintain a single, shared copy of an
+application's configuration property across all instances of that application in
+a cloud.  State Synchronizer could also be used to store one piece of data or a
+map with thousands of different key value pairs. In Pravega, managing the state of Reader Groups and distribution of Readers throughout the network is implemented using State Synchronizer.</p>
+<p>An application developer creates a State Synchronizer on a Stream similar to the creation of a Writer. The State Synchronizer keeps a local copy of the shared state and allows faster access to the data for the application. State Synchronizer keeps track of all the changes happening in the shared state and it is responsible for performing any modification to the shared state in the Stream. Each application instance uses the State Synchronizer, to remain updated with the
+changes by pulling updates to the shared state and modifying the local copy of the
+data. Consistency is maintained through a conditional append style of updates
+to the shared state through the State Synchronizer, making sure that updates are
+made only to the most recent version of the shared state.</p>
+<p>The State Synchronizer can occasionally be "compacted" by compressing and removing older updates, while retaining only the most recent version of the state in the backing Stream. This feature assures the application developers, that the shared state does not grow unchecked.</p>
+<p>State Synchronizer works effectively when most updates to shared state are small in
+comparison to the total data size being stored. This can be achieved by allowing them to be written as
+small deltas. As with any optimistic concurrency system, State Synchronizer is
+not at its best when many processes attempt for simultaneous updates on the same piece of data.</p>
+<p>For more details on working with State Synchronizers, please see <a href="../state-synchronizer/">Working with Pravega:
+State Synchronizer</a>.</p>
+<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
+<p>The following figure depicts the components deployed by Pravega:</p>
+<p><img alt="pravega high level architecture" src="../img/pravega.arch.new.png" /></p>
+<p>Pravega is deployed as a distributed system – a cluster of servers and storage
+coordinated to run Pravega called a <strong>Pravega cluster</strong>.  </p>
+<p>Pravega presents a software-defined storage (SDS) architecture formed by <strong>Controller</strong> instances
+(<em>control plane</em>) and Pravega Servers (<em>data plane</em>). The set of Pravega Servers is collectively known as the <strong>Segment Store</strong>. </p>
+<p>The set of Controller instances together forms the control plane of Pravega, providing
+functionality to <em>create, update</em> and <em>delete</em> Streams. Further, it extends the functionality to retrieve information about the Streams, monitor the health of the Pravega cluster, gather metrics, etc.  There
+are usually multiple (recommended at least 3) Controller instances running in a running in a cluster for high availability.  </p>
+<p>The <a href="../segment-store-service/">Segment Store</a> implements the Pravega data plane.
+Pravega Servers provide the API to read and write data in Streams. Data storage is comprised of two tiers:
+- <strong>Tier 1:</strong> It provides short term, low-latency data storage, guaranteeing the durability of data written to Streams. Pravega uses <a href="http://bookkeeper.apache.org/">Apache Bookkeeper</a> to implement
+Tier 1 Storage. Tier 1 Storage typically runs <em>within</em> the Pravega cluster.</p>
+<ul>
+<li><strong>Tier 2:</strong> It provides long term storage for Stream data. Pravega uses HDFS, Dell EMC's Isilon or Dell EMC's Elastic Cloud Storage (ECS) to implement Tier 2 Storage.  Tier 2 Storage is normally deployed <em>outside</em> the Pravega cluster.</li>
+</ul>
+<p>Storage tiering allows Pravega to achieve a sweet spot in the latency vs throughput trade-off. This makes Pravega an ideal storage substrate for serving data to both real-time and batch (analytics) applications. Moreover, as data in Tier 1 Storage ages, it is automatically moved into Tier 2 Storage. Thus, Pravega can store vasts amounts of Stream data and applications can read it at any time, while being oblivious to its actual location.</p>
+<p>Pravega uses <a href="https://zookeeper.apache.org/">Apache Zookeeper</a> as the
+coordination mechanism for the components in the Pravega cluster.  </p>
+<p>Pravega is a distributed storage system providing the Stream primitive first and foremost. Pravega is
+carefully designed to take advantage of software-defined storage, so that the
+amount of data stored in Pravega is limited only by the total storage capacity
+of the data center. Once an Event is written to Pravega, it is durably stored and replicated so it can survive permanent crashes of datacenter nodes.</p>
+<p>Pravega provides a <strong>Java Client Library</strong>, for building client-side
+applications such as analytics applications using Flink. The Pravega Java Client
+Library manages the interaction between the application code and Pravega via a
+custom TCP Wire Protocol.</p>
+<h2 id="putting-the-concepts-together">Putting the Concepts Together<a class="headerlink" href="#putting-the-concepts-together" title="Permanent link">&para;</a></h2>
+<p>The concepts in Pravega are depicted in the following figure:</p>
+<p><img alt="State synchroner" src="../img/putting.all.together.new.png" /> </p>
+<ul>
+<li>
+<p>Pravega clients are Writers and Readers.  Writers write Events into a
+    Stream. Readers read Events from a Stream. Readers are grouped into
+    Reader Groups to read from a Stream in parallel.</p>
+</li>
+<li>
+<p>The Controller is a server-side component that manages the control plane of
+    Pravega.  Streams are created, updated and listed using the Controller API.</p>
+</li>
+<li>
+<p>The Pravega Server is a server-side component that implements reads, writes
+    and other data plane operations.</p>
+</li>
+<li>
+<p>Streams are the fundamental storage primitive in Pravega.  Streams contain a
+    set of data elements called Events.  Events are appended to the “tail” of
+    the Stream by Writers.  Readers can read Events from anywhere in the Stream.</p>
+</li>
+<li>
+<p>A Stream is partitioned into a set of Stream Segments. The number of Stream
+    Segments in a Stream can change over time.  Events are written into exactly
+    one of the Stream Segments based on Routing Key.  For any Reader Group reading a Stream, each Stream Segment is assigned to one Reader in that
+    Reader Group. </p>
+</li>
+<li>
+<p>Each Stream Segment is stored in a combination of Tier 1 and Tier 2 Storage. 
+    The tail of the Stream Segment is stored in Tier 1 providing low latency reads and
+    writes. The rest of the Stream Segment is stored in Tier 2, providing high
+    throughput read access with horizontal scalability and low cost. </p>
+</li>
+</ul>
+<h2 id="a-note-on-tiered-storage">A Note on Tiered Storage<a class="headerlink" href="#a-note-on-tiered-storage" title="Permanent link">&para;</a></h2>
+<p>To deliver an efficient implementation of Streams, Pravega is based on a tiered
+storage model.  Events are persisted in low latency/high IOPS storage (Tier 1
+Storage, write-ahead log) and higher throughput Tier 2 storage (e.g., file system, object store). Writers and Readers are oblivious to the tiered storage model from an API perspective. </p>
+<p>In Pravega, Tier 1 is based on an append-only <strong>Log</strong> data structure.  As Leigh Stewart
+<a href="https://blog.twitter.com/2015/building-distributedlog-twitter-s-high-performance-replicated-log-service">observed</a>,
+there are really three data access mechanisms in a Log:</p>
+<p><img alt="State synchroner" src="../img/anatomy.of.log.png" /> </p>
+<p>All of the write activity, and much of the read activity happens at the tail of
+the log.  Writes are appended to the log and many clients try to read data immediately as it is written to the log. These two data access mechanisms are dominated by the need for low latency – low latency writes by Writers and near real-time access to the published data by Readers.</p>
+<p>Please note that not all Readers read from the tail of the log. Some Readers read
+by starting at some arbitrary position in the log.  These reads are known as
+<strong>catch-up reads</strong>.  Access to historical data traditionally was done by batch
+analytics jobs, often using HDFS and Map/Reduce.  However with new streaming
+applications, we can access historical data as well as current data by just
+accessing the log.  One approach would be to store all the historical data in
+SSDs similar to tail data operations, but that leads to an expensive task and force
+customers to economize by deleting historical data.</p>
+<p>Pravega offers a mechanism that allows customers to use cost-effective, highly-scalable, high-throughput
+storage for the historical part of the log, that way they won’t have to decide on
+when to delete historical data.  Basically, if storage is cheap enough, why not
+keep all of the history?</p>
+<p>Tier 1 Storage aids in faster writes to the Streams by assuring durability and makes reading from the tail of a Stream much quicker. Tier 1 Storage is based on the open source Apache BookKeeper Project. Though not essential, we presume that the Tier 1 Storage will be typically implemented on faster SSDs or
+even non-volatile RAM.</p>
+<p>Tier 2 Storage provides a highly-scalable, high-throughput cost-effective
+storage. We expect this Tier 2 to be typically deployed on spinning disks. Pravega
+asynchronously migrates Events from Tier 1 to Tier 2 to reflect the different
+access patterns to Stream data. Tier 2 Storage is based on an HDFS model. </p>
+<h3 id="stream-retention-policies">Stream Retention Policies<a class="headerlink" href="#stream-retention-policies" title="Permanent link">&para;</a></h3>
+<p>Pravega allows users to store data in Tier 2 as long as there is storage capacity available. But sometimes, users may not be interested to keep all the historical data related to a Stream. Instead, there are use-cases in which it may be useful to retain just a fraction of a Stream's data. For this reason, Streams can be configured with <strong>Retention Policies</strong>.  </p>
+<p>Pravega supports two types of Retention Policies:</p>
+<ul>
+<li>
+<p><strong>Time-based Retention</strong>: It allows the developer to control for how long the data is kept in a Stream before it is deleted. The developer can specify the time limit (milliseconds) in the Stream policy, which is ideal for situations like regulatory compliance that mandate certain retention periods.</p>
+</li>
+<li>
+<p><strong>Size-based Retention</strong>: Retains the newest subset of a Stream's data that does not exceed the specified size in bytes.</p>
+</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../getting-started/" title="Getting Started" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Getting Started
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../terminology/" title="Terminology" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Terminology
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

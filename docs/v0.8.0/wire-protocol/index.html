@@ -1,0 +1,1385 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="https://pravega.io/wire-protocol/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Wire Protocol - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#pravega-streaming-service-wire-protocol" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Wire Protocol
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Wire Protocol" class="md-nav__link md-nav__link--active">
+      Wire Protocol
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../watermarking/" title="Watermarking" class="md-nav__link">
+      Watermarking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/kubernetes-install/" title="Deployment on Kubernetes" class="md-nav__link">
+      Deployment on Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/docker-swarm/" title="Deployment on Docker Swarm" class="md-nav__link">
+      Deployment on Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Pravega Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Pravega Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/auth-plugin/" title="Pravega Authentication/Authorization Plugin" class="md-nav__link">
+      Pravega Authentication/Authorization Plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../auth/client-auth/" title="Client Auth Interface" class="md-nav__link">
+      Client Auth Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-authorization-authentication/" title="Pravega Security Authorization/Authentication" class="md-nav__link">
+      Pravega Security Authorization/Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-configurations/" title="Pravega Security Configurations" class="md-nav__link">
+      Pravega Security Configurations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/pravega-security-encryption/" title="Pravega Security Encryption" class="md-nav__link">
+      Pravega Security Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../security/securing-distributed-mode-cluster/" title="Securing Pravega in Distributed Mode" class="md-nav__link">
+      Securing Pravega in Distributed Mode
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/wire-protocol.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="pravega-streaming-service-wire-protocol">Pravega Streaming Service Wire Protocol<a class="headerlink" href="#pravega-streaming-service-wire-protocol" title="Permanent link">&para;</a></h1>
+<p>This page describes the proposed Wire Protocol for the Streaming Service. See <a href="https://pravega.io/docs/latest/pravega-concepts">Pravega Concepts</a> for more information.</p>
+<h1 id="protocol">Protocol<a class="headerlink" href="#protocol" title="Permanent link">&para;</a></h1>
+<p>Data is sent over the wire in self-contained "messages" that are either "requests" (messages sent from the client to the server) or "replies" (responses sent from the server to the client).</p>
+<p>All the requests and replies have 8 byte headers with two fields (all data is written in <strong>BigEndian</strong> format).</p>
+<ul>
+<li><strong>Message Type</strong>: An Integer (4 bytes) identifies the message type and determines the subsequent fields. (Note that the protocol can be extended by adding new types.)</li>
+<li><strong>Length</strong>:  An Integer (4 bytes) (Messages should be less than 2<sup>24</sup>, but the upper bits remain zero). Payload size of the message (possibly zero, indicating there is no data). The remainder of the fields are specific to the type of the message. A few important messages are listed below.</li>
+</ul>
+<h2 id="protocol-primitive-types">Protocol Primitive Types<a class="headerlink" href="#protocol-primitive-types" title="Permanent link">&para;</a></h2>
+<p>The protocol is built out of the following primitive types.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BOOLEAN (1 byte)</td>
+<td>Values 0 and 1 are used to represent <em>False</em> and <em>True</em> respectively. When reading a boolean value, any non-zero value is considered true.</td>
+</tr>
+<tr>
+<td>STRING (2 bytes)</td>
+<td>A sequence of characters. The first 2 bytes are used to indicate the byte length of the UTF-8 encoded character sequence, which is non-negative. This is followed by the UTF-8 encoding of the string.</td>
+</tr>
+<tr>
+<td>VARLONG (8 bytes)</td>
+<td>An Integer between -2<sup>63</sup> and 2<sup>63</sup>-1 inclusive. Encoding follows the variable-length zig-zag encoding from <a href="https://developers.google.com/protocol-buffers/">Google Protocol Buffers</a>.</td>
+</tr>
+<tr>
+<td>INT (4 bytes)</td>
+<td>An Integer between -2<sup>31</sup> and 2<sup>31</sup>-1 inclusive.</td>
+</tr>
+<tr>
+<td>UUID (16 bytes)</td>
+<td>Universally Unique Identifiers (UUID) as defined by RFC 4122, ISO/IEC 9834-8:2005, and related standards. It can be used as a global unique 128-bit identifier.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="reading">Reading<a class="headerlink" href="#reading" title="Permanent link">&para;</a></h1>
+<h2 id="read-segment-request">Read Segment - Request<a class="headerlink" href="#read-segment-request" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Segment</code></td>
+<td>String</td>
+<td>The Stream Segment that was read.</td>
+</tr>
+<tr>
+<td><code>Offset</code></td>
+<td>Long</td>
+<td>The <code>Offset</code> in the Stream Segment to read from.</td>
+</tr>
+<tr>
+<td><code>suggestedLength</code> of Reply</td>
+<td>Integer</td>
+<td>The clients can request for the required length to the server (but the server may allot a different number of bytes.</td>
+</tr>
+<tr>
+<td><code>delegationToken</code></td>
+<td>String</td>
+<td>This was added to perform <em>auth</em>. It is an opaque-to-the-client token provided by the Controller that says it's allowed to make this call.</td>
+</tr>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+</tbody>
+</table>
+<p>More information on <code>Segment</code> Request messages like <code>MergeSegment</code>, <code>SealSegment</code>, <code>TruncateSegment</code> and <code>DeleteSegment</code>, can be found <a href="https://github.com/pravega/pravega/blob/master/shared/protocol/src/main/java/io/pravega/shared/protocol/netty/WireCommands.java">here</a>.</p>
+<h2 id="segment-read-reply">Segment Read - Reply<a class="headerlink" href="#segment-read-reply" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Segment</code></td>
+<td>String</td>
+<td>This Segment indicates the Stream Segment that was read.</td>
+</tr>
+<tr>
+<td><code>Offset</code></td>
+<td>Long</td>
+<td>The <code>Offset</code> in the Stream Segment to read from.</td>
+</tr>
+<tr>
+<td><code>Tail</code></td>
+<td>Boolean</td>
+<td>If the read reached the tail of the Stream Segment.</td>
+</tr>
+<tr>
+<td><code>EndOfSegment</code></td>
+<td>Boolean</td>
+<td>If the read reached the end of the Stream Segment.</td>
+</tr>
+<tr>
+<td><code>Data</code></td>
+<td>Binary</td>
+<td>Remaining length in the message.</td>
+</tr>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+</tbody>
+</table>
+<p>The client requests to read from a particular Segment at a particular <code>Offset</code>. It then receives one or more replies in the form of <code>SegmentRead</code> messages. These contain the data they requested (assuming it exists). The server may decide transferring to the client more or less data than it was asked for, splitting that data in a suitable number of reply messages.</p>
+<p>More information on <code>Segment</code> Reply messages like <code>SegmentIsSealed</code>,<code>SegmentIsTruncated</code>, <code>SegmentAlreadyExists</code>,<code>NoSuchSegment</code> and <code>TableSegmentNotEmpty</code>, can be found <a href="https://github.com/pravega/pravega/blob/master/shared/protocol/src/main/java/io/pravega/shared/protocol/netty/WireCommands.java">here</a>.</p>
+<h1 id="appending">Appending<a class="headerlink" href="#appending" title="Permanent link">&para;</a></h1>
+<h2 id="setup-append-request">Setup Append - Request<a class="headerlink" href="#setup-append-request" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+<tr>
+<td><code>writerId</code></td>
+<td>UUID</td>
+<td>Identifies the requesting appender.</td>
+</tr>
+<tr>
+<td><code>Segment</code></td>
+<td>String</td>
+<td>This Segment indicates the Stream Segment that was read.</td>
+</tr>
+<tr>
+<td><code>delegationToken</code></td>
+<td>String</td>
+<td>This was added to perform <em>auth</em>. It is an opaque-to-the-client token provided by the Controller that says it's allowed to make this call.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="append-setup-reply">Append Setup - Reply<a class="headerlink" href="#append-setup-reply" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+<tr>
+<td><code>Segment</code></td>
+<td>String</td>
+<td>This Segment indicates the Stream Segment to append to.</td>
+</tr>
+<tr>
+<td><code>writerId</code></td>
+<td>UUID</td>
+<td>Identifies the requesting appender. This ID is used to identify the Segment for which an AppendBlock is destined.</td>
+</tr>
+<tr>
+<td><code>lastEventNumber</code></td>
+<td>Long</td>
+<td>Specifies the last event number in the Stream.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendblock-request">AppendBlock - Request<a class="headerlink" href="#appendblock-request" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writerId</code></td>
+<td>UUID</td>
+<td>Identifies the requesting appender.</td>
+</tr>
+<tr>
+<td><code>Data</code></td>
+<td>Binary</td>
+<td>This holds the contents of the block.</td>
+</tr>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendblockend-request">AppendBlockEnd - Request<a class="headerlink" href="#appendblockend-request" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writerId</code></td>
+<td>UUID</td>
+<td>Identifies the requesting appender.</td>
+</tr>
+<tr>
+<td><code>sizeOfWholeEvents</code></td>
+<td>Integer</td>
+<td>The total number of bytes in this block (starting from the beginning) that is composed of whole (meaning non-partial) events.</td>
+</tr>
+<tr>
+<td><code>Data</code></td>
+<td>Binary</td>
+<td>This holds the contents of the block.</td>
+</tr>
+<tr>
+<td><code>numEvents</code></td>
+<td>Integer</td>
+<td>Specifies the current number of events.</td>
+</tr>
+<tr>
+<td><code>lastEventNumber</code></td>
+<td>Long</td>
+<td>Specifies the value of last event number in the Stream.</td>
+</tr>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>ApppendBlockEnd</code> has a <code>sizeOfWholeEvents</code> to allow the append block to be less than full. This allows the client to begin writing a block before it has a large number of events. This avoids the need to buffer up events in the client and allows for lower latency.</p>
+<h2 id="partial-event-requestreply">Partial Event - Request/Reply<a class="headerlink" href="#partial-event-requestreply" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Data</strong>: A Partial Event is an Event at the end of an Append block that did not fully fit in the Append block. The remainder of the Event will be available in the <code>AppendBlockEnd</code>.</li>
+</ul>
+<h2 id="event-request">Event - Request<a class="headerlink" href="#event-request" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Data</code></td>
+<td>Specifies the Event's data (only valid inside the block).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="data-appended-reply">Data Appended - Reply<a class="headerlink" href="#data-appended-reply" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>writerId</code></td>
+<td>UUID</td>
+<td>Identifies the requesting appender.</td>
+</tr>
+<tr>
+<td><code>eventNumber</code></td>
+<td>Long</td>
+<td>This matches the <code>lastEventNumber</code> in the append block.</td>
+</tr>
+<tr>
+<td><code>previousEventNumber</code></td>
+<td>Long</td>
+<td>This is the previous value of <code>eventNumber</code> that was returned in the last <code>DataAppeneded</code>.</td>
+</tr>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+</tbody>
+</table>
+<p>When appending a client:</p>
+<ul>
+<li>Establishes a connection to the host chosen by it.</li>
+<li>Sends a "Setup Append" request.</li>
+<li>Waits for the "Append Setup" reply.</li>
+</ul>
+<p>After receiving the "Append Setup" reply, it performs the following:</p>
+<ul>
+<li>Send a <code>AppendBlock</code> request.</li>
+<li>Send as many Events that can fit in the block.</li>
+<li>Send an <code>AppendBlockEnd</code> request.</li>
+</ul>
+<p>While this is happening, the server will be periodically sending it <code>DataAppended</code> replies acking messages. Note that there can be multiple "Appends Setup" for a given TCP connection. This allows a client to share a connection when producing to multiple Segments.</p>
+<p>A client can optimize its appending by specifying a large value in it's <code>AppendBlock</code> message, as the events inside of the block do not need to be processed individually.</p>
+<h1 id="segment-attribute">Segment Attribute<a class="headerlink" href="#segment-attribute" title="Permanent link">&para;</a></h1>
+<h2 id="getsegmentattribute-request">GetSegmentAttribute - Request<a class="headerlink" href="#getsegmentattribute-request" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+<tr>
+<td><code>SegmentName</code></td>
+<td>String</td>
+<td>The Segment to retrieve the attribute from.</td>
+</tr>
+<tr>
+<td><code>attributeId</code></td>
+<td>UUID</td>
+<td>The attribute to retrieve.</td>
+</tr>
+<tr>
+<td><code>delegationToken</code></td>
+<td>String</td>
+<td>This was added to perform <em>auth</em>. It is an opaque-to-the-client token provided by the Controller that says it's allowed to make this call.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="segmentatrribute-reply">SegmentAtrribute - Reply<a class="headerlink" href="#segmentatrribute-reply" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+<tr>
+<td><code>Value</code></td>
+<td>Long</td>
+<td>The value of the attribute.</td>
+</tr>
+</tbody>
+</table>
+<p>More information on <code>SegmentAttribute</code> Request message like <code>updateSegmentAttribute</code> and Reply message like <code>SegmentAttributeUpdate</code> can be found <a href="https://github.com/pravega/pravega/blob/master/shared/protocol/src/main/java/io/pravega/shared/protocol/netty/WireCommands.java">here</a>.</p>
+<h1 id="tablesegment">TableSegment<a class="headerlink" href="#tablesegment" title="Permanent link">&para;</a></h1>
+<h2 id="readtable-request">ReadTable - Request<a class="headerlink" href="#readtable-request" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+<tr>
+<td><code>Segment</code></td>
+<td>String</td>
+<td>The Stream Segment that was read.</td>
+</tr>
+<tr>
+<td><code>delegationToken</code></td>
+<td>String</td>
+<td>This was added to perform <em>auth</em>. It is an opaque-to-the-client token provided by the Controller that says it's allowed to make this call.</td>
+</tr>
+<tr>
+<td><code>keys</code></td>
+<td>List<TableKey></td>
+<td>The version of the key is always set to <code>io.pravega.segmentstore.contracts.tables.TableKey.NO_VERSION</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>More information on <code>TableSegments</code> Request messages like <code>MergeTableSegments</code>, <code>SealTableSegment</code>, <code>DeleteTableSegment</code>, <code>UpdateTableEntries</code>, <code>RemoveTableKeys</code>, <code>ReadTableKeys</code> and <code>ReadTableEntries</code> can be found <a href="https://github.com/pravega/pravega/blob/master/shared/protocol/src/main/java/io/pravega/shared/protocol/netty/WireCommands.java">here</a>.</p>
+<h2 id="tableread-reply">TableRead - Reply<a class="headerlink" href="#tableread-reply" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Field</strong></th>
+<th><strong>Datatype</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RequestId</code></td>
+<td>Long</td>
+<td>The client-generated <em>ID</em> that identifies a client request.</td>
+</tr>
+<tr>
+<td><code>Segment</code></td>
+<td>String</td>
+<td>The Stream Segment that was read.</td>
+</tr>
+<tr>
+<td><code>Entries</code></td>
+<td>TableEntries</td>
+<td>The entries of the Table that was read.</td>
+</tr>
+</tbody>
+</table>
+<p>More information on <code>TableSegments</code> Reply messages like <code>TableEntriesUpdated</code>, <code>TableKeysRemoved</code>, <code>TableKeysRead</code> and <code>TableEntriesRead</code> can be found <a href="https://github.com/pravega/pravega/blob/master/shared/protocol/src/main/java/io/pravega/shared/protocol/netty/WireCommands.java">here</a>.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../controller-service/" title="Controller Service" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Controller Service
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../state-synchronizer-design/" title="StateSynchronizer" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                StateSynchronizer
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

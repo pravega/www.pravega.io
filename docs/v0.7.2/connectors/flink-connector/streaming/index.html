@@ -1,0 +1,1075 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega Flink Connectors">
+      
+      
+        <link rel="canonical" href="http://pravega.io/streaming/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Streaming - Exploring Pravega Flink Connectors</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#streaming-connector" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega Flink Connectors
+              </span>
+              <span class="md-header-nav__topic">
+                Streaming
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega Flink Connectors
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../quickstart/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Streaming
+      </label>
+    
+    <a href="./" title="Streaming" class="md-nav__link md-nav__link--active">
+      Streaming
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flinkpravegareader" title="FlinkPravegaReader" class="md-nav__link">
+    FlinkPravegaReader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-streams" title="Input Stream(s)" class="md-nav__link">
+    Input Stream(s)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reader-parallelism" title="Reader Parallelism" class="md-nav__link">
+    Reader Parallelism
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkpointing" title="Checkpointing" class="md-nav__link">
+    Checkpointing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-extraction-watermark-emission" title="Timestamp Extraction (Watermark Emission)" class="md-nav__link">
+    Timestamp Extraction (Watermark Emission)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamcuts" title="StreamCuts" class="md-nav__link">
+    StreamCuts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historical-stream-processing" title="Historical Stream Processing" class="md-nav__link">
+    Historical Stream Processing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flinkpravegawriter" title="FlinkPravegaWriter" class="md-nav__link">
+    FlinkPravegaWriter
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writer-parallelism" title="Writer Parallelism" class="md-nav__link">
+    Writer Parallelism
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-routing" title="Event Routing" class="md-nav__link">
+    Event Routing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-time-ordering" title="Event Time Ordering" class="md-nav__link">
+    Event Time Ordering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watermark" title="Watermark" class="md-nav__link">
+    Watermark
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writer-modes" title="Writer Modes" class="md-nav__link">
+    Writer Modes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../batch/" title="Batch" class="md-nav__link">
+      Batch
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../table-api/" title="Table API" class="md-nav__link">
+      Table API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Metrics" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configurations/" title="Configurations" class="md-nav__link">
+      Configurations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../serialization/" title="Serialization" class="md-nav__link">
+      Serialization
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flinkpravegareader" title="FlinkPravegaReader" class="md-nav__link">
+    FlinkPravegaReader
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-streams" title="Input Stream(s)" class="md-nav__link">
+    Input Stream(s)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reader-parallelism" title="Reader Parallelism" class="md-nav__link">
+    Reader Parallelism
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkpointing" title="Checkpointing" class="md-nav__link">
+    Checkpointing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timestamp-extraction-watermark-emission" title="Timestamp Extraction (Watermark Emission)" class="md-nav__link">
+    Timestamp Extraction (Watermark Emission)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamcuts" title="StreamCuts" class="md-nav__link">
+    StreamCuts
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historical-stream-processing" title="Historical Stream Processing" class="md-nav__link">
+    Historical Stream Processing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flinkpravegawriter" title="FlinkPravegaWriter" class="md-nav__link">
+    FlinkPravegaWriter
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example_1" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writer-parallelism" title="Writer Parallelism" class="md-nav__link">
+    Writer Parallelism
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-routing" title="Event Routing" class="md-nav__link">
+    Event Routing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-time-ordering" title="Event Time Ordering" class="md-nav__link">
+    Event Time Ordering
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watermark" title="Watermark" class="md-nav__link">
+    Watermark
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writer-modes" title="Writer Modes" class="md-nav__link">
+    Writer Modes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/flink-connectors/tree/master/documentation/src/docs/streaming.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<h1 id="streaming-connector">Streaming Connector</h1>
+<p>The Flink Connector library for Pravega provides a data source and data sink
+for use with the Flink Streaming API. See the below sections for details.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#flinkpravegareader">FlinkPravegaReader</a></li>
+<li><a href="#parameters">Parameters</a></li>
+<li><a href="#input-streams">Input Stream(s)</a></li>
+<li><a href="#reader-parallelism">Reader Parallelism</a></li>
+<li><a href="#checkpointing">Checkpointing</a></li>
+<li><a href="#timestamp-extraction-watermark-emission">Timestamp Extraction (Watermark Emission)</a></li>
+<li><a href="#streamcuts">Stream Cuts</a></li>
+<li><a href="#historical-stream-processing">Historical Stream Processing</a></li>
+<li><a href="#flinkpravegawriter">FlinkPravegaWriter</a></li>
+<li><a href="#parameters-1">Parameters</a></li>
+<li><a href="#writer-parallelism">Writer Parallelism</a></li>
+<li><a href="#event-routing">Event Routing</a></li>
+<li><a href="#event-time-ordering">Event Time Ordering</a></li>
+<li><a href="#watermark">Watermark</a></li>
+<li><a href="#writer-modes">Writer Modes</a></li>
+<li><a href="#metrics">Metrics</a></li>
+<li><a href="#serialization">Data Serialization</a></li>
+</ul>
+<h2 id="flinkpravegareader">FlinkPravegaReader</h2>
+<p>A Pravega Stream may be used as a data source within a Flink streaming program using an instance of   <code>io.pravega.connectors.flink.FlinkPravegaReader</code>. The reader reads a given Pravega Stream (or multiple streams) as a <a href="https://ci.apache.org/projects/flink/flink-docs-stable/api/java/org/apache/flink/streaming/api/datastream/DataStream.html"><code>DataStream</code></a> (the basic abstraction of the Flink Streaming API).</p>
+<p>Open a Pravega Stream as a DataStream using the method <a href="https://ci.apache.org/projects/flink/flink-docs-stable/api/java/org/apache/flink/streaming/api/environment/StreamExecutionEnvironment.html#addSource-org.apache.flink.streaming.api.functions.source.SourceFunction-"><code>StreamExecutionEnvironment::addSource</code></a>.</p>
+<h4 id="example">Example</h4>
+<div class="highlight"><pre><span></span><span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+<span class="c1">// Define the Pravega configuration</span>
+<span class="n">PravegaConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">PravegaConfig</span><span class="o">.</span><span class="na">fromParams</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+
+<span class="c1">// Define the event deserializer</span>
+<span class="n">DeserializationSchema</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">deserializer</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1">// Define the data stream</span>
+<span class="n">FlinkPravegaReader</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">pravegaSource</span> <span class="o">=</span> <span class="n">FlinkPravegaReader</span><span class="o">.&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">forStream</span><span class="o">(...)</span>
+    <span class="o">.</span><span class="na">withPravegaConfig</span><span class="o">(</span><span class="n">config</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withDeserializationSchema</span><span class="o">(</span><span class="n">deserializer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="n">pravegaSource</span><span class="o">);</span>
+</pre></div>
+
+<h3 id="parameters">Parameters</h3>
+<p>A builder API is provided to construct an instance of <code>FlinkPravegaReader</code>. See the table below for a summary of builder properties.  Note that, the builder accepts an instance of <code>PravegaConfig</code> for common configuration properties.  See the <a href="../configurations/">configurations</a> page for more information.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>withPravegaConfig</code></td>
+<td>The Pravega client configuration, which includes connection info, security info, and a default scope.</td>
+</tr>
+<tr>
+<td><code>forStream</code></td>
+<td>The stream to be read from, with optional start and/or end position.  May be called repeatedly to read numerous streams in parallel.</td>
+</tr>
+<tr>
+<td><code>uid</code></td>
+<td>The uid to identify the checkpoint state of this source.</td>
+</tr>
+<tr>
+<td><code>withReaderGroupScope</code></td>
+<td>The scope to store the Reader Group synchronization stream into.</td>
+</tr>
+<tr>
+<td><code>withReaderGroupName</code></td>
+<td>The Reader Group name for display purposes.</td>
+</tr>
+<tr>
+<td><code>withReaderGroupRefreshTime</code></td>
+<td>The interval for synchronizing the Reader Group state across parallel source instances.</td>
+</tr>
+<tr>
+<td><code>withCheckpointInitiateTimeout</code></td>
+<td>The timeout for executing a checkpoint of the Reader Group state.</td>
+</tr>
+<tr>
+<td><code>withDeserializationSchema</code></td>
+<td>The deserialization schema which describes how to turn byte messages into events.</td>
+</tr>
+<tr>
+<td><code>withTimestampAssigner</code></td>
+<td>The <code>AssignerWithTimeWindows</code> implementation which describes the event timestamp and Pravega watermark strategy in event time semantics.</td>
+</tr>
+<tr>
+<td><code>enableMetrics</code></td>
+<td>true or false to enable/disable reporting Pravega metrics. Metrics is enabled by default.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="input-streams">Input Stream(s)</h3>
+<p>Each stream in Pravega is contained by a scope.  A scope acts as a namespace for one or more streams.  The <code>FlinkPravegaReader</code> is able to read from numerous streams in parallel, even across scopes.  The builder API accepts both <strong>qualified</strong> and <strong>unqualified</strong> stream names.  </p>
+<ul>
+<li>In qualified, the scope is explicitly specified, e.g. <code>my-scope/my-stream</code>.  </li>
+<li>In Unqualified stream names are assumed to refer to the default scope as set in the <code>PravegaConfig</code>.</li>
+</ul>
+<p>A stream may be specified in one of three ways:</p>
+<ol>
+<li>As a string containing a qualified name, in the form <code>scope/stream</code>.</li>
+<li>As a string containing an unqualified name, in the form <code>stream</code>. Such streams are resolved to the default scope.</li>
+<li>As an instance of <code>io.pravega.client.stream.Stream</code>, e.g. <code>Stream.of("my-scope", "my-stream")</code>.</li>
+</ol>
+<h3 id="reader-parallelism">Reader Parallelism</h3>
+<p>The <code>FlinkPravegaReader</code> supports parallelization. Use the <code>setParallelism</code> method to of <code>Datastream</code> to configure the number of parallel instances to execute.  The parallel instances consume the stream in a coordinated manner, each consuming one or more stream segments.</p>
+<p><strong>Note:</strong> Coordination is achieved with the use of a Pravega Reader Group, which is based on a <a href="http://pravega.io/docs/latest/pravega-concepts/#state-synchronizers">State Synchronizer</a>. The Synchronizer creates a backing stream that may be manually deleted after the completion of the job.</p>
+<h3 id="checkpointing">Checkpointing</h3>
+<p>In order to make state fault tolerant, Flink needs to <strong>checkpoint</strong> the state. Checkpoints allow Flink to recover state and positions in the streams to give the application the same semantics as a failure-free execution. The reader is compatible with Flink checkpoints and savepoints. The reader automatically recovers from failure by rewinding to the checkpointed position in the stream.</p>
+<p>A <strong>savepoint</strong> is self-contained; it contains all information needed to resume from the correct position.</p>
+<p>The checkpoint mechanism works as a two-step process:</p>
+<ul>
+<li>The <a href="https://ci.apache.org/projects/flink/flink-docs-stable/api/java/org/apache/flink/runtime/checkpoint/MasterTriggerRestoreHook.html">master hook</a> handler from the job manager initiates the <a href="https://ci.apache.org/projects/flink/flink-docs-stable/api/java/org/apache/flink/runtime/checkpoint/MasterTriggerRestoreHook.html#triggerCheckpoint-long-long-java.util.concurrent.Executor-"><code>triggerCheckpoint</code></a> request to  the <code>ReaderCheckpointHook</code> that was registered with the Job Manager during <code>FlinkPravegaReader</code> source initialization. The <code>ReaderCheckpointHook</code> handler notifies Pravega to checkpoint the current reader state. This is a non-blocking call which returns a <code>future</code> once Pravega readers are done with the checkpointing.</li>
+<li>A <code>CheckPoint</code> event will be sent by Pravega as part of the data stream flow and on receiving the event, the <code>FlinkPravegaReader</code> will initiate <a href="https://github.com/apache/flink/blob/master/flink-streaming-java/src/main/java/org/apache/flink/streaming/api/checkpoint/ExternallyInducedSource.java#L73"><code>triggerCheckpoint</code></a> request to effectively let Flink continue and complete the checkpoint process.</li>
+</ul>
+<h3 id="timestamp-extraction-watermark-emission">Timestamp Extraction (Watermark Emission)</h3>
+<p>Flink requires the events’ timestamps (each element in the stream needs to have its event timestamp assigned). This is achieved by accessing/extracting the timestamp from some field in the element. These are used to tell the system about progress in event time.</p>
+<p>Since Pravega 0.6, Pravega has proposed a new <a href="https://github.com/pravega/pravega/wiki/PDP-33:-Watermarking">watermarking API</a> to  enable the writer to provide time information.
+On the reader side, a new concept <a href="https://github.com/pravega/pravega/wiki/PDP-33:-Watermarking#event-reader-api-changes"><code>TimeWindow</code></a> is proposed to represent a time window for the events which are currently being read by a reader.</p>
+<p>It is possible to use event time semantics with either pravega watermark (after 0.6) or normal watermark. </p>
+<p>To use Pravega watermark, an interface called <code>AssignerWithTimeWindows</code> should be implemented in the application via an application-specific timestamp assigner and a watermark generator with <code>TimeWindow</code>. Different applications can choose to be more or less conservative with the given <code>TimeWindow</code>.
+<code>LowerBoundAssigner</code> is provided as a default implementation of the most conservative watermark. <code>LowerBoundAssigner</code> periodically emits the watermark which equals the lower bound of TimeWindow.  You can set the period of watermark emission like below.</p>
+<div class="highlight"><pre><span></span><span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+<span class="n">env</span><span class="o">.</span><span class="na">getConfig</span><span class="o">().</span><span class="na">setAutoWatermarkInterval</span><span class="o">(</span><span class="n">AUTO_WATERMARK_INTERVAL_MS</span><span class="o">);</span>
+</pre></div>
+
+<p>To use normal watermark, you can follow <a href="https://ci.apache.org/projects/flink/flink-docs-stable/dev/event_timestamps_watermarks.html#timestamp-assigners--watermark-generators">Flink documentation</a>. Simply, specify an <code>AssignerWithPeriodicWatermarks</code> or <code>AssignerWithPunctuatedWatermarks</code> on the <code>DataStream</code> as normal.</p>
+<p>Each parallel instance of the source processes one or more stream segments in parallel. Each watermark generator instance will receive events multiplexed from numerous segments. Be aware that segments are processed in parallel, and that no effort is made to order the events across segments in terms of their event time.  Also, a given segment may be reassigned to another parallel instance at any time, preserving exactly-once behavior but causing further spread in observed event times.</p>
+<h3 id="streamcuts">StreamCuts</h3>
+<p>A <code>StreamCut</code> represents a specific position in a Pravega Stream, which may be obtained from various API interactions with the Pravega client. The <code>FlinkPravegaReader</code> accepts a <code>StreamCut</code> as the start and/or end position of a given stream. For further reading on
+StreamCuts, please refer to documentation on <a href="http://pravega.io/docs/latest/streamcuts/">StreamCut</a> and <a href="https://github.com/pravega/pravega-samples/tree/master/pravega-client-examples/src/main/java/io/pravega/example/streamcuts">sample code</a>.</p>
+<p>Many Readers will be reading Events from the tail of the Stream. Tail reads corresponding to recently written Events are immediately delivered to Readers. </p>
+<p>Here is an example for a Flink application to perform tail-read.</p>
+<div class="highlight"><pre><span></span><span class="n">StreamManager</span> <span class="n">streamManager</span> <span class="o">=</span> <span class="n">StreamManager</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">pravegaConfig</span><span class="o">.</span><span class="na">getClientConfig</span><span class="o">());</span>
+<span class="n">StreamCut</span> <span class="n">tailStreamCut</span> <span class="o">=</span> <span class="n">streamManager</span><span class="o">.</span><span class="na">getStreamInfo</span><span class="o">(</span><span class="s">&quot;scope&quot;</span><span class="o">,</span> <span class="s">&quot;stream&quot;</span><span class="o">).</span><span class="na">getTailStreamCut</span><span class="o">();</span>
+
+<span class="n">FlinkPravegaReader</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">pravegaSource</span> <span class="o">=</span> <span class="n">FlinkPravegaReader</span><span class="o">.&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">forStream</span><span class="o">(</span><span class="n">streamName</span><span class="o">,</span> <span class="n">tailStreamCut</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withPravegaConfig</span><span class="o">(</span><span class="n">config</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">withDeserializationSchema</span><span class="o">(</span><span class="n">deserializer</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="na">addSource</span><span class="o">(</span><span class="n">pravegaSource</span><span class="o">);</span>
+</pre></div>
+
+<h4 id="historical-stream-processing">Historical Stream Processing</h4>
+<p>Historical processing refers to processing stream data from a specific position in the stream rather than from the stream's tail.  The builder API provides an overloaded method <code>forStream</code> that accepts a <code>StreamCut</code> parameter for this purpose.</p>
+<p>One such example is re-processing a stream, where we may have to process the data from the beginning (or from a certain point in the stream) to re-derive the output. For instance, in situations where the computation logic has been changed to address new additional criteria, or we fixed a bug or doing a typical A/B testing etc., where the ability to consume historical data as a stream is critical.</p>
+<h2 id="flinkpravegawriter">FlinkPravegaWriter</h2>
+<p>A Pravega Stream may be used as a data sink within a Flink program using an instance of <code>io.pravega.connectors.flink.FlinkPravegaWriter</code>. Add an instance of the writer to the dataflow program using the method <a href="https://ci.apache.org/projects/flink/flink-docs-stable/api/java/org/apache/flink/streaming/api/datastream/DataStream.html#addSink-org.apache.flink.streaming.api.functions.sink.SinkFunction-"><code>DataStream::addSink</code></a>.</p>
+<h3 id="example_1">Example</h3>
+<div class="highlight"><pre><span></span><span class="n">StreamExecutionEnvironment</span> <span class="n">env</span> <span class="o">=</span> <span class="n">StreamExecutionEnvironment</span><span class="o">.</span><span class="na">getExecutionEnvironment</span><span class="o">();</span>
+
+<span class="c1">// Define the Pravega configuration</span>
+<span class="n">PravegaConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="n">PravegaConfig</span><span class="o">.</span><span class="na">fromParams</span><span class="o">(</span><span class="n">params</span><span class="o">);</span>
+
+<span class="c1">// Define the event serializer</span>
+<span class="n">SerializationSchema</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">serializer</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1">// Define the event router for selecting the Routing Key</span>
+<span class="n">PravegaEventRouter</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">router</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1">// Define the sink function</span>
+<span class="n">FlinkPravegaWriter</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">pravegaSink</span> <span class="o">=</span> <span class="n">FlinkPravegaWriter</span><span class="o">.&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span><span class="n">builder</span><span class="o">()</span>
+   <span class="o">.</span><span class="na">forStream</span><span class="o">(...)</span>
+   <span class="o">.</span><span class="na">withPravegaConfig</span><span class="o">(</span><span class="n">config</span><span class="o">)</span>
+   <span class="o">.</span><span class="na">withSerializationSchema</span><span class="o">(</span><span class="n">serializer</span><span class="o">)</span>
+   <span class="o">.</span><span class="na">withEventRouter</span><span class="o">(</span><span class="n">router</span><span class="o">)</span>
+   <span class="o">.</span><span class="na">withWriterMode</span><span class="o">(</span><span class="n">PravegaWriterMode</span><span class="o">.</span><span class="na">EXACTLY_ONCE</span><span class="o">)</span>
+   <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="n">DataStream</span><span class="o">&lt;</span><span class="n">MyClass</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">stream</span><span class="o">.</span><span class="na">addSink</span><span class="o">(</span><span class="n">pravegaSink</span><span class="o">);</span>
+</pre></div>
+
+<h3 id="parameters_1">Parameters</h3>
+<p>A builder API is provided to construct an instance of <code>FlinkPravegaWriter</code>. See the table below for a summary of builder properties.  Note that the builder accepts an instance of <code>PravegaConfig</code> for common configuration properties.  See the <a href="../configurations/">configurations</a> page for more information.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>withPravegaConfig</code></td>
+<td>The Pravega client configuration, which includes connection info, security info, and a default scope.</td>
+</tr>
+<tr>
+<td><code>forStream</code></td>
+<td>The stream to be written to.</td>
+</tr>
+<tr>
+<td><code>withWriterMode</code></td>
+<td>The writer mode to provide <em>Best-effort</em>, <em>At-least-once</em>, or <em>Exactly-once</em> guarantees.</td>
+</tr>
+<tr>
+<td><code>withTxnLeaseRenewalPeriod</code></td>
+<td>The Transaction lease renewal period that supports the <em>Exactly-once</em> writer mode.</td>
+</tr>
+<tr>
+<td><code>withSerializationSchema</code></td>
+<td>The serialization schema which describes how to turn events into byte messages.</td>
+</tr>
+<tr>
+<td><code>withEventRouter</code></td>
+<td>The router function which determines the Routing Key for a given event.</td>
+</tr>
+<tr>
+<td><code>enableWatermark</code></td>
+<td>true or false to enable/disable emitting Flink watermark in event-time semantics to Pravega streams.</td>
+</tr>
+<tr>
+<td><code>enableMetrics</code></td>
+<td>true or false to enable/disable reporting Pravega metrics. Metrics is enabled by default.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="writer-parallelism">Writer Parallelism</h3>
+<p><code>FlinkPravegaWriter</code> supports parallelization. Use the <code>setParallelism</code> method to configure the number of parallel instances to execute.</p>
+<h3 id="event-routing">Event Routing</h3>
+<p>Every event written to a Pravega Stream has an associated Routing Key.  The Routing Key is the basis for event ordering.  See the <a href="http://pravega.io/docs/latest/pravega-concepts/#events">Pravega Concepts</a> for details.</p>
+<p>When constructing the <code>FlinkPravegaWriter</code>, please provide an implementation of <code>io.pravega.connectors.flink.PravegaEventRouter</code> which will guarantee the event ordering. In Pravega, events are guaranteed to be ordered at the segment level.</p>
+<p>For example, to guarantee write order specific to sensor id, you could provide a router implementation like below.
+<div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SensorEventRouter</span><span class="o">&lt;</span><span class="n">SensorEvent</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">PravegaEventRouter</span><span class="o">&lt;</span><span class="n">SensorEvent</span><span class="o">&gt;</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">getRoutingKey</span><span class="o">(</span><span class="n">SensorEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">event</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</pre></div></p>
+<h3 id="event-time-ordering">Event Time Ordering</h3>
+<p>For programs that use Flink's event time semantics, the connector library supports writing events in event time order. In combination with a Routing Key, this establishes a well-understood ordering for each key in the output stream.</p>
+<p>Use the method <code>FlinkPravegaUtils::writeToPravegaInEventTimeOrder</code> to write a given <code>DataStream</code> to a Pravega Stream such that events are automatically ordered by event time (on a per-key basis). Refer <a href="https://github.com/pravega/flink-connectors/blob/7971206038b51b3cf0e317e194c552c4646e5c20/src/test/java/io/pravega/connectors/flink/FlinkPravegaWriterITCase.java#L93">here</a> for sample code.</p>
+<h3 id="watermark">Watermark</h3>
+<p>Flink applications in event time semantics are carrying watermarks within each operator.</p>
+<p>Both Pravega transactional and non-transactional writers provide <a href="https://github.com/pravega/pravega/wiki/PDP-33:-Watermarking#event-writer-api-changes">watermark API</a> to indicate the event-time watermark for a stream.
+With <code>enableWatermark(true)</code>, each watermark in Flink will be emitted into a Pravega stream.</p>
+<h3 id="writer-modes">Writer Modes</h3>
+<p>Writer modes relate to guarantees about the persistence of events emitted by the sink to a Pravega Stream.  The writer supports three writer modes:</p>
+<ol>
+<li><strong>Best-effort</strong> - Any write failures will be ignored hence there could be data loss.</li>
+<li><strong>At-least-once</strong> - All events are persisted in Pravega. Duplicate events
+are possible, due to retries or in case of failure and subsequent recovery.</li>
+<li><strong>Exactly-once</strong> - All events are persisted in Pravega using a transactional approach integrated with the Flink checkpointing feature.</li>
+</ol>
+<p>By default, the <em>At-least-once</em> option is enabled and use <code>.withWriterMode(...)</code> option to override the value.</p>
+<p>See the <a href="http://pravega.io/docs/latest/pravega-concepts/#transactions">Pravega documentation</a> for details on transactional behavior.</p>
+<h1 id="metrics">Metrics</h1>
+<p>Metrics are reported by default unless it is explicitly disabled using <code>enableMetrics(false)</code> option.
+See <a href="../metrics/">Metrics</a> page for more details on type of metrics that are reported.</p>
+<h1 id="serialization">Serialization</h1>
+<p>See the <a href="../serialization/">serialization</a> page for more information on how to use the <em>serializer</em> and <em>deserializer</em>.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../quickstart/" title="Quick Start" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Quick Start
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../batch/" title="Batch" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Batch
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
