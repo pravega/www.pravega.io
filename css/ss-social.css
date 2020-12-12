@@ -29,9 +29,8 @@ right:1.5%;
 }
 
 .twitter {
-  
-  background: white;
-  color: #007bb5;
+  background:#007bb5;
+  color:white;
 }
 
 .google {
@@ -44,8 +43,8 @@ right:1.5%;
 
 .slack
 {
-  background:#007bb5;
-  color:white;
+  background: white;
+  color: #007bb5;
 }
 
 
