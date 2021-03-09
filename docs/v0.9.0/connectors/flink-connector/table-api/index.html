@@ -1,0 +1,927 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega Flink Connectors">
+      
+      
+        <link rel="canonical" href="http://pravega.io/table-api/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Table API - Exploring Pravega Flink Connectors</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../#table-connector" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega Flink Connectors
+              </span>
+              <span class="md-header-nav__topic">
+                Table API
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="http://pravega.io/" title="Exploring Pravega Flink Connectors" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega Flink Connectors
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/flink-connectors/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../quickstart/" title="Quick Start" class="md-nav__link">
+      Quick Start
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Features
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Features
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streaming/" title="Streaming" class="md-nav__link">
+      Streaming
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../batch/" title="Batch" class="md-nav__link">
+      Batch
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Table API
+      </label>
+    
+    <a href="./" title="Table API" class="md-nav__link md-nav__link--active">
+      Table API
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-create-a-table" title="How to create a table" class="md-nav__link">
+    How to create a table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connector-options" title="Connector options" class="md-nav__link">
+    Connector options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-and-streaming-read" title="Batch and Streaming read" class="md-nav__link">
+    Batch and Streaming read
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specify-start-and-end-streamcut" title="Specify start and end streamcut" class="md-nav__link">
+    Specify start and end streamcut
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changelog-source" title="Changelog Source" class="md-nav__link">
+    Changelog Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-key-by-column" title="Routing key by column" class="md-nav__link">
+    Routing key by column
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consistency-guarantees" title="Consistency guarantees" class="md-nav__link">
+    Consistency guarantees
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-flink-links" title="Useful Flink links" class="md-nav__link">
+    Useful Flink links
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" title="Metrics" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../configurations/" title="Configurations" class="md-nav__link">
+      Configurations
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../serialization/" title="Serialization" class="md-nav__link">
+      Serialization
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" title="Table of Contents" class="md-nav__link">
+    Table of Contents
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-create-a-table" title="How to create a table" class="md-nav__link">
+    How to create a table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connector-options" title="Connector options" class="md-nav__link">
+    Connector options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-and-streaming-read" title="Batch and Streaming read" class="md-nav__link">
+    Batch and Streaming read
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specify-start-and-end-streamcut" title="Specify start and end streamcut" class="md-nav__link">
+    Specify start and end streamcut
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changelog-source" title="Changelog Source" class="md-nav__link">
+    Changelog Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-key-by-column" title="Routing key by column" class="md-nav__link">
+    Routing key by column
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consistency-guarantees" title="Consistency guarantees" class="md-nav__link">
+    Consistency guarantees
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#useful-flink-links" title="Useful Flink links" class="md-nav__link">
+    Useful Flink links
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/flink-connectors/tree/master/documentation/src/docs/table-api.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) 2017 Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+<h1 id="table-connector">Table Connector</h1>
+<p>The Flink connector library for Pravega provides a table source and table sink for use with the Flink Table API. 
+The Table API provides a unified table source API for both the Flink streaming and batch environment, and also sink for the Flink streaming environment.</p>
+<p>It is possible to treat the Pravega streams as tables with the help of Flink.</p>
+<p>See the below sections for details.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#how-to-create-a-table">How to create a table</a></li>
+<li><a href="#connector-options">Connector options</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#batch-and-streaming-read">Batch and Streaming read</a></li>
+<li><a href="#specify-start-and-end-streamcut">Specify start and end streamcut</a></li>
+<li><a href="#changelog-source">Changelog Source</a></li>
+<li><a href="#routing-key-by-column">Routing key by column</a></li>
+<li><a href="#consistency-guarantees">Consistency guarantees</a></li>
+<li><a href="#useful-flink-links">Useful Flink links</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Before Flink 1.10 connector, the connector has implemented Flink legacy <code>TableFactory</code> interface to support table mapping, 
+and provided <code>FlinkPravegaTableSource</code> and <code>FlinkPravegaTableSink</code> to read and write Pravega as Flink tables via a Pravega descriptor.</p>
+<p>Since Flink 1.11 connector, as Flink introduces a new Table API with <a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-95%3A+New+TableSource+and+TableSink+interfaces">FLIP-95</a>, 
+we integrate Flink <code>Factory</code> interface and provided <code>FlinkPravegaDynamicTableSource</code> and <code>FlinkPravegaDynamicTableSink</code> to simplify the application coding. </p>
+<p>Note that the legacy table API is deprecated and will be removed in the future releases, we strongly suggest users to switch to the new table API.
+We will focus on the new table API introduction in the document below, please refer to the documentation of older versions if you want to check the legacy table API.</p>
+<p>Pravega table source supports both the Flink <strong>streaming</strong> and <strong>batch</strong> environments.
+Pravega table sink is an append-only table sink, it does NOT support upsert/retract output.</p>
+<h2 id="how-to-create-a-table">How to create a table</h2>
+<p>Pravega Stream can be used as a table source/sink within a Flink table program.
+The example below shows how to create a table connecting a Pravega stream as both source and sink:</p>
+<div class="highlight"><pre><span></span><span class="k">create</span> <span class="k">table</span> <span class="n">pravega</span> <span class="p">(</span>
+    <span class="n">user_id</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">item_id</span> <span class="nb">BIGINT</span><span class="p">,</span>
+    <span class="n">category_id</span> <span class="nb">BIGINT</span><span class="p">,</span>
+    <span class="n">behavior</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">log_ts</span> <span class="k">TIMESTAMP</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+    <span class="n">ts</span> <span class="k">as</span> <span class="n">log_ts</span> <span class="o">+</span> <span class="nb">INTERVAL</span> <span class="s1">&#39;1&#39;</span> <span class="k">SECOND</span><span class="p">,</span>
+    <span class="n">watermark</span> <span class="k">for</span> <span class="n">ts</span> <span class="k">as</span> <span class="n">ts</span>
+    <span class="p">)</span>
+<span class="k">with</span> <span class="p">(</span>
+    <span class="s1">&#39;connector&#39;</span> <span class="o">=</span> <span class="s1">&#39;pravega&#39;</span>
+    <span class="s1">&#39;controller-uri&#39;</span> <span class="o">=</span> <span class="s1">&#39;tcp://localhost:9090&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scope&#39;</span> <span class="o">=</span> <span class="s1">&#39;scope&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scan.execution.type&#39;</span> <span class="o">=</span> <span class="s1">&#39;streaming&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scan.reader-group.name&#39;</span> <span class="o">=</span> <span class="s1">&#39;group1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scan.streams&#39;</span> <span class="o">=</span> <span class="s1">&#39;stream&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sink.stream&#39;</span> <span class="o">=</span> <span class="s1">&#39;stream&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sink.routing-key.field.name&#39;</span> <span class="o">=</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;format&#39;</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span>
+    <span class="p">)</span>
+</pre></div>
+<h2 id="connector-options">Connector options</h2>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Required</th>
+<th>Default</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>connector</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>Specify what connector to use, here should be 'pravega'</td>
+</tr>
+<tr>
+<td>controller-uri</td>
+<td>required</td>
+<td>(none)</td>
+<td>String</td>
+<td>Pravega controller URI</td>
+</tr>
+<tr>
+<td>security.auth-type</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>Static authentication/authorization type for security</td>
+</tr>
+<tr>
+<td>security.auth-token</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>Static authentication/authorization token for security</td>
+</tr>
+<tr>
+<td>security.validate-hostname</td>
+<td>optional</td>
+<td>(none)</td>
+<td>Boolean</td>
+<td>If host name validation should be enabled when TLS is enabled</td>
+</tr>
+<tr>
+<td>security.trust-store</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>Trust Store for Pravega client</td>
+</tr>
+<tr>
+<td>scan.execution.type</td>
+<td>optional</td>
+<td>streaming</td>
+<td>String</td>
+<td>Execution type for scan source. Valid values are 'streaming', 'batch'.</td>
+</tr>
+<tr>
+<td>scan.reader-group.name</td>
+<td>required for streaming source</td>
+<td>(none)</td>
+<td>String</td>
+<td>Pravega reader group name</td>
+</tr>
+<tr>
+<td>scan.streams</td>
+<td>required for source</td>
+<td>(none)</td>
+<td>List<String></td>
+<td>Semicolon-separated list of stream names from which the table is read.</td>
+</tr>
+<tr>
+<td>scan.start-streamcuts</td>
+<td>optional</td>
+<td>(none)</td>
+<td>List<String></td>
+<td>Semicolon-separated list of base64 encoded strings for start streamcuts, begin of the stream if not specified</td>
+</tr>
+<tr>
+<td>scan.end-streamcuts</td>
+<td>optional</td>
+<td>(none)</td>
+<td>List<String></td>
+<td>Semicolon-separated list of base64 encoded strings for end streamcuts, unbounded end if not specified</td>
+</tr>
+<tr>
+<td>scan.reader-group.max-outstanding-checkpoint-request</td>
+<td>optional</td>
+<td>3</td>
+<td>Integer</td>
+<td>Maximum outstanding checkpoint requests to Pravega</td>
+</tr>
+<tr>
+<td>scan.reader-group.refresh.interval</td>
+<td>optional</td>
+<td>3 s</td>
+<td>Duration</td>
+<td>Refresh interval for reader group</td>
+</tr>
+<tr>
+<td>scan.event-read.timeout.interval</td>
+<td>optional</td>
+<td>1 s</td>
+<td>Duration</td>
+<td>Timeout for the call to read events from Pravega</td>
+</tr>
+<tr>
+<td>scan.reader-group.checkpoint-initiate-timeout.interval</td>
+<td>optional</td>
+<td>5 s</td>
+<td>Duration</td>
+<td>Timeout for call that initiates the Pravega checkpoint</td>
+</tr>
+<tr>
+<td>sink.stream</td>
+<td>required for sink</td>
+<td>(none)</td>
+<td>String</td>
+<td>Stream name to which the table is written</td>
+</tr>
+<tr>
+<td>sink.semantic</td>
+<td>optional</td>
+<td>at-least-once</td>
+<td>String</td>
+<td>Semantic when commit. Valid values are 'at-least-once', 'exactly-once', 'best-effort'</td>
+</tr>
+<tr>
+<td>sink.txn-lease-renewal.interval</td>
+<td>optional</td>
+<td>30 s</td>
+<td>Duration</td>
+<td>Transaction lease renewal period, valid for exactly-once semantic.</td>
+</tr>
+<tr>
+<td>sink.enable.watermark-propagation</td>
+<td>optional</td>
+<td>false</td>
+<td>Boolean</td>
+<td>If watermark propagation should be enabled from Flink table to Pravega stream</td>
+</tr>
+<tr>
+<td>sink.routing-key.field.name</td>
+<td>optional</td>
+<td>(none)</td>
+<td>String</td>
+<td>Field name to use as a Pravega event routing key, field type must be STRING, random routing if not specified.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="features">Features</h2>
+<h3 id="batch-and-streaming-read">Batch and Streaming read</h3>
+<p><code>scan.execution.type</code> can be specified as user's choice to perform batch read or streaming read.
+In the streaming environment, the table source uses a <a href="../streaming/#flinkpravegareader"><code>FlinkPravegaReader</code></a> connector.
+In the batch environment, the table source uses a <a href="../batch/#flinkpravegainputformat"><code>FlinkPravegaInputFormat</code></a> connector.
+Please see the documentation of <a href="../streaming/">Streaming Connector</a> and <a href="#batch.md">Batch Connector</a> to have a better understanding on the below mentioned parameter list.</p>
+<h3 id="specify-start-and-end-streamcut">Specify start and end streamcut</h3>
+<p>A <code>StreamCut</code> represents a consistent position in the stream, and can be fetched from other applications uses Pravega client through checkpoints or custom defined index. 
+<code>scan.start-streamcuts</code> and <code>scan.end-streamcuts</code> can be specified to perform bounded read and "start-at-some-point" read for Pravega streams.
+Pravega source supports read from multiple streams, and if read from multiple streams, please make sure the order of the streamcuts keeps the same as the order of the streams.</p>
+<h3 id="changelog-source">Changelog Source</h3>
+<p>If messages in Pravega stream is change event captured from other databases using CDC tools, then you can use a CDC format to interpret messages as INSERT/UPDATE/DELETE messages into Flink SQL system.
+Flink provides two CDC formats <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/table/connectors/formats/debezium.html"><code>debezium-json</code></a> and <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/table/connectors/formats/canal.html"><code>canal-json</code></a> to interpret change events captured by Debezium and Canal.
+The changelog source is a very useful feature in many cases, such as synchronizing incremental data from databases to other systems, auditing logs, materialized views on databases, temporal join changing history of a database table and so on.
+See more about how to use the CDC formats in <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/table/connectors/formats/debezium.html"><code>debezium-json</code></a> and <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/dev/table/connectors/formats/canal.html"><code>canal-json</code></a></p>
+<h3 id="routing-key-by-column">Routing key by column</h3>
+<p>Pravega writers can use domain specific meaningful Routing Keys (like customer ID, Timestamp, Machine ID, etc.) to group similar together and make such parallelism with segment scaling. 
+Pravega makes ordering guarantees in terms of routing keys.
+Pravega sink supports event routing according to a certain event field by specifying <code>sink.routing-key.field.name</code>. This field type must be <code>STRING</code>, and it will be random routing if not specified.</p>
+<h3 id="consistency-guarantees">Consistency guarantees</h3>
+<p>By default, a Pravega sink ingests data with at-least-once guarantees if the query is executed with checkpointing enabled.
+<code>sink.semantic: exactly-once</code> can be specified to turn on the transactional writes with exactly-once guarantees.</p>
+<h2 id="useful-flink-links">Useful Flink links</h2>
+<p>Users can try with Pravega table APIs quickly though Flink SQL client. Here is some tutorial to setup the environment.
+<a href="https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/sqlClient.html">https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/sqlClient.html</a></p>
+<p>The usage and definition of time attribute and WATERMARK schema can be referred in:
+<a href="https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/streaming/time_attributes.html">https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/streaming/time_attributes.html</a></p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../batch/" title="Batch" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Batch
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../metrics/" title="Metrics" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Metrics
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1236 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="https://pravega.io/security/generating-tls-artifacts/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Generating tls artifacts - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#creating-tls-certificates-keys-and-other-tls-artifacts" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Generating tls artifacts
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../watermarking/" title="Watermarking" class="md-nav__link">
+      Watermarking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/kubernetes-install/" title="Deployment on Kubernetes" class="md-nav__link">
+      Deployment on Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/docker-swarm/" title="Deployment on Docker Swarm" class="md-nav__link">
+      Deployment on Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Pravega Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Pravega Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../auth/auth-plugin/" title="Pravega Authentication/Authorization Plugin" class="md-nav__link">
+      Pravega Authentication/Authorization Plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../auth/client-auth/" title="Client Auth Interface" class="md-nav__link">
+      Client Auth Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-security-authorization-authentication/" title="Pravega Security Authorization/Authentication" class="md-nav__link">
+      Pravega Security Authorization/Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-security-configurations/" title="Pravega Security Configurations" class="md-nav__link">
+      Pravega Security Configurations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-security-encryption/" title="Pravega Security Encryption" class="md-nav__link">
+      Pravega Security Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../securing-distributed-mode-cluster/" title="Securing Pravega in Distributed Mode" class="md-nav__link">
+      Securing Pravega in Distributed Mode
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-a-certificate-authority-ca" title="Setting up a Certificate Authority (CA)" class="md-nav__link">
+    Setting up a Certificate Authority (CA)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-tls-certificates-and-other-tls-artifacts-for-the-server" title="Generate TLS Certificates and Other TLS Artifacts for the Server" class="md-nav__link">
+    Generate TLS Certificates and Other TLS Artifacts for the Server
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/security/generating-tls-artifacts.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+<h1 id="creating-tls-certificates-keys-and-other-tls-artifacts">Creating TLS Certificates, Keys and Other TLS Artifacts<a class="headerlink" href="#creating-tls-certificates-keys-and-other-tls-artifacts" title="Permanent link">&para;</a></h1>
+<p>This document describes how to create TLS certificates, keys and other artifacts for the server components. The 
+generated CA certificate and Java truststore may also be used on client-side for validating the servers' certificates.</p>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#setting-up-a-certificate-authority-ca">Setting up a Certificate Authority (CA)</a></li>
+<li><a href="#generate-tls-certificates-and-other-tls-artifacts-for-the-server">Generate TLS Certificates and Other TLS Artifacts for the Server</a></li>
+</ul>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>A TLS server certificate is an X.509 digital certificate that binds the server's identity (such as the server's 
+DNS name or IP address or both) to the server's public key. The public key is part of the public-private key pair used 
+for asymmetric encryption during the TLS handshake. </p>
+<p>Each Controller and Segment Store service requires a pair of PEM-encoded TLS certificate and private key. Each 
+service also requires a PEM-encoded certificate of the CA that has signed the server certificates. Moreover, the 
+Controller REST interface requires its certificate and keys in Java JKS formats. We refer to all the required files 
+as TLS artifacts, henceforth. </p>
+<p>While the TLS certificate is public, the corresponding key is private and must be kept protected (typically
+in the server that uses the TLS certificate and the key). Each server should use its own set of TLS artifacts; 
+reusing certificates requires reusing private keys as well, and sharing private keys across multiple servers increases 
+the risk that they will be compromised.</p>
+<p>Here are a few strategies for determining the sets of TLS artifacts required for a Pravega cluster:</p>
+<ol>
+<li><em>Use separate TLS artifacts for each host/machine or service</em>. </li>
+</ol>
+<p>Manual deployments supports this and the other configurations listed below. This is the most secure option. 
+2. <em>Use two sets of TLS artifacts - one for the Controllers and the other for the Segment Stores</em>. </p>
+<p>In this case, each certificate is assigned to all the respective nodes (Controllers or Segment Stores) by specifying 
+   the nodes' DNS names and/or IP addresses in the certificate's 
+   <a href="https://en.wikipedia.org/wiki/Subject_Alternative_Name">Subject Alternative Name (SAN)</a> field. Also, the server 
+   certificates might need to be recreated to add DNS names and/or IP addresses of the new servers whenever the 
+   Controllers or the Segment stores are scaled up.</p>
+<p>Kubernetes and other forms of containerized deployments supports this configuration. </p>
+<ol>
+<li><em>Use the same set for all Controllers and Segment Store services</em>. </li>
+</ol>
+<p>In this case, the certificate must contain the DNS names and/or IP addresses of all the Controller and Segment Store 
+   services. This is the least secure option. Also, the server certificate might need to be recreated to add DNS names 
+   and/or IP addresses of the new servers whenever the Controllers or the Segment stores are scaled up.</p>
+<p>All deployment options support this configuration.</p>
+<p>The chosen configuration determines the number of TLS artifacts sets required for a 
+Pravega cluster. Each set can be prepared using the process described later in this document under
+<a href="#generate-tls-certificates-and-other-tls-artifacts-for-the-server">Generate TLS Certificates and Other TLS Artifacts for the Server</a>. </p>
+<p>Another important consideration is whether you want to terminate TLS at an external infrastructural component like 
+reverse proxy, Kubernetes Ingress or a load balancer. If TLS is terminated at such an infrastructural component, instead 
+of Pravega services, you will need to generate TLS artifacts for those infrastructural components instead, using similar
+steps described in this document; however, the exact steps may be slightly different and additional steps may be required to 
+ensure that other parts of the infrastructure can communicate with it. Refer to the respective platform vendor's 
+documentation, 
+such as <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/ingress">this</a> one from Google Kubernetes Engine, 
+for instructions.</p>
+<p><strong>Before you Begin:</strong></p>
+<p>The steps described in this document use OpenSSL and Java Keytool to generate TLS artifacts like certificates, keys, 
+Java keystores and Java truststores. Install OpenSSL and Java Development Kit (JDK) on the hosts where the artifacts 
+will be generated.</p>
+<p><strong>Note:</strong>
+* The examples shown in this document use command line arguments to pass all inputs to the command. To pass
+  sensitive command arguments via prompts instead, just exclude the corresponding option (as shown in the second command
+  below). </p>
+<p><div class="codehilite"><pre><span></span><span class="c1"># Passwords are passed as command line arguments.</span>
+$ keytool -keystore server01.keystore.jks -alias server01 -validity &lt;validity&gt; -genkey <span class="se">\</span>
+            -storepass &lt;keystore-password&gt; -keypass &lt;key-password&gt; <span class="se">\</span>
+            -dname &lt;distinguished-name&gt; -ext <span class="nv">SAN</span><span class="o">=</span>DNS:&lt;hostname&gt;,
+
+<span class="c1"># Passwords (and some other arguments) are to be entered interactively on the prompt.</span>
+$ keytool -keystore server01.keystore.jks -alias server01 -genkey
+</pre></div>
+* A weak password <code>changeit</code> is used everywhere in this document for easier reading. Be sure to replace it with 
+  a strong and separate password for each file.</p>
+<h2 id="setting-up-a-certificate-authority-ca">Setting up a Certificate Authority (CA)<a class="headerlink" href="#setting-up-a-certificate-authority-ca" title="Permanent link">&para;</a></h2>
+<p>If you are planning to use a public CA or an existing private/internal CA, you may skip 
+this part altogether and go directly to the <a href="#generate-tls-certificates-and-other-tls-artifacts-for-the-server">next section</a>.</p>
+<p>Here, we'll create a CA in the form of a public/private key pair and a self-signed certificate.
+Later, we'll use this CA certificate/key bundle to sign the servers' certificates.</p>
+<ol>
+<li>Generate a CA certificate and public/private key pair. </li>
+</ol>
+<div class="codehilite"><pre><span></span>$ openssl req -new -x509 -keyout &lt;ca-private-key-file-path&gt; -out &lt;ca-cert-file-path&gt; -days &lt;validity-in-days&gt; <span class="se">\</span>
+         -subj <span class="s2">&quot;&lt;distinguished_name&gt;&quot;</span> <span class="se">\</span>
+         -passout pass:&lt;ca-private-key-password&gt;
+</pre></div>
+<p>Example:
+   <div class="codehilite"><pre><span></span><span class="c1"># In MinGW/MSYS, the same -subj argument will be:</span>
+<span class="c1"># &quot;//C=US\ST=Washington\L=Seattle\O=Pravega\OU=CA\CN=Pravega-Stack-CA&quot;</span>
+$ openssl req -new -x509 -keyout ca-key.key -out ca-cert.crt -days <span class="m">365</span> <span class="se">\</span>
+         -subj <span class="s2">&quot;/C=US/ST=Washington/L=Seattle/O=Pravega/OU=CA/CN=Pravega-Stack-CA&quot;</span> <span class="se">\</span>
+         -passout pass:changeit
+</pre></div></p>
+<p>The command above will generate the following two PEM-encoded files: 
+   * A file <code>ca-key.key</code> containing the encrypted private key.
+   * A file <code>ca-cert.crt</code> containing the CA certificate.</p>
+<ol>
+<li>Optionally, create a Java truststore containing the CA's certificate. This may be used by client applications if 
+   they configure the truststore using the <code>javax.net.ssl.trustStore</code> Java option. </li>
+</ol>
+<div class="codehilite"><pre><span></span>$ keytool -keystore &lt;java-truststore-file-path&gt; -noprompt <span class="se">\</span>
+          -alias &lt;trusted-cert-entry-alias&gt; <span class="se">\</span>
+          -import -file &lt;ca-cert-file-path&gt; <span class="se">\</span>
+          -storepass &lt;java-truststore-file-password&gt;
+</pre></div>
+<p>Example:
+   <div class="codehilite"><pre><span></span>$ keytool -keystore client.truststore.jks -noprompt <span class="se">\</span>
+          -alias caroot <span class="se">\ </span>
+          -import -file ca-cert.crt <span class="se">\</span>
+          -storepass changeit
+
+<span class="c1"># Optionally, list the truststore&#39;s contents and inspect the output to verify everything is in order. The output </span>
+<span class="c1"># should show a single entry with alias name `caroot` and entry type `trustedCertEntry`.</span>
+$ keytool -list -v -keystore client.truststore.jks -storepass changeit
+</pre></div></p>
+<p>At this point, the following CA and truststore artifacts should be ready:</p>
+<table>
+<thead>
+<tr>
+<th align="center">File</th>
+<th align="left">Description</th>
+<th align="left">Example command for inspecting the file's Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>ca-cert.crt</code></td>
+<td align="left">A PEM-encoded file containing the X.509 certificate of the CA</td>
+<td align="left"><code>$ openssl x509 -in ca-cert.crt -text -noout</code></td>
+</tr>
+<tr>
+<td align="center"><code>ca-key.key</code></td>
+<td align="left">A PEM-encoded file containing the CA's encrypted private key</td>
+<td align="left"><code>$ openssl pkcs8 -inform PEM -in ca-key.key -topk8</code></td>
+</tr>
+<tr>
+<td align="center"><code>client.truststore.jks</code></td>
+<td align="left">A password-protected truststore file containing the CA's certificate</td>
+<td align="left"><code>$ keytool -list -v -keystore client.truststore.jks -storepass changeit</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="generate-tls-certificates-and-other-tls-artifacts-for-the-server">Generate TLS Certificates and Other TLS Artifacts for the Server<a class="headerlink" href="#generate-tls-certificates-and-other-tls-artifacts-for-the-server" title="Permanent link">&para;</a></h2>
+<p>Here, we prepare a set of TLS artifacts that can be used by one or more nodes.  </p>
+<p>We'll use the CA created in the previous stage to sign the server certificate for demonstration, but in real usage you 
+may instead get it signed by an existing internal CA in your environment or a public CA.</p>
+<p>The high-level steps involved in this stage are:</p>
+<ol>
+<li>Generate a set of server certificate and private key.</li>
+<li>Generate a Certificate Signing Request (CSR) for the server certificate.</li>
+<li>Submit the CSR to a CA and obtain a signed certificate.</li>
+<li>Prepare a keystore containing the signed server certificate and the CA's certificate.</li>
+<li>Export the server certificate's private key.</li>
+</ol>
+<p>Note that these steps will need to be repeated with different input for each set. We discussed the number of sets 
+required earlier in the <a href="#overview">Overview</a> section. </p>
+<p>The above steps are described below: </p>
+<ol>
+<li>Generate a set of server certificate and private key.</li>
+</ol>
+<p>The following command will generate a Java JKS keystore containing the following artifacts for the server:
+   * An X.509 certificate containing the public key identifying the server
+   * A private key for the public/private key pair</p>
+<div class="codehilite"><pre><span></span>$ keytool -storetype JKS -keystore &lt;java-keystore-file-name&gt; -storepass &lt;java-keystore-password&gt;<span class="se">\</span>
+        -genkey -keyalg &lt;key-algorithm&gt; -keysize &lt;key-size&gt; -keypass &lt;private-key-password&gt;<span class="se">\</span>
+        -alias &lt;alias&gt; -validity &lt;validity&gt;<span class="se">\</span>
+        -dname <span class="s2">&quot;&lt;distinguished-name&gt;&quot;</span><span class="se">\</span>
+        -ext <span class="nv">SAN</span><span class="o">=</span>dns:&lt;hostname1&gt;,dns:&lt;hostname2&gt;,ip:&lt;ipaddress1&gt;
+</pre></div>
+<p>Example: 
+   <div class="codehilite"><pre><span></span>$ keytool -storetype JKS -keystore server_unsigned.keystore.jks -storepass changeit<span class="se">\</span>
+           -genkey -keyalg RSA -keysize <span class="m">2048</span> -keypass changeit<span class="se">\</span>
+           -alias server -validity <span class="m">365</span><span class="se">\</span>
+           -dname <span class="s2">&quot;CN=server.pravega.io, OU=analytics, O=pravega, L=Seattle, ST=Washington, C=US&quot;</span><span class="se">\</span>
+           -ext <span class="nv">SAN</span><span class="o">=</span>dns:server1.pravega.io,dns:server2.pravega.io,ip:127.0.0.1
+
+<span class="c1"># Optionally, verify the contents of the generated file</span>
+$ keytool -list -v -storetype JKS -keystore server_unsigned.keystore.jks -storepass changeit
+</pre></div></p>
+<ol>
+<li>Generate a Certificate Signing Request (CSR) for the server certificate.</li>
+</ol>
+<p>It helps to think of a CSR as an application for getting a certificate signed by a trusted authority. </p>
+<p>A CSR is typically generated on the same server/node that uses the certificate, so that the corresponding private key
+   doesn't need to be moved anywhere else. In some other environments, CSRs are generated in a central server and the 
+   resulting certificates are distributed to the services that need them.  </p>
+<div class="codehilite"><pre><span></span>$ keytool -keystore &lt;java-keystore-file-path&gt; -storepass &lt;java-keystore-password&gt; -alias &lt;alias&gt; <span class="se">\</span>
+          -certreq -file &lt;csr-file-path&gt; <span class="se">\</span>
+          -storepass &lt;java-keystore-password&gt;
+</pre></div>
+<p>Example:
+   <div class="codehilite"><pre><span></span>$ keytool -keystore server_unsigned.keystore.jks -storepass changeit -alias server <span class="se">\ </span>
+          -certreq -file server.csr <span class="se">\</span>
+          -ext <span class="nv">SAN</span><span class="o">=</span>dns:server1.pravega.io,dns:server2.pravega.io,ip:127.0.0.1
+</pre></div></p>
+<ol>
+<li>Submit the CSR to a CA and obtain a signed certificate.</li>
+</ol>
+<p>If you are using a public or internal CA service, follow that CA's process for submitting the CSR and obtaining
+   a signed certificate. To use the custom CA generated using the steps mentioned <a href="#stage-1-setting-up-a-certificate-authority-ca">earlier</a> or an internal CA
+   certificate/key bundle, use the steps below:</p>
+<p>First create a <code>server-csr.conf</code> file with the following contents. Replace <code>alt_names</code> with the server's hostname/ 
+   IP address that Pravega will use to access the server. If the same certificate is used in multiple servers, add 
+   hostnames/IP addresses of all the servers. </p>
+<div class="codehilite"><pre><span></span>[req]
+req_extensions = v3_req
+prompt = no
+
+[v3_req]
+subjectAltName = @alt_names
+
+[alt_names]
+DNS.1 = server1.pravega.io
+DNS.2 = server2.pravega.io
+IP.1 = 127.0.0.1
+</pre></div>
+<p>Now, have the CA sign the certificate:</p>
+<div class="codehilite"><pre><span></span>$ openssl x509 -req -CA &lt;ca-cert-file-path&gt; -CAkey &lt;ca-private-key-file-path&gt; <span class="se">\ </span>
+        -in &lt;csr-file-path&gt; -out &lt;signed-server-cert-file-path&gt; <span class="se">\</span>
+        -days &lt;validity&gt; -CAcreateserial -passin pass:&lt;csr-file-password&gt; <span class="se">\</span>
+        -extfile server-csr.conf -extensions v3_req
+</pre></div>
+<p>Example:
+   <div class="codehilite"><pre><span></span>$ openssl x509 -req -CA ca-cert.crt -CAkey ca-key.key <span class="se">\</span>
+     -in server.csr -out server-cert.crt <span class="se">\</span>
+     -days <span class="m">365</span> -CAcreateserial -passin pass:changeit <span class="se">\</span>
+     -extfile server-csr.conf -extensions v3_req
+
+<span class="c1"># Optionally, check the contents of the signed certificate.</span>
+$ openssl x509 -in server-cert.crt -text -noout
+</pre></div></p>
+<ol>
+<li>Prepare a new keystore containing the signed server certificate and the CA's certificate chain. </li>
+</ol>
+<div class="codehilite"><pre><span></span><span class="c1"># Import the CA certificate into a new keystore file.</span>
+$ keytool -keystore &lt;server-jks-keystore-file-path&gt; -alias &lt;ca-alias&gt; -noprompt <span class="se">\</span>
+             -import -file &lt;ca-cert-file-path&gt; -storepass &lt;server-jks-keystore-password&gt;
+
+<span class="c1"># Import the signed server certificate into the keystore.</span>
+$ keytool -keystore &lt;server-jks-keystore-file-path&gt; -alias &lt;server-alias&gt; -noprompt <span class="se">\</span>
+             -import -file &lt;signed-server-cert-file-path&gt; -storepass &lt;server-jks-keystore-password&gt;
+</pre></div>
+<p>Example:
+   <div class="codehilite"><pre><span></span>$ keytool -keystore server.keystore.jks -alias CARoot -noprompt <span class="se">\</span>
+          -import -file ca-cert.crt -storepass changeit
+
+$ keytool -keystore server.keystore.jks -alias server -noprompt <span class="se">\</span>
+             -import -file server-cert.crt -storepass changeit
+
+<span class="c1"># Optionally, list the keystore and inspect the output</span>
+$ keytool -list -v -storepass changeit -keystore server.keystore.jks
+</pre></div></p>
+<ol>
+<li>Export the server certificate's private key. </li>
+</ol>
+<p>This is a two-step process.
+   * First, convert the server's keystore in <code>.jks</code> format into <code>.p12</code> format.</p>
+<div class="codehilite"><pre><span></span> ```bash
+ $ keytool -importkeystore \
+           -srckeystore &lt;server-jks-keystore-file-path&gt; \
+           -destkeystore &lt;server-pkcs12-keystore-file-path&gt; \
+           -srcstoretype jks -deststoretype pkcs12 \
+           -srcstorepass &lt;server-jks-keystore-password&gt; -deststorepass &lt;server-pkcs12-keystore&gt;
+ ```
+
+ Example:
+ ```bash
+ $ keytool -importkeystore \
+           -srckeystore server.keystore.jks \
+           -destkeystore server.keystore.p12 \
+           -srcstoretype jks -deststoretype pkcs12 \
+           -srcstorepass changeit -deststorepass changeit
+ ```
+</pre></div>
+
+<ul>
+<li>
+<p>Now, export the private key of the server into a <code>PEM</code> encoded file. Note that the generated <code>PEM</code> file is not protected
+     by a password. The key itself is password-protected, as we are using the <code>-nodes</code> flag. So, be sure
+     to protect it using operating system's technical and procedural controls.</p>
+<div class="codehilite"><pre><span></span>$ openssl pkcs12 -in &lt;server-pkcs12-keystore-file-path&gt; -passin pass:&lt;key-password&gt; <span class="se">\</span>
+                 -nodes -out &lt;server-key-file-path&gt;
+</pre></div>
+<p>Example:
+ <div class="codehilite"><pre><span></span>$ openssl pkcs12 -in server.keystore.p12 -out server-key.key -passin pass:changeit -nodes
+</pre></div></p>
+</li>
+</ul>
+<p>Step 5 concludes this stage and we are now now set for installing the certificates and other TLS artifacts in Pravega.</p>
+<p>The table below lists the key output of this stage. </p>
+<table>
+<thead>
+<tr>
+<th align="center">File</th>
+<th align="center">Description</th>
+<th align="left">Command for Inspecting the Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>server-cert.crt</code></td>
+<td align="center">A PEM-encoded file containing the CA-signed X.509 server certificate</td>
+<td align="left"><code>openssl x509 -in server-cert.crt -text -noout</code></td>
+</tr>
+<tr>
+<td align="center"><code>server-key.key</code></td>
+<td align="center">A PEM-encoded file containing the server's encrypted private key</td>
+<td align="left"><code>openssl pkcs8 -inform PEM -in server-key.key -topk8</code></td>
+</tr>
+<tr>
+<td align="center"><code>server.keystore.jks</code></td>
+<td align="center">A password-protected server keystore file in .jks format</td>
+<td align="left"><code>keytool -list -v -keystore server.keystore.jks -storepass changeit</code></td>
+</tr>
+</tbody>
+</table>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>

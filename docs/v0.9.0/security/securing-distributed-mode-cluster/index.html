@@ -1,0 +1,1405 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation to help you get familiar with Pravega">
+      
+      
+        <link rel="canonical" href="https://pravega.io/security/securing-distributed-mode-cluster/">
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-3.0.4">
+    
+    
+      
+        <title>Securing Pravega in Distributed Mode - Exploring Pravega</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../#setting-up-security-for-a-distributed-mode-cluster" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://pravega.io/" title="Exploring Pravega" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Exploring Pravega
+              </span>
+              <span class="md-header-nav__topic">
+                Securing Pravega in Distributed Mode
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://pravega.io/" title="Exploring Pravega" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    Exploring Pravega
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/pravega/pravega/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      GitHub
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Understanding Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Understanding Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../pravega-concepts/" title="Pravega Concepts" class="md-nav__link">
+      Pravega Concepts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../terminology/" title="Terminology" class="md-nav__link">
+      Terminology
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../key-features/" title="Key Features" class="md-nav__link">
+      Key Features
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/" title="Pravega FAQ" class="md-nav__link">
+      Pravega FAQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../segment-store-service/" title="Segment Store Service" class="md-nav__link">
+      Segment Store Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../segment-containers/" title="Segment Containers" class="md-nav__link">
+      Segment Containers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../controller-service/" title="Controller Service" class="md-nav__link">
+      Controller Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../wire-protocol/" title="Wire Protocol" class="md-nav__link">
+      Wire Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../state-synchronizer-design/" title="StateSynchronizer" class="md-nav__link">
+      StateSynchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reader-group-design/" title="Reader Groups" class="md-nav__link">
+      Reader Groups
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../watermarking/" title="Watermarking" class="md-nav__link">
+      Watermarking
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Developing Pravega Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Developing Pravega Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../javadoc/" title="Java API Reference" class="md-nav__link">
+      Java API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rest/restapis/" title="REST API - Controller" class="md-nav__link">
+      REST API - Controller
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../connectors/" title="Pravega Connectors" class="md-nav__link">
+      Pravega Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../basic-reader-and-writer/" title="Working with Reader and Writer" class="md-nav__link">
+      Working with Reader and Writer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reader-group-notifications/" title="Working with Reader Group notifications" class="md-nav__link">
+      Working with Reader Group notifications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../state-synchronizer/" title="Working with State Synchronizer" class="md-nav__link">
+      Working with State Synchronizer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../streamcuts/" title="Working with StreamCuts" class="md-nav__link">
+      Working with StreamCuts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Running Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Running Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/deployment/" title="Deployment Overview" class="md-nav__link">
+      Deployment Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/run-local/" title="Running Locally" class="md-nav__link">
+      Running Locally
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/manual-install/" title="Manual Install" class="md-nav__link">
+      Manual Install
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/kubernetes-install/" title="Deployment on Kubernetes" class="md-nav__link">
+      Deployment on Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/docker-swarm/" title="Deployment on Docker Swarm" class="md-nav__link">
+      Deployment on Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/dcos-install/" title="Deployment on DC/OS" class="md-nav__link">
+      Deployment on DC/OS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../deployment/aws-install/" title="Running in the Cloud (AWS)" class="md-nav__link">
+      Running in the Cloud (AWS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../metrics/" title="Pravega Metrics" class="md-nav__link">
+      Pravega Metrics
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Pravega Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Pravega Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../auth/auth-plugin/" title="Pravega Authentication/Authorization Plugin" class="md-nav__link">
+      Pravega Authentication/Authorization Plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../auth/client-auth/" title="Client Auth Interface" class="md-nav__link">
+      Client Auth Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-security-authorization-authentication/" title="Pravega Security Authorization/Authentication" class="md-nav__link">
+      Pravega Security Authorization/Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-security-configurations/" title="Pravega Security Configurations" class="md-nav__link">
+      Pravega Security Configurations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pravega-security-encryption/" title="Pravega Security Encryption" class="md-nav__link">
+      Pravega Security Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Securing Pravega in Distributed Mode
+      </label>
+    
+    <a href="./" title="Securing Pravega in Distributed Mode" class="md-nav__link md-nav__link--active">
+      Securing Pravega in Distributed Mode
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-certificates-and-other-tls-artifacts" title="Generating Certificates and Other TLS Artifacts" class="md-nav__link">
+    Generating Certificates and Other TLS Artifacts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-tls-and-auth-in-pravega" title="Enabling TLS and Auth in Pravega" class="md-nav__link">
+    Enabling TLS and Auth in Pravega
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-tls-and-auth-on-server-side" title="Configuring TLS and Auth on Server Side" class="md-nav__link">
+    Configuring TLS and Auth on Server Side
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-tls-and-credentials-on-client-side" title="Configuring TLS and Credentials on Client Side" class="md-nav__link">
+    Configuring TLS and Credentials on Client Side
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-hostname-verification" title="Server Hostname Verification" class="md-nav__link">
+    Server Hostname Verification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having-tls-and-auth-take-effect" title="Having TLS and Auth Take Effect" class="md-nav__link">
+    Having TLS and Auth Take Effect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" title="Conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Contributing to Pravega
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Contributing to Pravega
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../contributing/" title="Coding guildelines" class="md-nav__link">
+      Coding guildelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../roadmap/" title="Pravega Roadmap" class="md-nav__link">
+      Pravega Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../join-community/" title="Join the Community" class="md-nav__link">
+      Join the Community
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generating-certificates-and-other-tls-artifacts" title="Generating Certificates and Other TLS Artifacts" class="md-nav__link">
+    Generating Certificates and Other TLS Artifacts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabling-tls-and-auth-in-pravega" title="Enabling TLS and Auth in Pravega" class="md-nav__link">
+    Enabling TLS and Auth in Pravega
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-tls-and-auth-on-server-side" title="Configuring TLS and Auth on Server Side" class="md-nav__link">
+    Configuring TLS and Auth on Server Side
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-tls-and-credentials-on-client-side" title="Configuring TLS and Credentials on Client Side" class="md-nav__link">
+    Configuring TLS and Credentials on Client Side
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-hostname-verification" title="Server Hostname Verification" class="md-nav__link">
+    Server Hostname Verification
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having-tls-and-auth-take-effect" title="Having TLS and Auth Take Effect" class="md-nav__link">
+    Having TLS and Auth Take Effect
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" title="Conclusion" class="md-nav__link">
+    Conclusion
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/pravega/pravega/tree/master/documentation/src/docs/security/securing-distributed-mode-cluster.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <!--
+Copyright (c) Dell Inc., or its subsidiaries. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+-->
+<h1 id="setting-up-security-for-a-distributed-mode-cluster">Setting Up Security for a Distributed Mode Cluster<a class="headerlink" href="#setting-up-security-for-a-distributed-mode-cluster" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#generating-certificates-and-other-tls-artifacts">Generating Certificates and Other TLS Artifacts</a></li>
+<li><a href="#enabling-tls-and-auth-in-pravega">Enabling TLS and Auth in Pravega</a><ul>
+<li><a href="#configuring-tls-and-auth-on-server-side">Configuring TLS and Auth on Server Side</a></li>
+<li><a href="#configuring-tls-and-credentials-on-client-side">Configuring TLS and Credentials on Client Side</a><ul>
+<li><a href="#server-hostname-verification">Server Hostname Verification</a></li>
+</ul>
+</li>
+<li><a href="#having-tls-and-auth-take-effect">Having TLS and Auth Take Effect</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In the <a href="../../deployment/deployment/#pravega-modes">distributed mode</a> of running a Pravega cluster, each service runs
+separately on one or more processes, usually spread across multiple machines. The deployment options of this mode
+include:</p>
+<ol>
+<li>A manual deployment in hardware or virtual machines</li>
+<li>Containerized deployments of these types:<ul>
+<li>A Kubernetes native application deployed using the Pravega Operator</li>
+<li>A Docker Compose application deployment</li>
+<li>A Docker Swarm based distributed deployment</li>
+</ul>
+</li>
+</ol>
+<p>Regardless of the deployment option used, setting up Transport Layer Security (TLS) and Pravega Auth (short for
+authentication and authorization) are essential requirements of a secure Pravega deployment. TLS encrypts 
+client-server as well as internal communication server components. TLS also enables clients to authenticate
+the services running on the server. Auth, on the other hand, enables the services to validate that the users accounts 
+used for accessing them have requisite access permissions. Pravega strongly recommends enabling both TLS and Auth in
+production.</p>
+<p>This document lists steps for enabling TLS and auth for manual deployments. Depending on the deployment option 
+used and your environment, you might need to modify the steps and commands to suit your specific needs and policies.</p>
+<h2 id="generating-certificates-and-other-tls-artifacts">Generating Certificates and Other TLS Artifacts<a class="headerlink" href="#generating-certificates-and-other-tls-artifacts" title="Permanent link">&para;</a></h2>
+<p>At a high-level, setting up TLS in Pravega comprises of two distinct activities:</p>
+<ol>
+<li>Generating TLS Certificates, private Keys, keystore, truststore and other artifacts, which involves 
+   steps that Pravega is oblivious to.</li>
+<li>Enabling and configuring TLS in Pravega.</li>
+</ol>
+<p><a href="../generating-tls-artifacts/">Creating TLS Certificates, Keys and Other TLS Artifacts</a> explains how to perform the 
+first activity. The <a href="#enabling-tls-and-auth-in-pravega">next</a> section explains the second activity. </p>
+<h2 id="enabling-tls-and-auth-in-pravega">Enabling TLS and Auth in Pravega<a class="headerlink" href="#enabling-tls-and-auth-in-pravega" title="Permanent link">&para;</a></h2>
+<p>The high-level steps for enabling TLS and Auth, are:</p>
+<ol>
+<li>Configuring TLS and auth on server side</li>
+<li>Configuring TLS and credentials on client Side</li>
+<li>Having TLS and auth take effect</li>
+</ol>
+<p>These steps are discussed in the following sub-sections.</p>
+<h3 id="configuring-tls-and-auth-on-server-side">Configuring TLS and Auth on Server Side<a class="headerlink" href="#configuring-tls-and-auth-on-server-side" title="Permanent link">&para;</a></h3>
+<p>You can configure the following services for TLS and Auth:</p>
+<ol>
+<li>Controller</li>
+<li>Segment Store</li>
+<li>Zookeeper (optional)</li>
+<li>Bookkeeper (optional)</li>
+</ol>
+<p>For information about enabling TLS for Zookeeper and Bookeeper, refer to
+their documentation here:
+* <a href="https://cwiki.apache.org/confluence/display/ZOOKEEPER/ZooKeeper+SSL+User+Guide">ZooKeeper SSL Guide</a>
+* <a href="https://bookkeeper.apache.org/docs/latest/security/tls/">BookKeeper - Encryption and Authentication using TLS</a></p>
+<p><strong>Controller</strong></p>
+<p>Controller services can be configured in two different ways:</p>
+<ol>
+<li>By specifying the configuration parameter values directly in the <code>controller.config.properties</code> file. For example,</li>
+</ol>
+<div class="codehilite"><pre><span></span>controller.security.tls.enable=true
+controller.security.tls.server.certificate.location=/etc/secrets/server-cert.crt
+</pre></div>
+<ol>
+<li>By specifying configuration parameters as JVM system properties when starting the Controller service instance. </li>
+</ol>
+<div class="codehilite"><pre><span></span># Example: docker-compose.yml file
+...
+services:
+   ...
+   controller:
+      environment:
+          ...
+          JAVA_OPTS:
+             -dcontroller.security.tls.enable=true
+             -dcontroller.security.tls.server.certificate.location=...
+             ...
+   ...          
+</pre></div>
+<p>The following table lists the Controller service's TLS and auth parameters as well as samples values, for quick reference. 
+For a detailed description of these parameters, refer to the
+<a href="https://github.com/pravega/pravega/blob/master/documentation/src/docs/security/pravega-security-configurations.md">Pravega Security Configurations</a> document.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Configuration Parameter</th>
+<th align="left">Example Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>controller.security.tls.enable</code></td>
+<td align="left"><code>true</code></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.tls.server.certificate.location</code></td>
+<td align="left"><code>/etc/secrets/server-cert.crt</code></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.tls.server.privateKey.location</code></td>
+<td align="left"><code>/etc/secrets/server-key.key</code></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.tls.trustStore.location</code></td>
+<td align="left"><code>/etc/secrets/ca-cert.crt</code></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.tls.server.keyStore.location</code></td>
+<td align="left"><code>/etc/secrets/server.keystore.jks</code></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.tls.server.keyStore.pwd.location</code></td>
+<td align="left"><code>/etc/secrets/server.keystore.jks.password</code> <sup>1</sup></td>
+</tr>
+<tr>
+<td align="center"><code>controller.zk.connect.security.enable</code></td>
+<td align="left"><code>false</code> <sup>2</sup></td>
+</tr>
+<tr>
+<td align="center"><code>controller.zk.connect.security.tls.trustStore.location</code></td>
+<td align="left">Unspecified <sup>2</sup></td>
+</tr>
+<tr>
+<td align="center"><code>controller.zk.connect.security.tls.trustStore.pwd.location</code></td>
+<td align="left">Unspecified <sup>2</sup></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.auth.enable</code></td>
+<td align="left"><code>true</code></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.pwdAuthHandler.accountsDb.location</code> <sup>3</sup></td>
+<td align="left"><code>/etc/secrets/password-auth-handler.database</code></td>
+</tr>
+<tr>
+<td align="center"><code>controller.security.auth.delegationToken.signingKey.basis</code></td>
+<td align="left"><code>a-secret-value</code></td>
+</tr>
+</tbody>
+</table>
+<p>[1]: This and other <code>.password</code> files are text files containing the password for the corresponding store.</p>
+<p>[2]: It is assumed here that Zookeeper TLS is disabled. You may enable it and specify the corresponding client-side 
+ TLS configuration properties via the <code>controller.zk.*</code> properties.</p>
+<p>[3]: This configuration property is required when using the default Password Auth Handler only.</p>
+<p><strong>Segment Store</strong></p>
+<p>Segment store supports security configuration via a properties file (<code>config.properties</code>) or JVM system properties. The table 
+below lists its TLS and auth parameters and sample values. For a detailed discription of these parameters refer to
+<a href="https://github.com/pravega/pravega/blob/master/documentation/src/docs/security/pravega-security-configurations.md">Pravega Security Configurations</a> document.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Configuration Parameter</th>
+<th align="left">Example Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>pravegaservice.security.tls.enable</code></td>
+<td align="left"><code>true</code></td>
+</tr>
+<tr>
+<td align="center"><code>pravegaservice.security.tls.server.certificate.location</code></td>
+<td align="left"><code>/etc/secrets/server-cert.crt</code></td>
+</tr>
+<tr>
+<td align="center"><code>pravegaservice.security.tls.certificate.autoReload.enable</code></td>
+<td align="left"><code>false</code></td>
+</tr>
+<tr>
+<td align="center"><code>pravegaservice.security.tls.server.privateKey.location</code></td>
+<td align="left"><code>/etc/secrets/server-key.key</code></td>
+</tr>
+<tr>
+<td align="center"><code>pravegaservice.zk.connect.security.enable</code></td>
+<td align="left"><code>false</code> <sup>1</sup></td>
+</tr>
+<tr>
+<td align="center"><code>pravegaservice.zk.connect.security.tls.trustStore.location</code></td>
+<td align="left">Unspecified <sup>1</sup></td>
+</tr>
+<tr>
+<td align="center"><code>pravegaservice.zk.connect.security.tls.trustStore.pwd.location</code></td>
+<td align="left">Unspecified <sup>1</sup></td>
+</tr>
+<tr>
+<td align="center"><code>autoScale.controller.connect.security.tls.enable</code></td>
+<td align="left"><code>true</code></td>
+</tr>
+<tr>
+<td align="center"><code>autoScale.controller.connect.security.tls.truststore.location</code></td>
+<td align="left"><code>/etc/secrets/ca-cert.crt</code></td>
+</tr>
+<tr>
+<td align="center"><code>autoScale.controller.connect.security.auth.enable</code></td>
+<td align="left"><code>true</code></td>
+</tr>
+<tr>
+<td align="center"><code>autoScale.security.auth.token.signingKey.basis</code></td>
+<td align="left"><code>a-secret-value</code> <sup>2</sup></td>
+</tr>
+<tr>
+<td align="center"><code>autoScale.controller.connect.security.tls.validateHostName.enable</code></td>
+<td align="left"><code>true</code></td>
+</tr>
+<tr>
+<td align="center"><code>pravega.client.auth.loadDynamic</code></td>
+<td align="left"><code>false</code></td>
+</tr>
+<tr>
+<td align="center"><code>pravega.client.auth.method</code></td>
+<td align="left"><code>Basic</code></td>
+</tr>
+<tr>
+<td align="center"><code>pravega.client.auth.token</code></td>
+<td align="left">Base64-encoded value of 'username:password' string</td>
+</tr>
+</tbody>
+</table>
+<p>[1]: The secret value you use here must match the same value used for other Controller and Segment Store services.</p>
+<p>[2]: It is assumed here that Zookeeper TLS is disabled. You may enable it and specify the corresponding client-side TLS
+configuration properties via these properties.</p>
+<h3 id="configuring-tls-and-credentials-on-client-side">Configuring TLS and Credentials on Client Side<a class="headerlink" href="#configuring-tls-and-credentials-on-client-side" title="Permanent link">&para;</a></h3>
+<p>After enabling and configuring TLS and auth on the server-side services, it's time for the clients' setup.</p>
+<p>Clients can be made to trust the server's certificates signed by custom CA's using one of the following ways:</p>
+<ol>
+<li>
+<p>Configure the client application to use the signing CA's certificate as the truststore. Alternatively, use the 
+     servers' certificate as the truststore. </p>
+<p><div class="codehilite"><pre><span></span><span class="n">ClientConfig</span> <span class="n">clientConfig</span> <span class="o">=</span> <span class="n">ClientConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+           <span class="o">.</span><span class="na">controllerURI</span><span class="o">(</span><span class="s">&quot;tls://&lt;dns-name-or-ip&gt;:9090&quot;</span><span class="o">)</span>
+           <span class="o">.</span><span class="na">trustStore</span><span class="o">(</span><span class="s">&quot;/etc/secrets/ca-cert.crt&quot;</span><span class="o">)</span>
+           <span class="o">...</span>
+           <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+  2. Install the CA's certificate in the Java system key store. 
+  3. Create a custom truststore with the CA's certificate and supply it to the Pravega client application,
+ via standard JVM system properties <code>javax.net.ssl.trustStore</code> and <code>javax.net.ssl.trustStorePassword</code>.</p>
+</li>
+</ol>
+<p>For auth, client-side configuration depends on the <code>AuthHandler</code> implementation used. If your server is configured to
+use the built-in Password Auth Handler that supports "Basic" authentication, you may supply the credentials as shown below.</p>
+<div class="codehilite"><pre><span></span><span class="n">ClientConfig</span> <span class="n">clientConfig</span> <span class="o">=</span> <span class="n">ClientConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+              <span class="o">.</span><span class="na">controllerURI</span><span class="o">(</span><span class="s">&quot;tls://&lt;dns-name-or-ip&gt;:9090&quot;</span><span class="o">)</span>
+              <span class="o">.</span><span class="na">trustStore</span><span class="o">(</span><span class="s">&quot;/etc/secrets/ca-cert.crt&quot;</span><span class="o">)</span>
+              <span class="o">.</span><span class="na">credentials</span><span class="o">(</span><span class="k">new</span> <span class="n">DefaultCredentials</span><span class="o">(</span><span class="s">&quot;&lt;password&gt;&quot;</span><span class="o">,</span> <span class="s">&quot;&lt;username&gt;&quot;</span><span class="o">))</span>
+              <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+<h4 id="server-hostname-verification">Server Hostname Verification<a class="headerlink" href="#server-hostname-verification" title="Permanent link">&para;</a></h4>
+<p>For client's server hostname verification to succeed during TLS handshake, the hostname/IP address it uses for accessing the
+server must match one of the following in the server's certificate:</p>
+<ul>
+<li>Common Name (<code>CN</code>) in the certificate's <code>Subject</code> field</li>
+<li>One of the <code>Subject Alternative Names</code> (SAN) field entries</li>
+</ul>
+<p>Even if the server listens on the loopback address <code>127.0.0.1</code> and its certificate is assigned to <code>localhost</code>, hostname 
+verification will fail if the client attempts to access the server via <code>127.0.0.1</code>. For the verification to pass, 
+the client must access the server using the hostname assigned on the certificate <code>localhost</code> and have a hosts file entry 
+that maps <code>localhost</code> to <code>127.0.0.1</code> (which is usually already there). </p>
+<p>Similarly, if the server certificate is assigned to a non-routable hostname on the network (say, <code>controller01.pravega.io</code>),
+you might need to add an IP address and DNS/host name mapping in the client's operating system hosts file. </p>
+<div class="codehilite"><pre><span></span>10.243.221.34 controller01.pravega.io
+</pre></div>
+<p>If you are reusing preexisting certificate for development/testing on new hosts, you might need to disable hostname 
+verification. To do so, call <code>validateHostName(false)</code> of the ClientConfig builder, as shown below. Never disable 
+hostname verification in production.</p>
+<div class="codehilite"><pre><span></span><span class="n">ClientConfig</span> <span class="n">clientConfig</span> <span class="o">=</span> <span class="n">ClientConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+              <span class="o">.</span><span class="na">controllerURI</span><span class="o">(</span><span class="s">&quot;tls://&lt;dns-name-or-ip&gt;:9090&quot;</span><span class="o">)</span>
+              <span class="o">.</span><span class="na">trustStore</span><span class="o">(</span><span class="s">&quot;/etc/secrets/ca-cert.crt&quot;</span><span class="o">)</span>
+              <span class="o">.</span><span class="na">validateHostName</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+              <span class="o">.</span><span class="na">credentials</span><span class="o">(...)</span>
+              <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+<h3 id="having-tls-and-auth-take-effect">Having TLS and Auth Take Effect<a class="headerlink" href="#having-tls-and-auth-take-effect" title="Permanent link">&para;</a></h3>
+<p>Any changes to TLS and auth configuration parameters take effect only when the service starts. So, changing those 
+configurations require a restart of the services. The same is true for clients, as well.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>This document explained about how to enable security in a Pravega cluster running in distributed mode. 
+Specifically, how to perform the following actions were discussed:</p>
+<ul>
+<li>Generating a CA (if needed)</li>
+<li>Generating server certificates and keys for Pravega services</li>
+<li>Signing the generated certificates using the generated CA</li>
+<li>Enabling and configuring TLS and auth on the server Side</li>
+<li>Setting up the <code>ClientConfig</code> on the client side for communicating with a Pravega cluster running with TLS and auth enabled</li>
+<li>Having TLS and auth take effect</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../pravega-security-encryption/" title="Pravega Security Encryption" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Pravega Security Encryption
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../contributing/" title="Coding guildelines" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Coding guildelines
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+    
+      
+        <script>!function(e,a,t,n,o,c,i){e.GoogleAnalyticsObject=o,e.ga=e.ga||function(){(e.ga.q=e.ga.q||[]).push(arguments)},e.ga.l=1*new Date,c=a.createElement(t),i=a.getElementsByTagName(t)[0],c.async=1,c.src="https://www.google-analytics.com/analytics.js",i.parentNode.insertBefore(c,i)}(window,document,"script",0,"ga"),ga("create","UA-1508605-1","pravega.io"),ga("set","anonymizeIp",!0),ga("send","pageview");var links=document.getElementsByTagName("a");if(Array.prototype.map.call(links,function(e){e.host!=document.location.host&&e.addEventListener("click",function(){var a=e.getAttribute("data-md-action")||"follow";ga("send","event","outbound",a,e.href)})}),document.forms.search){var query=document.forms.search.query;query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}</script>
+      
+    
+  </body>
+</html>
